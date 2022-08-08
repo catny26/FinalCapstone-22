@@ -9,6 +9,15 @@ public class Notification {
     private String message;
     private boolean isRead;
 
+    public Notification(){};
+
+    public Notification(long notificationId, long userId, String message, boolean isRead) {
+        this.notificationId = notificationId;
+        this.userId = userId;
+        this.message = message;
+        this.isRead = isRead;
+    }
+
     public long getNotificationId() {
         return notificationId;
     }

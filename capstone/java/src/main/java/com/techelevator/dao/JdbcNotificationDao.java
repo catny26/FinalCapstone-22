@@ -12,7 +12,7 @@ public class JdbcNotificationDao implements NotificationDao{
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcNotificationDao(DataSource dataSource){jdbcTemplate = new JdbcTemplate(dataSource);}
+    public JdbcNotificationDao(JdbcTemplate jdbcTemplate){this.jdbcTemplate = jdbcTemplate;}
 
     @Override
     public List<Notification> findAll() {
@@ -44,8 +44,8 @@ public class JdbcNotificationDao implements NotificationDao{
         List<Notification> output = new ArrayList<>();
         String sql = "SELECT notification_id, user_id, message, is_read" +
                 " FROM notifications"+
-                " WHERE user_id = ? AND is_read = false;";
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
+                " WHERE (user_id = ? AND is_read = false);";
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, userId);
         while(sqlRowSet.next()){
             output.add(mapRowSetToNotification(sqlRowSet));
         }
@@ -77,7 +77,7 @@ public class JdbcNotificationDao implements NotificationDao{
 
     @Override
     public boolean updateNotification(Notification notification) {
-        String sql = "UPDATE notification" +
+        String sql = "UPDATE notifications" +
                 " SET user_id = ?, message = ?, is_read = ?" +
                 " WHERE notification_id = ?;";
         return jdbcTemplate.update(sql, notification.getUserId(), notification.getMessage(), notification.isRead(), notification.getNotificationId()) == 1;
@@ -85,7 +85,7 @@ public class JdbcNotificationDao implements NotificationDao{
 
     @Override
     public boolean deleteNotification(long notificationId) {
-        String sql = "DELETE FROM notification" +
+        String sql = "DELETE FROM notifications" +
                 " WHERE notification_id = ?;";
         return jdbcTemplate.update(sql, notificationId) == 1;
     }

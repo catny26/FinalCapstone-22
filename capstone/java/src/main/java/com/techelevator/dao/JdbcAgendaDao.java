@@ -12,7 +12,7 @@ public class JdbcAgendaDao implements AgendaDao{
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcAgendaDao(DataSource dataSource) {this.jdbcTemplate = new JdbcTemplate(dataSource);}
+    public JdbcAgendaDao(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
 
     @Override
     public List<Agenda> findAll() {
