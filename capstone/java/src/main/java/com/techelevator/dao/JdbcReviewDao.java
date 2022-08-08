@@ -39,8 +39,8 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Reviews getByDoctorID(Integer doctorID) {
-        String sql = "SELECT * " +
+    public Reviews getByDoctorID(long doctorID) {
+        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.review_response, u.user_id " +
                     "FROM reviews r " +
                     "JOIN users u " +
                     "ON r.doctor_id = u.user_id " +
@@ -53,8 +53,8 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Reviews getByPatientID(Integer patientID) {
-        String sql = "SELECT * " +
+    public Reviews getByPatientID(long patientID) {
+        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, u.user_id " +
                     "FROM reviews r " +
                     "JOIN users u " +
                     "ON r.patient_id = u.user_id " +
@@ -67,8 +67,8 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Reviews getByOfficeID(Integer officeID) {
-        String sql = "SELECT * " +
+    public Reviews getByOfficeID(long officeID) {
+        String sql = "SELECT i.office_id, r.office_id " +
                     "FROM office_info i " +
                     "JOIN reviews r " +
                     "ON i.office_id = r.office_id " +
@@ -80,15 +80,15 @@ public class JdbcReviewDao implements ReviewDao{
         return null;
     }
 
-    public Reviews(){
-
-    }
-
     private Reviews mapRowToReview(SqlRowSet results) {
         Reviews review = new Reviews();
         review.setReviewID(results.getInt("review_id"));
-        review.setDoctorID(results.getInt("doctor_id"));
-        review.setPatientID(results.getInt("patient_id"));
-        review.setOfficeID(results.getInt("office_id"));
+        review.setAmountOfStars(results.getInt("amount_of_stars"));
+        review.setReviewMessage(results.getString("review_message"));
+        review.setDoctorID(results.getLong("doctor_id"));
+        review.setPatientID(results.getLong("patient_id"));
+        review.setOfficeID(results.getLong("office_id"));
+        review.setReviewResponse(results.getString("review_response"));
+        return new Reviews();
     }
 }

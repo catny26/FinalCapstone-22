@@ -5,9 +5,9 @@ public class Reviews {
     private int reviewID;
     private int amountOfStars;
     private String reviewMessage;
-    private Integer doctorID;
-    private Integer patientID;
-    private Integer officeID;
+    private long doctorID;
+    private long patientID;
+    private long officeID;
     private String reviewResponse;
 
     public Reviews(int reviewID, int amountOfStars, String reviewMessage, Integer doctorID, Integer patientID, Integer officeID, String reviewResponse) {
@@ -48,27 +48,27 @@ public class Reviews {
         this.reviewMessage = reviewMessage;
     }
 
-    public Integer getDoctorID() {
+    public long getDoctorID() {
         return doctorID;
     }
 
-    public void setDoctorID(Integer doctorID) {
+    public void setDoctorID(long doctorID) {
         this.doctorID = doctorID;
     }
 
-    public Integer getPatientID() {
+    public long getPatientID() {
         return patientID;
     }
 
-    public void setPatientID(Integer patientID) {
+    public void setPatientID(long patientID) {
         this.patientID = patientID;
     }
 
-    public Integer getOfficeID() {
+    public long getOfficeID() {
         return officeID;
     }
 
-    public void setOfficeID(Integer officeID) {
+    public void setOfficeID(long officeID) {
         this.officeID = officeID;
     }
 

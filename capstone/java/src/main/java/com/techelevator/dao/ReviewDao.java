@@ -10,10 +10,10 @@ public interface ReviewDao {
 
     Reviews getByReviewID(int reviewID);
 
-    Reviews getByDoctorID(Integer doctorID);
+    Reviews getByDoctorID(long doctorID);
 
-    Reviews getByPatientID(Integer patientID);
+    Reviews getByPatientID(long patientID);
 
-    Reviews getByOfficeID(Integer officeID);
+    Reviews getByOfficeID(long officeID);
 
 }
