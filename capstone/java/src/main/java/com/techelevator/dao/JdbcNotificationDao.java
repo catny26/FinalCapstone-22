@@ -2,8 +2,10 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Notification;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcNotificationDao implements NotificationDao{
@@ -14,36 +16,86 @@ public class JdbcNotificationDao implements NotificationDao{
 
     @Override
     public List<Notification> findAll() {
-        return null;
+        List<Notification> output = new ArrayList<>();
+        String sql = "SELECT notification_id, user_id, message, is_read" +
+                " FROM notifications;";
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
+        while(sqlRowSet.next()){
+            output.add(mapRowSetToNotification(sqlRowSet));
+        }
+        return output;
     }
 
     @Override
     public List<Notification> getAllNotificationsByUser(long userId) {
-        return null;
+        List<Notification> output = new ArrayList<>();
+        String sql = "SELECT notification_id, user_id, message, is_read" +
+                " FROM notifications"+
+                " WHERE user_id = ?;";
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, userId);
+        while(sqlRowSet.next()){
+            output.add(mapRowSetToNotification(sqlRowSet));
+        }
+        return output;
     }
 
     @Override
     public List<Notification> getAllUnreadNotificationsByUser(long userId) {
-        return null;
+        List<Notification> output = new ArrayList<>();
+        String sql = "SELECT notification_id, user_id, message, is_read" +
+                " FROM notifications"+
+                " WHERE user_id = ? AND is_read = false;";
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
+        while(sqlRowSet.next()){
+            output.add(mapRowSetToNotification(sqlRowSet));
+        }
+        return output;
     }
 
     @Override
     public Notification getNotification(long notificationId) {
-        return null;
+        Notification output = null;
+        String sql = "SELECT notification_id, user_id, message, is_read" +
+                " FROM notifications"+
+                " WHERE notification_id = ?";
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, notificationId);
+        if(sqlRowSet.next()){
+            output = mapRowSetToNotification(sqlRowSet);
+        }
+        return output;
     }
 
     @Override
     public Notification createNotification(Notification notification) {
-        return null;
+        String sql = "INSERT INTO notifications (user_id, message, is_read)" +
+                " VALUES (?,?,?)"+
+                " RETURNING notification_id;";
+        long id = jdbcTemplate.queryForObject(sql, Long.class, notification.getUserId(), notification.getMessage(), notification.isRead());
+        notification.setNotificationId(id);
+        return notification;
     }
 
     @Override
     public boolean updateNotification(Notification notification) {
-        return false;
+        String sql = "UPDATE notification" +
+                " SET user_id = ?, message = ?, is_read = ?" +
+                " WHERE notification_id = ?;";
+        return jdbcTemplate.update(sql, notification.getUserId(), notification.getMessage(), notification.isRead(), notification.getNotificationId()) == 1;
     }
 
     @Override
     public boolean deleteNotification(long notificationId) {
-        return false;
+        String sql = "DELETE FROM notification" +
+                " WHERE notification_id = ?;";
+        return jdbcTemplate.update(sql, notificationId) == 1;
+    }
+
+    private Notification mapRowSetToNotification(SqlRowSet sqlRowSet){
+        Notification output = new Notification();
+        output.setNotificationId(sqlRowSet.getLong("notification_id"));
+        output.setUserId(sqlRowSet.getLong("user_id"));
+        output.setMessage(sqlRowSet.getString("message"));
+        output.setRead(sqlRowSet.getBoolean("is_read"));
+        return output;
     }
 }

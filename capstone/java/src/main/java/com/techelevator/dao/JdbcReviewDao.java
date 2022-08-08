@@ -80,9 +80,6 @@ public class JdbcReviewDao implements ReviewDao{
         return null;
     }
 
-    public Reviews(){
-
-    }
 
     private Reviews mapRowToReview(SqlRowSet results) {
         Reviews review = new Reviews();
