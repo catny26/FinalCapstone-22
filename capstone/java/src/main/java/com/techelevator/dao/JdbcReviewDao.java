@@ -40,10 +40,8 @@ public class JdbcReviewDao implements ReviewDao{
 
     @Override
     public Reviews getByDoctorID(long doctorID) {
-        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.review_response, u.user_id " +
+        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.review_response, r.office_id " +
                     "FROM reviews r " +
-                    "JOIN users u " +
-                    "ON r.doctor_id = u.user_id " +
                     "WHERE r.doctor_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorID);
         if(results.next()){
@@ -54,10 +52,8 @@ public class JdbcReviewDao implements ReviewDao{
 
     @Override
     public Reviews getByPatientID(long patientID) {
-        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, u.user_id " +
+        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.office_id " +
                     "FROM reviews r " +
-                    "JOIN users u " +
-                    "ON r.patient_id = u.user_id " +
                     "WHERE r.patient_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, patientID);
         if(results.next()){
@@ -68,18 +64,16 @@ public class JdbcReviewDao implements ReviewDao{
 
     @Override
     public Reviews getByOfficeID(long officeID) {
-        String sql = "SELECT i.office_id, r.office_id " +
-                    "FROM office_info i " +
-                    "JOIN reviews r " +
-                    "ON i.office_id = r.office_id " +
-                    "WHERE r.office_id = ?;";
+        String sql = "SELECT review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id " +
+                    "FROM reviews " +
+                    "WHERE office_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeID);
         if(results.next()){
             return mapRowToReview(results);
         }
         return null;
     }
-    
+
     private Reviews mapRowToReview(SqlRowSet results) {
         Reviews review = new Reviews();
         review.setReviewID(results.getInt("review_id"));
