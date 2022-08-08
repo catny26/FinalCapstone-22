@@ -1,6 +1,7 @@
-package com.techelevator.dao;
+package com.techelevator.model;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 public class OfficeInfo {
 
@@ -8,11 +9,11 @@ public class OfficeInfo {
     private String officeName;
     private String address;
     private String phoneNumber;
-    private long officeHoursOpen;
-    private long officeHoursClose;
+    private LocalTime officeHoursOpen;
+    private LocalTime officeHoursClose;
     private BigDecimal costPerHour;
 
-    public OfficeInfo(long officeId, String officeName, String address, String phoneNumber, long officeHoursOpen, long officeHoursClose, BigDecimal costPerHour) {
+    public OfficeInfo(long officeId, String officeName, String address, String phoneNumber, LocalTime officeHoursOpen, LocalTime officeHoursClose, BigDecimal costPerHour) {
         this.officeId = officeId;
         this.officeName = officeName;
         this.address = address;
@@ -58,19 +59,19 @@ public class OfficeInfo {
         this.phoneNumber = phoneNumber;
     }
 
-    public long getOfficeHoursOpen() {
+    public LocalTime getOfficeHoursOpen() {
         return officeHoursOpen;
     }
 
-    public void setOfficeHoursOpen(long officeHoursOpen) {
+    public void setOfficeHoursOpen(LocalTime officeHoursOpen) {
         this.officeHoursOpen = officeHoursOpen;
     }
 
-    public long getOfficeHoursClose() {
+    public LocalTime getOfficeHoursClose() {
         return officeHoursClose;
     }
 
-    public void setOfficeHoursClose(long officeHoursClose) {
+    public void setOfficeHoursClose(LocalTime officeHoursClose) {
         this.officeHoursClose = officeHoursClose;
     }
 
