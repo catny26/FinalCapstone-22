@@ -65,7 +65,7 @@ public class JdbcRoleDao implements RoleDao{
 
     private Role mapRowToRole(SqlRowSet results) {
         Role role = new Role();
-        role.setId(results.getLong("id"));
+        role.setId(results.getInt("role_id"));
         role.setName(results.getString("role_name"));
         return role;
     }
