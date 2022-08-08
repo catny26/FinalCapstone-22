@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, office_info, users_office_info, reviews, agenda, appointments CASCADE;
+DROP TABLE IF EXISTS users, notifications, office_info, users_office_info, reviews, agenda, appointments CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -8,6 +8,15 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
+);
+
+CREATE TABLE notifications (
+    notification_id SERIAL NOT NULL,
+    user_id bigint NOT NULL,
+    message varchar (500) NOT NULL,
+    is_read boolean NOT NULL,
+    CONSTRAINT PK_notification PRIMARY KEY (notification_id),
+    CONSTRAINT FK_notification_user FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
 CREATE TABLE office_info (
