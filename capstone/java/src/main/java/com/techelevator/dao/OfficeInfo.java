@@ -7,16 +7,16 @@ public class OfficeInfo {
     private long officeId;
     private String officeName;
     private String address;
-    private String phone;
+    private String phoneNumber;
     private long officeHoursOpen;
     private long officeHoursClose;
     private BigDecimal costPerHour;
 
-    public OfficeInfo(long officeId, String officeName, String address, String phone, long officeHoursOpen, long officeHoursClose, BigDecimal costPerHour) {
+    public OfficeInfo(long officeId, String officeName, String address, String phoneNumber, long officeHoursOpen, long officeHoursClose, BigDecimal costPerHour) {
         this.officeId = officeId;
         this.officeName = officeName;
         this.address = address;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
         this.officeHoursOpen = officeHoursOpen;
         this.officeHoursClose = officeHoursClose;
         this.costPerHour = costPerHour;
@@ -50,12 +50,12 @@ public class OfficeInfo {
         this.address = address;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public long getOfficeHoursOpen() {
