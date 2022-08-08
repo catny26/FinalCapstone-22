@@ -10,11 +10,11 @@ public class Appointment {
     private Long patientId;
     private Long doctorId;
     private Long agendaId;
-    private String reason;
     private LocalTime startTime;
     private LocalTime endTime;
     private LocalDate date;
-
+    private String status;
+    private String reason;
 
     public Long getId() {
         return id;
@@ -48,14 +48,6 @@ public class Appointment {
         this.agendaId = agendaId;
     }
 
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
     public LocalTime getStartTime() {
         return startTime;
     }
@@ -78,5 +70,21 @@ public class Appointment {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

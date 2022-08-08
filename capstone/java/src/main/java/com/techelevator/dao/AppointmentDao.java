@@ -16,6 +16,4 @@ public interface AppointmentDao {
 
     public Appointment updateAppointment(Appointment appointment);
 
-    public boolean deleteAppointment(long id);
-
 }
