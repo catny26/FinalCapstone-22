@@ -4,13 +4,13 @@ public class Reviews {
 
     private int reviewID;
     private int amountOfStars;
-    private char reviewMessage;
+    private String reviewMessage;
     private Integer doctorID;
     private Integer patientID;
     private Integer officeID;
-    private char reviewResponse;
+    private String reviewResponse;
 
-    public Reviews(int reviewID, int amountOfStars, char reviewMessage, Integer doctorID, Integer patientID, Integer officeID, char reviewResponse) {
+    public Reviews(int reviewID, int amountOfStars, String reviewMessage, Integer doctorID, Integer patientID, Integer officeID, String reviewResponse) {
         this.reviewID = reviewID;
         this.amountOfStars = amountOfStars;
         this.reviewMessage = reviewMessage;
@@ -40,11 +40,11 @@ public class Reviews {
         this.amountOfStars = amountOfStars;
     }
 
-    public char getReviewMessage() {
+    public String getReviewMessage() {
         return reviewMessage;
     }
 
-    public void setReviewMessage(char reviewMessage) {
+    public void setReviewMessage(String reviewMessage) {
         this.reviewMessage = reviewMessage;
     }
 
@@ -72,11 +72,11 @@ public class Reviews {
         this.officeID = officeID;
     }
 
-    public char getReviewResponse() {
+    public String getReviewResponse() {
         return reviewResponse;
     }
 
-    public void setReviewResponse(char reviewResponse) {
+    public void setReviewResponse(String reviewResponse) {
         this.reviewResponse = reviewResponse;
     }
 }
