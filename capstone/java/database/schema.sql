@@ -1,20 +1,13 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS roles, users, office_info, users_office_info, reviews, agenda, appointments CASCADE;
-
-CREATE TABLE roles(
-    role_id SERIAL NOT NULL,
-    role_name varchar (50) NOT NULL,
-    CONSTRAINT PK_role PRIMARY KEY (role_id)
-);
+DROP TABLE IF EXISTS users, office_info, users_office_info, reviews, agenda, appointments CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
-	role_id bigint NOT NULL,
+	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
-	CONSTRAINT FK_users_role FOREIGN KEY (role_id) REFERENCES roles (role_id)
 );
 
 CREATE TABLE office_info (
@@ -82,6 +75,7 @@ CREATE TABLE appointments (
     start_time time NOT NULL,
     end_time time NOT NULL,
     appointment_date date NOT NULL,
+    status varchar(9) NOT NULL,
     reason varchar(500) NOT NULL,
     CONSTRAINT PK_appointment PRIMARY KEY (appointment_id),
     CONSTRAINT FK_appointment_doctor FOREIGN KEY (doctor_id) REFERENCES users (user_id),
