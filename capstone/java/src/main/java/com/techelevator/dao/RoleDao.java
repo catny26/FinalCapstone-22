@@ -8,7 +8,7 @@ public interface RoleDao {
 
     List<Role> findAll();
 
-    Long findByRoleID(Long id);
+    Role findByRoleID(int id);
 
-    String findByRoleName(String name);
+    Role findByRoleName(String name);
 }
