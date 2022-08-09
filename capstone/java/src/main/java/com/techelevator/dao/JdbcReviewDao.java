@@ -82,7 +82,6 @@ public class JdbcReviewDao implements ReviewDao{
         long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getReviewID(), reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorID(), reviews.getPatientID(), reviews.getOfficeID());
         reviews.setReviewID(id);
         return reviews;
-
     }
 
 

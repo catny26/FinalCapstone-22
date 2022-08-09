@@ -25,5 +25,9 @@ INSERT INTO office_info (office_id, office_name, address, phone_number, office_h
 INSERT INTO office_info (office_id, office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES (3, "Office 3", "3 Street, Philadelphia, PA 19103", "2155551233", "10:00", "18:00", 70.00);
 INSERT INTO office_info (office_id, office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES (4, "Office 4", "4 Street, Philadelphia, PA 19104", "2155551234", "11:00", "19:00", 80.00);
 
+INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (1, 5, 'Best medical care ever!', 3, 4001, 102, 'Thank you for your review!');
+INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (2, 5, 'So happy with my visit experience!', 3, 4001, 102, 'We appreciate your review!');
+INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (3, 1, 'The staff are SO rude! This doc is a hack', 3, 4001, 102, 'We apologize for your negative experience.');
+INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (4, 3, 'My appointment took 5 hours for a simple annual, but the customer service was good and my doctor was knowledgable.', 3, 4001, 102, 'Thank you for your review. We will take your review into consideration for future patient visits.');
 
 COMMIT TRANSACTION;
