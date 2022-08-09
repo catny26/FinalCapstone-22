@@ -1,9 +1,9 @@
 BEGIN TRANSACTION;
 
-INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-INSERT INTO users (username,password_hash,role) VALUES ('testpatient','$2a$10$qa.fO8Fxhq.K/R8SuH2pxOLov8/6auvtZsy6MDVNuh9BNM6SBiABm','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('testdoctor','$2a$10$3RuzpY.OPF/7nQ19TtbgRO4Cx6W9kvErZLrAtfpr55j2SLWB6NK.6','ROLE_DOCTOR');
+INSERT INTO users (username,full_name,password_hash,role) VALUES ('user','user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,full_name,password_hash,role) VALUES ('admin','admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (username,full_name,password_hash,role) VALUES ('testpatient','test patient','$2a$10$qa.fO8Fxhq.K/R8SuH2pxOLov8/6auvtZsy6MDVNuh9BNM6SBiABm','ROLE_USER');
+INSERT INTO users (username,full_name,password_hash,role) VALUES ('testdoctor','test doctor','$2a$10$3RuzpY.OPF/7nQ19TtbgRO4Cx6W9kvErZLrAtfpr55j2SLWB6NK.6','ROLE_DOCTOR');
 
 
 INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Cardiology Consultants of Philadelphia', '207 N Broad St, Philadelphia, PA 19107', 2152273627, '08:00', '16:00', 50.00);
@@ -12,34 +12,35 @@ INSERT INTO office_info (office_name, address, phone_number, office_hours_open, 
 INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Philadelphia Dentistry', '1601 Walnut St #1302, Philadelphia, PA 19102', 2155686222, '08:00', '17:00', 70.00);
 
 
-INSERT INTO users (username, password_hash, role) VALUES ('madesman', '$2a$10$FmPjRAtJ/XLPwQfAH8sf6eEjat4ehBeSnqz4L8zs5Rbudv3qiGNtu', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('sbrauer', '$2a$10$blE3WmKuGu2nHT88Wo5NwuEtpZ0Hgi9IIgnIX/nEz8wUuuU/wo8FW', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('wmercier', '$2a$10$LGyfMaBG509OtLRI1WTak.RDVYZoA9RC7YLPWBbdScboUR2CVeC/.', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('xli', '$2a$10$r1KdcR4OHZrTsAEU32uAF.zbIrEMlUPxBGg3zTnQpok3t7qzn.IbK', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('jbagnick', '$2a$10$Nx9n81B6ABz18iFEXxLHAupS/9QCN5CSQXgbrgHRPaRKXlwqY.2uy', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('dmajor', '$2a$10$wNyZzPrFdUjjUOAz10fGAO/vhKb3SnA3xRJXf37MIvHqq4La1DYQW', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('zfont', '$2a$10$8m9rqnIHYeYUpPcjfT3I0ORI4RyqHix/p3674KgxSnUYqnYMT3PO2', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('dzackey', '$2a$10$imaujXo0ds4i2BMF2HBRQOgwkPoUafNUQtFjMEvKbPx17IdREAy.e', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('jambriz', '$2a$10$URcE.pZrRB1bq2SErycMSO0DxzDbuQany3dVbawJNZwMwSgQlcHj6', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('ebeppel', '$2a$10$HxNL9cvdcP4F5PilT/Yu.O6gNwVJ9tV38M4CudUpE6ota5l9vS7Se', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('mbuckley', '$2a$10$bpBoltKN8Gde1ZvsvUhbhe4xPpvJfG8AHOFiDF/HnwRQxBtmhmP8y', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('hcohen', '$2a$10$DGGq9yUNOhdfnnODxsn3iu5pgGVPW4xzog5eqcF3kCq64O0xd3rNe', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('bbullock', '$2a$10$4f/PnRylwEJzbnjuZPq9juagz1eXzhGmmfoCzGdARoAYqR4NTB6NC', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('avadher', '$2a$10$OgfCuYbVpmDbbGKMd.PLRuVg/Vg57ZgJugPW8PP.GpwSnJyHfN/uq', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('bnguyen', '$2a$10$RKiPuJqXehsfFDsMseZoZOvHdyrBsjVNSoHucFNuFtVMiFNFrYed2', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('eziegler', '$2a$10$E1H5vZicpwwi6t6ijfXCueZlUBikOTpeXbNXCfRFIa.4pbjwdBUNu', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('okhan', '$2a$10$wW5L2OkNPjNRUsSe0NopYunl9QFsKo05mB7diM0UH4iqQLR6t35wK', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('zlyons', '$2a$10$MQE4fwQ0uGwd4k2WnRoHYeRLUwjzw0Ih44L.kfMEagGsZwOHXhxrG', 'ROLE_DOCTOR');
-INSERT INTO users (username, password_hash, role) VALUES ('ibenton', '$2a$10$jjcNLETKswckI1/ABwir/.qvatRV3MZQvqV..nmsbhJQcgVMqDCva', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('gbrook', '$2a$10$5S/w4GBdqyN7XRlqeMWr1eRVcG1CQICw4.qoZIjiPHcKlTRHtwdcS', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('swillis', '$2a$10$FmscFDenWl3I7VP6p7UxJ.PdMkKcCe4TFy8YLAPdprBFvYhTy/.vO', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('vfrost', '$2a$10$pRWj.JubjAM8VJBgWzYH4uqNdDosXYPU7SKVBVThrg9TumvKFPt.6', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('klara', '$2a$10$S5qhm5QClLqa0BdOf0QYietpbAKO.6cEHU4.sHGGj4bh3wmv4krsi', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('hrobson', '$2a$10$/bo3sMBOqysDWiaxiG.LmODUo.0r5BAXYBIUbmu./sVdHRykCerwG', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('obutler', '$2a$10$s7iTzx0ThOqz.lfSi7m6Gu0zcWuRbJKp8S.jk9r1QEt2eUBCyfopu', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('cwarren', '$2a$10$gvRLGJQCaI3XUaA5pQtiWublHbDsMYAUEMPXUvpW6ZGv/1k1LvlL2', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('amalone', '$2a$10$TTh0CWQ5BKt/9i56RBq2qOT1WdEz9RT1C06j.CbuCCIdDRMk3dW.K', 'ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES ('wrivers', '$2a$10$bAkbO09mNMj2lO1L7NNldOFtDNUDsMp/CorqaAPniGxgi6tFhF0jO', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('madesman','Paulien Vlad', '$2a$10$FmPjRAtJ/XLPwQfAH8sf6eEjat4ehBeSnqz4L8zs5Rbudv3qiGNtu', 'ROLE_DOCTOR', 'Family');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('sbrauer','Nanuk Eva', '$2a$10$blE3WmKuGu2nHT88Wo5NwuEtpZ0Hgi9IIgnIX/nEz8wUuuU/wo8FW', 'ROLE_DOCTOR', 'Family');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('wmercier','Noni Clark', '$2a$10$LGyfMaBG509OtLRI1WTak.RDVYZoA9RC7YLPWBbdScboUR2CVeC/.', 'ROLE_DOCTOR', 'Family');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('xli','Cathy Ngo', '$2a$10$r1KdcR4OHZrTsAEU32uAF.zbIrEMlUPxBGg3zTnQpok3t7qzn.IbK', 'ROLE_DOCTOR', 'Family');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('jbagnick','Jenn Lee', '$2a$10$Nx9n81B6ABz18iFEXxLHAupS/9QCN5CSQXgbrgHRPaRKXlwqY.2uy', 'ROLE_DOCTOR', 'Family');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('dmajor','Sam Muskovitz', '$2a$10$wNyZzPrFdUjjUOAz10fGAO/vhKb3SnA3xRJXf37MIvHqq4La1DYQW', 'ROLE_DOCTOR', 'Radiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('zfont','Juhani Muhamad', '$2a$10$8m9rqnIHYeYUpPcjfT3I0ORI4RyqHix/p3674KgxSnUYqnYMT3PO2', 'ROLE_DOCTOR', 'Radiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('dzackey','Rhode Beata', '$2a$10$imaujXo0ds4i2BMF2HBRQOgwkPoUafNUQtFjMEvKbPx17IdREAy.e', 'ROLE_DOCTOR', 'Radiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('jambriz','Daniela Gusta', '$2a$10$URcE.pZrRB1bq2SErycMSO0DxzDbuQany3dVbawJNZwMwSgQlcHj6', 'ROLE_DOCTOR', 'Radiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('ebeppel','Giorgos Sachiko', '$2a$10$HxNL9cvdcP4F5PilT/Yu.O6gNwVJ9tV38M4CudUpE6ota5l9vS7Se', 'ROLE_DOCTOR', 'Radiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('mbuckley','Ivo Uther', '$2a$10$bpBoltKN8Gde1ZvsvUhbhe4xPpvJfG8AHOFiDF/HnwRQxBtmhmP8y', 'ROLE_DOCTOR', 'Radiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('hcohen','Tom Beerbower', '$2a$10$DGGq9yUNOhdfnnODxsn3iu5pgGVPW4xzog5eqcF3kCq64O0xd3rNe', 'ROLE_DOCTOR', 'Pediatrist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('bbullock','Myron Law-Doom', '$2a$10$4f/PnRylwEJzbnjuZPq9juagz1eXzhGmmfoCzGdARoAYqR4NTB6NC', 'ROLE_DOCTOR','Psychiatrist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('avadher','Gervaise Antton', '$2a$10$OgfCuYbVpmDbbGKMd.PLRuVg/Vg57ZgJugPW8PP.GpwSnJyHfN/uq', 'ROLE_DOCTOR', 'Anesthesiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('bnguyen','Gwenneth Dotty', '$2a$10$RKiPuJqXehsfFDsMseZoZOvHdyrBsjVNSoHucFNuFtVMiFNFrYed2', 'ROLE_DOCTOR', 'Anesthesiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('eziegler','Agnija Eliana', '$2a$10$E1H5vZicpwwi6t6ijfXCueZlUBikOTpeXbNXCfRFIa.4pbjwdBUNu', 'ROLE_DOCTOR', 'Anesthesiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('okhan','Krystyna Eugen', '$2a$10$wW5L2OkNPjNRUsSe0NopYunl9QFsKo05mB7diM0UH4iqQLR6t35wK', 'ROLE_DOCTOR', 'Anesthesiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('zlyons','Catherine Karen', '$2a$10$MQE4fwQ0uGwd4k2WnRoHYeRLUwjzw0Ih44L.kfMEagGsZwOHXhxrG', 'ROLE_DOCTOR', 'Anesthesiologist');
+
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('ibenton','Bojidar Veronika', '$2a$10$jjcNLETKswckI1/ABwir/.qvatRV3MZQvqV..nmsbhJQcgVMqDCva', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('gbrook','Oberon Valentina', '$2a$10$5S/w4GBdqyN7XRlqeMWr1eRVcG1CQICw4.qoZIjiPHcKlTRHtwdcS', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('swillis','Tanguy Dorotea', '$2a$10$FmscFDenWl3I7VP6p7UxJ.PdMkKcCe4TFy8YLAPdprBFvYhTy/.vO', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('vfrost','Starr Kisecawchuck', '$2a$10$pRWj.JubjAM8VJBgWzYH4uqNdDosXYPU7SKVBVThrg9TumvKFPt.6', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('klara','Aleksander Tjeerd', '$2a$10$S5qhm5QClLqa0BdOf0QYietpbAKO.6cEHU4.sHGGj4bh3wmv4krsi', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('hrobson','Sietske Magdalena', '$2a$10$/bo3sMBOqysDWiaxiG.LmODUo.0r5BAXYBIUbmu./sVdHRykCerwG', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('obutler','Brandon Butler', '$2a$10$s7iTzx0ThOqz.lfSi7m6Gu0zcWuRbJKp8S.jk9r1QEt2eUBCyfopu', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('cwarren','Zotikos Mónica', '$2a$10$gvRLGJQCaI3XUaA5pQtiWublHbDsMYAUEMPXUvpW6ZGv/1k1LvlL2', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('amalone','Halina Steel-Crash', '$2a$10$TTh0CWQ5BKt/9i56RBq2qOT1WdEz9RT1C06j.CbuCCIdDRMk3dW.K', 'ROLE_USER');
+INSERT INTO users (username, full_name, password_hash, role) VALUES ('wrivers','Orna Chisomo', '$2a$10$bAkbO09mNMj2lO1L7NNldOFtDNUDsMp/CorqaAPniGxgi6tFhF0jO', 'ROLE_USER');
 
 INSERT INTO users_office_info (office_id, user_id) VALUES (1, 5);
 INSERT INTO users_office_info (office_id, user_id) VALUES (1, 6);

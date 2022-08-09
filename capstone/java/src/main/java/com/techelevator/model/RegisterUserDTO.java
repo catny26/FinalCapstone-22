@@ -12,6 +12,10 @@ public class RegisterUserDTO {
     private String confirmPassword;
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
+    @NotEmpty(message = "Please enter your full name.")
+    private String fullName;
+    private String typeOfDoctor;
+
 
     public String getUsername() {
         return username;
@@ -43,5 +47,21 @@ public class RegisterUserDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getTypeOfDoctor() {
+        return typeOfDoctor;
+    }
+
+    public void setTypeOfDoctor(String typeOfDoctor) {
+        this.typeOfDoctor = typeOfDoctor;
     }
 }

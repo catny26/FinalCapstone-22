@@ -10,6 +10,8 @@ public class User {
 
    private int id;
    private String username;
+   private String typeOfDoctor;
+   private String fullName;
    @JsonIgnore
    private String password;
    @JsonIgnore
@@ -24,6 +26,16 @@ public class User {
       this.password = password;
       if(authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+   }
+
+   public User(int id, String username, String password, String authorities, String typeOfDoctor, String fullName) {
+      this.id = id;
+      this.username = username;
+      this.password = password;
+      if(authorities != null) this.setAuthorities(authorities);
+      this.activated = true;
+      this.typeOfDoctor = typeOfDoctor;
+      this.fullName = fullName;
    }
 
    public int getId() {
@@ -66,6 +78,22 @@ public class User {
       this.authorities = authorities;
    }
 
+   public String getTypeOfDoctor() {
+      return typeOfDoctor;
+   }
+
+   public void setTypeOfDoctor(String typeOfDoctor) {
+      this.typeOfDoctor = typeOfDoctor;
+   }
+
+   public String getFullName() {
+      return fullName;
+   }
+
+   public void setFullName(String fullName) {
+      this.fullName = fullName;
+   }
+
    public void setAuthorities(String authorities) {
       String[] roles = authorities.split(",");
       for(String role : roles) {
@@ -79,16 +107,12 @@ public class User {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       User user = (User) o;
-      return id == user.id &&
-              activated == user.activated &&
-              Objects.equals(username, user.username) &&
-              Objects.equals(password, user.password) &&
-              Objects.equals(authorities, user.authorities);
+      return id == user.id && activated == user.activated && Objects.equals(username, user.username) && Objects.equals(typeOfDoctor, user.typeOfDoctor) && Objects.equals(fullName, user.fullName) && Objects.equals(password, user.password) && Objects.equals(authorities, user.authorities);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, username, password, activated, authorities);
+      return Objects.hash(id, username, typeOfDoctor, fullName, password, activated, authorities);
    }
 
    @Override
@@ -96,6 +120,9 @@ public class User {
       return "User{" +
               "id=" + id +
               ", username='" + username + '\'' +
+              ", typeOfDoctor='" + typeOfDoctor + '\'' +
+              ", fullName='" + fullName + '\'' +
+              ", password='" + password + '\'' +
               ", activated=" + activated +
               ", authorities=" + authorities +
               '}';

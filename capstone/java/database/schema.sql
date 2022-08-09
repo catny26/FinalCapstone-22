@@ -5,8 +5,10 @@ DROP TABLE IF EXISTS users, notifications, office_info, users_office_info, revie
 CREATE TABLE users (
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
+	full_name varchar(100) NOT NULL,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
+	type_of_doctor varchar(50),
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
