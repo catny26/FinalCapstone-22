@@ -10,7 +10,7 @@ public class Reviews {
     private long officeID;
     private String reviewResponse;
 
-    public Reviews(int reviewID, int amountOfStars, String reviewMessage, Integer doctorID, Integer patientID, Integer officeID, String reviewResponse) {
+    public Reviews(int reviewID, int amountOfStars, String reviewMessage, long doctorID, long patientID, long officeID, String reviewResponse) {
         this.reviewID = reviewID;
         this.amountOfStars = amountOfStars;
         this.reviewMessage = reviewMessage;
