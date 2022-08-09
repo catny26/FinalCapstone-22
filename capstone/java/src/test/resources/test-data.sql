@@ -11,5 +11,10 @@ INSERT INTO notifications (user_id, message, is_read) VALUES (3, 'NO :(', true);
 
 INSERT INTO agenda (doctor_id, mon_start, mon_end, tue_start, tue_end, sat_start, sat_end, lunch_start, lunch_end) VALUES (1, '08:00:00', '17:00:00', '08:00:00', '17:00:00', '08:00:00', '17:00:00', '12:00:00', '1:00:00');
 
+INSERT INTO appointment (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3,1,1, '13:00', '13:30', '2022-08-15', 'Confirmed', 'Because I feel like it');
+INSERT INTO appointment (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3,2,1, '12:00', '13:00', '2022-01-01', 'Canceled', 'Not allowed, Not on new years');
+INSERT INTO appointment (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3,1,1, '9:00', '12:00', '2022-05-17', 'Pending', 'Early Morning Surgery');
+INSERT INTO appointment (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3,2,1, '10:00', '14:00', '2022-08-09', 'Canceled', 'Way too long');
+
 
 COMMIT TRANSACTION;
