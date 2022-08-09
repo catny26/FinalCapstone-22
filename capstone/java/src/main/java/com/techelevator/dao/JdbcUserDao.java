@@ -63,6 +63,32 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public List<User> findAllDoctors() {
+        List<User> users = new ArrayList<>();
+        String sql = "select * from users where role = 'ROLE_DOCTOR';";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            User user = mapRowToUser(results);
+            users.add(user);
+        }
+
+        return users;
+    }
+
+    @Override
+    public List<User> findAllPatients() {
+        List<User> users = new ArrayList<>();
+        String sql = "select * from users where role = 'ROLE_USER';";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            User user = mapRowToUser(results);
+            users.add(user);
+        }
+
+        return users;
+    }
+
+    @Override
     public User findByUsername(String username) {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
 
