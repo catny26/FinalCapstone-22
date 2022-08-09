@@ -2,7 +2,8 @@ BEGIN TRANSACTION;
 
 INSERT INTO users (username,password_hash,role,full_name) VALUES ('user1','user1','ROLE_USER', 'user1'); -- Id: 1
 INSERT INTO users (username,password_hash,role,full_name) VALUES ('user2','user2','ROLE_USER', 'user2'); -- Id: 2
-INSERT INTO users (username,password_hash,role,full_name) VALUES ('user3','user3','ROLE_USER', 'user3'); -- Id: 3
+INSERT INTO users (username,password_hash,role,full_name) VALUES ('user4','user4','ROLE_USER', 'user4'); -- Id: 4
+INSERT INTO users (username,password_hash,role,full_name) VALUES ('user5','user5','ROLE_USER', 'user5'); -- Id: 5
 INSERT INTO users (username,password_hash,role,type_of_doctor,full_name) VALUES ('user3','user3','ROLE_DOCTOR','Doctor', 'user3'); -- Id: 3
 
 INSERT INTO notifications (user_id, message, is_read) VALUES (1, 'HELLO WORLD', false); -- Id: 1
@@ -26,9 +27,9 @@ INSERT INTO office_info (office_id, office_name, address, phone_number, office_h
 INSERT INTO office_info (office_id, office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES (3, 'Office 3', '3 Street, Philadelphia, PA 19103', '2155551233', '10:00', '18:00', 70.00);
 INSERT INTO office_info (office_id, office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES (4, 'Office 4', '4 Street, Philadelphia, PA 19104', '2155551234', '11:00', '19:00', 80.00);
 
-INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (1, 5, 'Best medical care ever!', 3, 1, 102, 'Thank you for your review!');
-INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (2, 5, 'So happy with my visit experience!', 3, 1, 102, 'We appreciate your review!');
-INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (3, 1, 'The staff are SO rude! This doc is a hack', 3, 2, 102, 'We apologize for your negative experience.');
-INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (4, 3, 'My appointment took 5 hours for a simple annual, but the customer service was good and my doctor was knowledgable.', 3, 3, 102, 'Thank you for your review. We will take your review into consideration for future patient visits.');
+INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (1, 5, 'Best medical care ever!', 3, 1, 1, 'Thank you for your review!');
+INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (2, 5, 'So happy with my visit experience!', 3, 2, 1, 'We appreciate your review!');
+INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (3, 1, 'The staff are SO rude! This doc is a hack', 3, 4, 2, 'We apologize for your negative experience.');
+INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (4, 3, 'My appointment took 5 hours for a simple annual, but the customer service was good and my doctor was knowledgable.', 3, 5, 1, 'Thank you for your review. We will take your review into consideration for future patient visits.');
 
 COMMIT TRANSACTION;

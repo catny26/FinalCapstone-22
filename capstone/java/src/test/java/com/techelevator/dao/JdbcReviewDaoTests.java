@@ -13,10 +13,10 @@ import java.util.List;
 
 public class JdbcReviewDaoTests extends BaseDaoTests{
 
-    private final Reviews REVIEW_1 = new Reviews (1, 5, "Best medical care ever!", 3, 4001, 102, "Thank you for your review!");
-    private final Reviews REVIEW_2 = new Reviews (2, 5, "So happy with my visit experience!", 3, 4002, 103, "We appreciate your review!");
-    private final Reviews REVIEW_3 = new Reviews (3, 1, "The staff are SO rude! This doc is a hack", 3, 4003, 104, "We apologize for your negative experience.");
-    private final Reviews REVIEW_4 = new Reviews (4, 3, "My appointment took 5 hours for a simple annual, but the customer service was good and my doctor was knowledgable.", 3, 4004, 105, "Thank you for your review. We will take your review into consideration for future patient visits.");
+    private final Reviews REVIEW_1 = new Reviews (1, 5, "Best medical care ever!", 3, 1, 1, "Thank you for your review!");
+    private final Reviews REVIEW_2 = new Reviews (2, 5, "So happy with my visit experience!", 3, 2, 1, "We appreciate your review!");
+    private final Reviews REVIEW_3 = new Reviews (3, 1, "The staff are SO rude! This doc is a hack", 3, 4, 2, "We apologize for your negative experience.");
+    private final Reviews REVIEW_4 = new Reviews (4, 3, "My appointment took 5 hours for a simple annual, but the customer service was good and my doctor was knowledgable.", 3, 5, 1, "Thank you for your review. We will take your review into consideration for future patient visits.");
 
     private JdbcReviewDao sut;
 
