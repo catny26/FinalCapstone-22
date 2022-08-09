@@ -8,12 +8,14 @@ public interface ReviewDao {
 
     List<Reviews> getAllReviews();
 
-    Reviews getByReviewID(int reviewID);
+    Reviews getByReviewID(long reviewID);
 
     Reviews getByDoctorID(long doctorID);
 
     Reviews getByPatientID(long patientID);
 
     Reviews getByOfficeID(long officeID);
+
+    Reviews createReview(Reviews reviews);
 
 }
