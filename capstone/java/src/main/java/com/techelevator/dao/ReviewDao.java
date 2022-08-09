@@ -10,9 +10,9 @@ public interface ReviewDao {
 
     Reviews getByReviewID(long reviewID);
 
-    Reviews getByDoctorID(long doctorID);
+    List<Reviews> getByDoctorID(long doctorID);
 
-    Reviews getByPatientID(long patientID);
+    List<Reviews> getByPatientID(long patientID);
 
     List<Reviews> getByOfficeID(long officeID);
 

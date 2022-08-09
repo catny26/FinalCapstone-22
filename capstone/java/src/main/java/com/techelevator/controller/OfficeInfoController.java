@@ -28,7 +28,7 @@ public class OfficeInfoController {
         return officeInfoDao.getOfficeById(id);
     }
 
-    @RequestMapping(value="/office/{id}/ratings", method = RequestMethod.GET)
+    @RequestMapping(value="/offices/{id}/ratings", method = RequestMethod.GET)
     public List<Reviews> getReviewsForOffice(@PathVariable int id){
         return reviewDao.getByOfficeID(id);
     }

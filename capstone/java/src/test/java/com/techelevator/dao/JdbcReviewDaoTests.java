@@ -10,13 +10,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class JdbcReviewDaoTests extends BaseDaoTests{
 
-    private final Reviews REVIEW_1 = new Reviews (4, "He listens!", 5, 1, 1, null);
-    private final Reviews REVIEW_2 = new Reviews (5, "I love seeing this doctor", 6, 2, 1, "Thanks, Gina!");
-    private final Reviews REVIEW_3 = new Reviews (5, "Dr. Mercier has been extremely helpful.", 7, 4, 1, "Thank you, Olivia!");
-    private final Reviews REVIEW_4 = new Reviews (4, "Good doctor.", 11, 5, 2, "Thank you!");
+    private final Reviews REVIEW_1 = new Reviews (1,4, "He listens!", 3, 1, 1, null);
+    private final Reviews REVIEW_2 = new Reviews (2,5, "I love seeing this doctor", 3, 2, 1, "Thanks, Gina!");
+    private final Reviews REVIEW_3 = new Reviews (3,5, "Dr. Mercier has been extremely helpful.", 3, 1, 1, "Thank you, Olivia!");
+    private final Reviews REVIEW_4 = new Reviews (4,4, "Good doctor.", 3, 2, 2, "Thank you!");
 
     private JdbcReviewDao sut;
 
@@ -55,47 +57,27 @@ public class JdbcReviewDaoTests extends BaseDaoTests{
 
     @Test
     public void getReviewByDoctorID(){
-        Reviews reviews = sut.getByDoctorID(5);
-        assertReviewsMatch(REVIEW_1, reviews);
-
-        reviews = sut.getByDoctorID(6);
-        assertReviewsMatch(REVIEW_2, reviews);
-
-        reviews = sut.getByDoctorID(7);
-        assertReviewsMatch(REVIEW_3, reviews);
-
-        reviews = sut.getByDoctorID(11);
-        assertReviewsMatch(REVIEW_4, reviews);
+        List<Reviews> reviews = sut.getByDoctorID(3);
+        assertReviewsMatch(REVIEW_1, reviews.get(0));
+        assertReviewsMatch(REVIEW_2, reviews.get(1));
+        assertReviewsMatch(REVIEW_3, reviews.get(2));
+        assertReviewsMatch(REVIEW_4, reviews.get(3));
     }
 
     @Test
     public void getReviewsByPatientID(){
-        Reviews reviews = sut.getByPatientID(1);
-        assertReviewsMatch(REVIEW_1, reviews);
-
-        reviews = sut.getByPatientID(2);
-        assertReviewsMatch(REVIEW_2, reviews);
-
-        reviews = sut.getByPatientID(4);
-        assertReviewsMatch(REVIEW_3, reviews);
-
-        reviews = sut.getByPatientID(5);
-        assertReviewsMatch(REVIEW_4, reviews);
+        List<Reviews> reviews = sut.getByPatientID(1);
+        assertReviewsMatch(REVIEW_1, reviews.get(0));
+        assertReviewsMatch(REVIEW_3, reviews.get(1));
     }
 
     @Test
     public void getReviewsByOfficeID(){
-        Reviews reviews = sut.getByOfficeID(1);
-        assertReviewsMatch(REVIEW_1, reviews);
+        List<Reviews> output = sut.getByOfficeID(1);
 
-        reviews = sut.getByOfficeID(1);
-        assertReviewsMatch(REVIEW_2, reviews);
-
-        reviews = sut.getByOfficeID(1);
-        assertReviewsMatch(REVIEW_3, reviews);
-
-        reviews = sut.getByOfficeID(2);
-        assertReviewsMatch(REVIEW_4, reviews);
+        assertReviewsMatch(REVIEW_1, output.get(0));
+        assertReviewsMatch(REVIEW_2, output.get(1));
+        assertReviewsMatch(REVIEW_3, output.get(2));
     }
 
     @Test
@@ -105,7 +87,12 @@ public class JdbcReviewDaoTests extends BaseDaoTests{
     }
 
     private void assertReviewsMatch(Reviews expected, Reviews actual){
-        Assert.assertEquals(expected.getReviewMessage(), actual.getReviewMessage());
+        assertEquals(expected.getAmountOfStars(), actual.getAmountOfStars(), "Amount of Star's Don't Match");
+        assertEquals(expected.getReviewMessage(), actual.getReviewMessage(), "Review Message's Don't Match");
+        assertEquals(expected.getDoctorID(), actual.getDoctorID(), "Doctor ID's Don't Match.");
+        assertEquals(expected.getPatientID(), actual.getPatientID(), "Patient ID's Don't Match.");
+        assertEquals(expected.getOfficeID(), actual.getOfficeID(), "Office ID's Don't Match.");
+        assertEquals(expected.getReviewResponse(), actual.getReviewResponse(), "Review Responses Don't Match.");
     }
 
 }

@@ -42,33 +42,35 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Reviews getByDoctorID(long doctorID) {
+    public List<Reviews> getByDoctorID(long doctorID) {
+        List<Reviews> output = new ArrayList<>();
         String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.review_response, r.office_id " +
                     "FROM reviews r " +
                     "WHERE r.doctor_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorID);
-        if(results.next()){
-            return mapRowToReview(results);
+        while(results.next()){
+            output.add(mapRowToReview(results));
         }
-        return null;
+        return output;
     }
 
     @Override
-    public Reviews getByPatientID(long patientID) {
-        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.office_id " +
-                    "FROM reviews r " +
-                    "WHERE r.patient_id = ?;";
+    public List<Reviews> getByPatientID(long patientID) {
+        List<Reviews> output = new ArrayList<>();
+        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.review_response, r.office_id " +
+                "FROM reviews r " +
+                "WHERE r.patient_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, patientID);
-        if(results.next()){
-            return mapRowToReview(results);
+        while(results.next()){
+            output.add(mapRowToReview(results));
         }
-        return null;
+        return output;
     }
 
     @Override
     public List<Reviews> getByOfficeID(long officeID) {
         List<Reviews> output = new ArrayList<>();
-        String sql = "SELECT review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id " +
+        String sql = "SELECT review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response " +
                     "FROM reviews " +
                     "WHERE office_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeID);
@@ -90,12 +92,13 @@ public class JdbcReviewDao implements ReviewDao{
 
     private Reviews mapRowToReview(SqlRowSet results) {
         Reviews review = new Reviews();
+        review.setId(results.getLong("review_id"));
         review.setAmountOfStars(results.getInt("amount_of_stars"));
         review.setReviewMessage(results.getString("review_message"));
         review.setDoctorID(results.getLong("doctor_id"));
         review.setPatientID(results.getLong("patient_id"));
         review.setOfficeID(results.getLong("office_id"));
         review.setReviewResponse(results.getString("review_response"));
-        return new Reviews();
+        return review;
     }
 }
