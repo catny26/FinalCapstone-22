@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 public class Reviews {
 
-    private int reviewID;
+    private long reviewID;
     private int amountOfStars;
     private String reviewMessage;
     private long doctorID;
@@ -10,7 +10,7 @@ public class Reviews {
     private long officeID;
     private String reviewResponse;
 
-    public Reviews(int reviewID, int amountOfStars, String reviewMessage, Integer doctorID, Integer patientID, Integer officeID, String reviewResponse) {
+    public Reviews(long reviewID, int amountOfStars, String reviewMessage, long doctorID, long patientID, long officeID, String reviewResponse) {
         this.reviewID = reviewID;
         this.amountOfStars = amountOfStars;
         this.reviewMessage = reviewMessage;
@@ -24,11 +24,11 @@ public class Reviews {
 
     }
 
-    public int getReviewID() {
+    public long getReviewID() {
         return reviewID;
     }
 
-    public void setReviewID(int reviewID) {
+    public void setReviewID(long reviewID) {
         this.reviewID = reviewID;
     }
 

@@ -28,7 +28,7 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Reviews getByReviewID(int reviewID) {
+    public Reviews getByReviewID(long reviewID) {
         String sql = "SELECT * FROM reviews WHERE review_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewID);
         if(results.next()){
@@ -73,6 +73,18 @@ public class JdbcReviewDao implements ReviewDao{
         }
         return null;
     }
+
+    @Override
+    public Reviews createReview(Reviews reviews) {
+        String sql = "INSERT INTO reviews (review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response);" +
+                    " VALUES (?,?,?,?,?,?,?);" +
+                    " RETURNING review_id;";
+        long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getReviewID(), reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorID(), reviews.getPatientID(), reviews.getOfficeID());
+        reviews.setReviewID(id);
+        return reviews;
+
+    }
+
 
     private Reviews mapRowToReview(SqlRowSet results) {
         Reviews review = new Reviews();
