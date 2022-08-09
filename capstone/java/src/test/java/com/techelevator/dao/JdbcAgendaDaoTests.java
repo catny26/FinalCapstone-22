@@ -24,8 +24,8 @@ public class JdbcAgendaDaoTests extends BaseDaoTests {
     private final Agenda AGENDA_3 = new Agenda(3, 3, LocalTime.parse("09:30", dtf), LocalTime.parse("17:30", dtf), LocalTime.parse("09:30", dtf), LocalTime.parse("17:30", dtf), null, null, null, null, LocalTime.parse("09:30", dtf), LocalTime.parse("17:30", dtf), LocalTime.parse("09:30", dtf), LocalTime.parse("17:30", dtf), LocalTime.parse("09:30", dtf), LocalTime.parse("17:30", dtf), LocalTime.parse("11:30", dtf), LocalTime.parse("12:30", dtf));
     private final Agenda AGENDA_4 = new Agenda(4, 3, LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), null, null, null, null, LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("12:00", dtf), LocalTime.parse("13:00", dtf));
 
-    private final Agenda AGENDA_5 = new Agenda(5, 13, LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), null, null, null, null, LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("12:00", dtf), LocalTime.parse("13:00", dtf));
-    private final Agenda AGENDA_6 = new Agenda(1, 7, null, null, null, null, LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("11:00", dtf), LocalTime.parse("12:00", dtf));
+    private final Agenda AGENDA_5 = new Agenda(5, 3, LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), null, null, null, null, LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("09:00", dtf), LocalTime.parse("17:00", dtf), LocalTime.parse("12:00", dtf), LocalTime.parse("13:00", dtf));
+    private final Agenda AGENDA_6 = new Agenda(1, 3, null, null, null, null, LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("08:00", dtf), LocalTime.parse("16:00", dtf), LocalTime.parse("11:00", dtf), LocalTime.parse("12:00", dtf));
 
     private final List<Agenda> FIND_ALL = new ArrayList<>(Arrays.asList(AGENDA_1, AGENDA_2, AGENDA_3, AGENDA_4));
     private final List<Agenda> AGENDAS_BY_DOCTOR = new ArrayList<>(Arrays.asList(AGENDA_1, AGENDA_2, AGENDA_3, AGENDA_4));
@@ -75,11 +75,6 @@ public class JdbcAgendaDaoTests extends BaseDaoTests {
         assertAgenda(AGENDA_6, sut.getAgendaById(1));
     }
 
-    @Test
-    public void deleteAgendaTest() {
-        sut.deleteAgenda(1);
-        assertNull(sut.getAgendaById(1));
-    }
 
     private void assertAgenda(Agenda expected, Agenda actual) {
         assertEquals(expected.getAgendaId(), actual.getAgendaId(), "Agenda ID's do not match");

@@ -99,7 +99,7 @@ public class JdbcAgendaDao implements AgendaDao{
     @Override
     public boolean updateAgenda(Agenda agenda) {
         String sql = "UPDATE agenda"+
-                " SET doctor_id = ?, mon_start = ?, mon_end = ?, tue_start = ?, tue_end = ?, wen_start = ?, wen_end = ?, thur_start = ?, thur_end = ?, fri_start = ?, fri_end = ?, sat_start = ?, sat_end - ?, sun_start - ?, sun_end = ?, lunch_start = ?, lunch_end = ?"+
+                " SET doctor_id = ?, mon_start = ?, mon_end = ?, tue_start = ?, tue_end = ?, wen_start = ?, wen_end = ?, thur_start = ?, thur_end = ?, fri_start = ?, fri_end = ?, sat_start = ?, sat_end = ?, sun_start = ?, sun_end = ?, lunch_start = ?, lunch_end = ?"+
                 " WHERE agenda_id =?;";
         return jdbcTemplate.update(sql, agenda.getDoctorId(), agenda.getMonStart(), agenda.getMonEnd(), agenda.getTueStart(), agenda.getTueEnd(), agenda.getWenStart(), agenda.getWenEnd(), agenda.getThurStart(), agenda.getThurEnd(), agenda.getFriStart(), agenda.getFriEnd(), agenda.getSatStart(), agenda.getSatEnd(), agenda.getSunStart(), agenda.getSunEnd(), agenda.getLunchStart(), agenda.getLunchEnd(), agenda.getAgendaId()) == 1;
     }
