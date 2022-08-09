@@ -81,6 +81,25 @@ public class JdbcUserDaoTests extends BaseDaoTests {
         Assert.assertEquals(USER_3, users.get(2));
     }
 
+    @Test
+    public void findAllPatients_returns_all_patients(){
+        List<User> users = sut.findAllPatients();
+
+        Assert.assertNotNull(users);
+        Assert.assertEquals(2, users.size());
+        Assert.assertEquals(USER_1, users.get(0));
+        Assert.assertEquals(USER_2, users.get(1));
+    }
+
+    @Test
+    public void findAllDoctors_returns_all_doctors(){
+        List<User> users = sut.findAllDoctors();
+
+        Assert.assertNotNull(users);
+        Assert.assertEquals(1, users.size());
+        Assert.assertEquals(USER_3, users.get(0));
+    }
+
     @Test(expected = DataIntegrityViolationException.class)
     public void create_user_with_null_username() {
         sut.create(null, USER_3.getPassword(), "ROLE_USER", "test");
