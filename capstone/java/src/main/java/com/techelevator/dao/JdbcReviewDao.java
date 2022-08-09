@@ -3,10 +3,12 @@ package com.techelevator.dao;
 import com.techelevator.model.Reviews;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcReviewDao implements ReviewDao{
 
     private final JdbcTemplate jdbcTemplate;
@@ -63,15 +65,16 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Reviews getByOfficeID(long officeID) {
+    public List<Reviews> getByOfficeID(long officeID) {
+        List<Reviews> output = new ArrayList<>();
         String sql = "SELECT review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id " +
                     "FROM reviews " +
                     "WHERE office_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeID);
-        if(results.next()){
-            return mapRowToReview(results);
+        while(results.next()){
+            output.add(mapRowToReview(results));
         }
-        return null;
+        return output;
     }
 
     @Override

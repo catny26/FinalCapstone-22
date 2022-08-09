@@ -4,11 +4,13 @@ import com.techelevator.model.OfficeInfo;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcOfficeInfoDao implements OfficeInfoDao {
 
     private final JdbcTemplate jdbcTemplate;

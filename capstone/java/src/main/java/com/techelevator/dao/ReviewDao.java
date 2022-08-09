@@ -14,7 +14,7 @@ public interface ReviewDao {
 
     Reviews getByPatientID(long patientID);
 
-    Reviews getByOfficeID(long officeID);
+    List<Reviews> getByOfficeID(long officeID);
 
     Reviews createReview(Reviews reviews);
 
