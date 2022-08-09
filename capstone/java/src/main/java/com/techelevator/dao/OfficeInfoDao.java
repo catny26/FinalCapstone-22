@@ -1,18 +1,13 @@
 package com.techelevator.dao;
 
-import java.math.BigDecimal;
+import com.techelevator.model.OfficeInfo;
+
+import java.time.LocalTime;
 import java.util.List;
 
 public interface OfficeInfoDao {
 
-    List<OfficeInfo> getOffices();
-    OfficeInfo getOfficeById(long officeId);
-    OfficeInfo getAddress(long officeId);
-    OfficeInfo getPhoneNumber(long officeId);
-    public long getOfficeHours();
-    public String getDoctors();
-    public String getDoctorById(long doctorId);
-    public BigDecimal getCostPerHour(long doctorId);
-
-
+    public List<OfficeInfo> getAllOffices();
+    public OfficeInfo getOfficeById(long officeId);
+    public List<OfficeInfo> getAllDoctors(long officeId);
 }
