@@ -77,7 +77,7 @@ public class JdbcAppointmentDao implements AppointmentDao {
         appointment.setPatientId(rs.getLong("patient_id"));
         appointment.setAgendaId(rs.getLong("agenda_id"));
         appointment.setStartTime(rs.getTime("start_time").toLocalTime());
-        appointment.setStartTime(rs.getTime("end_time").toLocalTime());
+        appointment.setEndTime(rs.getTime("end_time").toLocalTime());
         appointment.setDate(rs.getDate("appointment_date").toLocalDate());
         appointment.setStatus(rs.getString("status"));
         appointment.setReason(rs.getString("reason"));
