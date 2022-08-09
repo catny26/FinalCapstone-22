@@ -20,5 +20,10 @@ INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3,1,1, '9:00', '12:00', '2022-05-17', 'Pending', 'Early Morning Surgery'); --Id:3
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3,2,1, '10:00', '14:00', '2022-08-09', 'Canceled', 'Way too long'); --Id:4
 
+INSERT INTO office_info (office_id, office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES (1, "Office 1", "1 Street, Philadelphia, PA 19101", "2155551231", "08:00", "16:00", 50.00);
+INSERT INTO office_info (office_id, office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES (2, "Office 2", "2 Street, Philadelphia, PA 19102", "2155551232", "09:00", "17:00", 60.00);
+INSERT INTO office_info (office_id, office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES (3, "Office 3", "3 Street, Philadelphia, PA 19103", "2155551233", "10:00", "18:00", 70.00);
+INSERT INTO office_info (office_id, office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES (4, "Office 4", "4 Street, Philadelphia, PA 19104", "2155551234", "11:00", "19:00", 80.00);
+
 
 COMMIT TRANSACTION;
