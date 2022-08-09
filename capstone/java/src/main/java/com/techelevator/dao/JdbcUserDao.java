@@ -75,12 +75,21 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public boolean create(String username, String password, String role) {
-        String insertUserSql = "insert into users (username,password_hash,role) values (?,?,?)";
+    public boolean create(String username, String password, String role, String fullName) {
+        String insertUserSql = "insert into users (username,password_hash,role,full_name) values (?,?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole, fullName) == 1;
+    }
+
+    @Override
+    public boolean create(String username, String password, String role, String fullName, String typeOfDoctor){
+        String insertUserSql = "insert into users (username,password_hash,role,full_name,type_of_doctor) values (?,?,?,?,?)";
+        String password_hash = new BCryptPasswordEncoder().encode(password);
+        String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
+
+        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole,fullName,typeOfDoctor) == 1;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
@@ -90,6 +99,10 @@ public class JdbcUserDao implements UserDao {
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
         user.setActivated(true);
+        user.setFullName(rs.getString("full_name"));
+        if(rs.getString("type_of_doctor") != null){
+            user.setTypeOfDoctor(rs.getString("type_of_doctor"));
+        }
         return user;
     }
 }

@@ -1,8 +1,8 @@
 BEGIN TRANSACTION;
 
-INSERT INTO users (username,password_hash,role) VALUES ('user1','user1','ROLE_USER'); -- Id: 1
-INSERT INTO users (username,password_hash,role) VALUES ('user2','user2','ROLE_USER'); -- Id: 2
-INSERT INTO users (username,password_hash,role) VALUES ('user3','user3','ROLE_USER'); -- Id: 3
+INSERT INTO users (username,password_hash,role,full_name) VALUES ('user1','user1','ROLE_USER', 'user1'); -- Id: 1
+INSERT INTO users (username,password_hash,role,full_name) VALUES ('user2','user2','ROLE_USER', 'user2'); -- Id: 2
+INSERT INTO users (username,password_hash,role,type_of_doctor,full_name) VALUES ('user3','user3','ROLE_DOCTOR','Doctor', 'user3'); -- Id: 3
 
 INSERT INTO notifications (user_id, message, is_read) VALUES (1, 'HELLO WORLD', false); -- Id: 1
 INSERT INTO notifications (user_id, message, is_read) VALUES (1, 'Good Bye', true); -- Id: 2

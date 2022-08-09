@@ -38,6 +38,15 @@ public class User {
       this.fullName = fullName;
    }
 
+   public User(int id, String username, String password, String authorities, String fullName) {
+      this.id = id;
+      this.username = username;
+      this.password = password;
+      if(authorities != null) this.setAuthorities(authorities);
+      this.activated = true;
+      this.fullName = fullName;
+   }
+
    public int getId() {
       return id;
    }
