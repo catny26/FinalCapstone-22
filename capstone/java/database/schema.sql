@@ -23,7 +23,7 @@ CREATE TABLE office_info (
     office_id SERIAL,
     office_name varchar(100) NOT NULL,
     address varchar(100) NOT NULL,
-    phone_number int NOT NULL,
+    phone_number bigint NOT NULL,
     office_hours_open time NOT NULL,
     office_hours_close time NOT NULL,
     cost_per_hour money NOT NULL,
