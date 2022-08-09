@@ -41,7 +41,7 @@ public class AppointmentController {
         if (appointmentDao.updateAppointment(updatedAppointment) != null){
             return updatedAppointment;
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Incorrect appointment ID. Please try again.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Something went wrong! Please try again.");
         }
     }
 }
