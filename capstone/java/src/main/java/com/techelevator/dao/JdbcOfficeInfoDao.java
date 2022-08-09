@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import javax.sql.DataSource;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +14,15 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcOfficeInfoDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public JdbcOfficeInfoDao(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
     public List<OfficeInfo> getAllOffices() {
         List<OfficeInfo> offices = new ArrayList<>();
         String sql = "SELECT * FROM office_info;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, offices);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()) {
             offices.add(mapRowToOfficeInfo(results));
         }
@@ -30,7 +31,7 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
 
     @Override
     public OfficeInfo getOfficeById(long officeId) {
-        OfficeInfo office = null;
+        OfficeInfo office = new OfficeInfo();
         String sql = "SELECT * FROM office_info WHERE office_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, officeId);
         if(result.next()) {
