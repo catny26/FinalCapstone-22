@@ -40,7 +40,7 @@ public class OfficeInfo {
     }
 
     public void setOfficeName(String office_name) {
-        this.officeName = officeName;
+        this.officeName = office_name;
     }
 
     public String getAddress() {
