@@ -24,6 +24,30 @@ public class Agenda {
     private LocalTime lunchStart;
     private LocalTime lunchEnd;
 
+    public Agenda(long agendaId, long doctorId, LocalTime monStart, LocalTime monEnd, LocalTime tueStart, LocalTime tueEnd, LocalTime wenStart, LocalTime wenEnd, LocalTime thurStart, LocalTime thurEnd, LocalTime friStart, LocalTime friEnd, LocalTime satStart, LocalTime satEnd, LocalTime sunStart, LocalTime sunEnd, LocalTime lunchStart, LocalTime lunchEnd) {
+        this.agendaId = agendaId;
+        this.doctorId = doctorId;
+        this.monStart = monStart;
+        this.monEnd = monEnd;
+        this.tueStart = tueStart;
+        this.tueEnd = tueEnd;
+        this.wenStart = wenStart;
+        this.wenEnd = wenEnd;
+        this.thurStart = thurStart;
+        this.thurEnd = thurEnd;
+        this.friStart = friStart;
+        this.friEnd = friEnd;
+        this.satStart = satStart;
+        this.satEnd = satEnd;
+        this.sunStart = sunStart;
+        this.sunEnd = sunEnd;
+        this.lunchStart = lunchStart;
+        this.lunchEnd = lunchEnd;
+    }
+
+    public Agenda() {
+    }
+
     public long getAgendaId() {
         return agendaId;
     }

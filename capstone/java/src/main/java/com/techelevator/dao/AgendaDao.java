@@ -10,7 +10,7 @@ public interface AgendaDao {
 
     List<Agenda> getAgendasByDoctorId(long doctorId);
 
-    List<Agenda> getAgendasByAvalabilityDay(String day);
+    List<Agenda> getAgendasByAvailabilityDay(String day);
 
     Agenda getAgendaById(long agendaId);
 

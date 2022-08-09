@@ -40,7 +40,7 @@ public class JdbcAgendaDao implements AgendaDao{
     }
 
     @Override
-    public List<Agenda> getAgendasByAvalabilityDay(String day) {
+    public List<Agenda> getAgendasByAvailabilityDay(String day) {
         List<Agenda> output = new ArrayList<>();
         String sql = "SELECT agenda_id, doctor_id, mon_start, mon_end, tue_start, tue_end, wen_start, wen_end, thur_start, thur_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end, lunch_start, lunch_end"+
                 " FROM agenda";
