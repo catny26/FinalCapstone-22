@@ -65,7 +65,7 @@ public class JdbcOfficeInfoDaoTest extends BaseDaoTests {
     }
 
     private void assertOfficesMatch(String message, OfficeInfo expected, OfficeInfo actual) {
-
+        Assert.assertEquals(message, expected.getOfficeId(), actual.getOfficeId());
         Assert.assertEquals(message, expected.getOfficeName(), actual.getOfficeName());
         Assert.assertEquals(message, expected.getAddress(), actual.getAddress());
         Assert.assertEquals(message, expected.getPhoneNumber(), actual.getPhoneNumber());
