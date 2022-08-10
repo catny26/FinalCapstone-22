@@ -28,7 +28,7 @@
          id="full_name"
          class="form-control"
          placeholder="Full Name"
-         v-bind="user.full_name"
+         v-model="user.fullName"
          required
          >
        </div>
@@ -101,7 +101,7 @@ export default {
       user: {
         username: "",
         password: "",
-        full_name: "",
+        fullName: "",
         confirmPassword: "",
         role: "user",
       },
@@ -130,6 +130,11 @@ export default {
             this.registrationErrors = true;
             if (response.status === 400) {
               this.registrationErrorMsg = "Bad Request: Validation Errors";
+              console.log('username ' + this.user.username)
+              console.log('password ' + this.user.password)
+              console.log('confirmPassword ' + this.user.confirmPassword)
+              console.log('fullName ' + this.user.fullName)
+              console.log('role ' + this.user.role)
             }
           });
       }
