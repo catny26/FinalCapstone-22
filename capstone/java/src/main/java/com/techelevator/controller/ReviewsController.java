@@ -31,8 +31,8 @@ public class ReviewsController {
 
     @RequestMapping(value = "/reviews", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Reviews createReview(@RequestBody Reviews reviews) {
-        return reviewDao.createReview(new Reviews());
+    public Reviews createReview(@RequestBody Reviews review) {
+        return reviewDao.createReview(review);
     }
 
     @RequestMapping(value = "/doctors/{doctorID}/reviews", method = RequestMethod.GET)
