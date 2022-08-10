@@ -25,12 +25,12 @@ public class ReviewsController {
         return reviewDao.getAllReviews();
     }
 
-    @RequestMapping(value = "/user/{id}/reviews", method = RequestMethod.GET)
+    @RequestMapping(value = "/doctors/{id}/reviews", method = RequestMethod.GET)
     public List<Reviews> getReviewsByDoctorID(@PathVariable long doctorID) {
         return reviewDao.getByDoctorID(doctorID);
     }
 
-    @RequestMapping(value = "/user/{id}/reviews", method = RequestMethod.GET)
+    @RequestMapping(value = "/patients/{id}/reviews", method = RequestMethod.GET)
     public List<Reviews> getReviewsByPatientID(@PathVariable long patientID) {
         return reviewDao.getByPatientID(patientID);
     }

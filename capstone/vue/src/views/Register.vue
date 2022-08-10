@@ -19,6 +19,19 @@
         autofocus
       />
        </div>
+       <div>
+         <label for="full_name" class="sr-only">Full Name</label>
+       </div>
+       <div>
+         <input
+         type="text"
+         id="full_name"
+         class="form-control"
+         placeholder="Full Name"
+         v-bind="user.full_name"
+         required
+         >
+       </div>
       <div>
       <label for="password" class="sr-only">Password</label>
        </div>
@@ -88,6 +101,7 @@ export default {
       user: {
         username: "",
         password: "",
+        full_name: "",
         confirmPassword: "",
         role: "user",
       },
