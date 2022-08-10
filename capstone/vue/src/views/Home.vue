@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <br>
+    <img src="../assets/home-mock.jpg" width="600">
   </div>
 </template>
 

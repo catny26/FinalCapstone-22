@@ -5,6 +5,9 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import Offices from '@/views/Offices.vue'
+import Providers from '@/views/Providers.vue'
+import PatientResources from '@/views/PatientResources.vue'
 
 Vue.use(Router)
 
@@ -26,7 +29,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -51,6 +54,30 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/offices',
+      name: 'offices',
+      component: Offices,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/providers',
+      name: 'providers',
+      component: Providers,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/patients',
+      name: 'patient-resources',
+      component: PatientResources,
+      meta: {
+        requiresAuth: true
       }
     }
   ]

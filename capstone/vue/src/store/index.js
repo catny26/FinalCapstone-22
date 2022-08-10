@@ -19,9 +19,22 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    offices: [],
+    office: {
+      officeId: 0,
+      officeName: '',
+      address: '',
+      phoneNumber: 0,
+      officeHoursOpen: '',
+      officeHoursClose: '',
+      costPerHour: 0
+    }
   },
   mutations: {
+    SET_OFFICES(state, data) {
+      state.offices = data;
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
