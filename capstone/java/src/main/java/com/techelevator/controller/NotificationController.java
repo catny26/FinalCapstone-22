@@ -66,7 +66,7 @@ public class NotificationController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteNotification(@PathVariable long id) {
         if(!notificationDao.deleteNotification(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Your request was unsuccessful. Notification was NOT deleted.");
         }
     }
 }
