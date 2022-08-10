@@ -4,10 +4,13 @@ import com.techelevator.dao.ReviewDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Notification;
 import com.techelevator.model.Reviews;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 public class ReviewsController {
@@ -38,6 +41,21 @@ public class ReviewsController {
     @RequestMapping(value = "/user/{id}/reviews/{id}", method = RequestMethod.GET)
     public List<Reviews> getReviewsByPatientIDReviewID(@PathVariable long patientID) {
         return reviewDao.getByPatientID(patientID);
+    }
+    //allow original reviewer to update their review, must be authenticated to access specific review/their own review
+    @RequestMapping(value = "/user/{id}/reviews/{id}", method = RequestMethod.PUT)
+    public List<Reviews> updatePatientReview(Principal principal) {
+        return reviewDao.getByPatientID(Long.parseLong(principal.getName()));
+    }
+    //allow doctors (only) to reply to reviews
+    @RequestMapping(value = "/user/{id}/reviews/{id}", method = RequestMethod.POST)
+    public Reviews respondToReviews(@PathVariable long doctorID) {
+        return reviewDao.getByReviewID(doctorID);
+    }
+
+    @RequestMapping(path = "whoami")
+    public String whoAmI(Principal principal) {
+        return principal.getName();
     }
 
 
