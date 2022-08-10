@@ -7,7 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Offices from '@/views/Offices.vue'
 import Providers from '@/views/Providers.vue'
-import PatientResources from '@/views/PatientResources.vue'
+import UserResources from '@/views/UserResources.vue'
 
 Vue.use(Router)
 
@@ -75,7 +75,7 @@ const router = new Router({
     {
       path: '/patients',
       name: 'patient-resources',
-      component: PatientResources,
+      component: UserResources,
       meta: {
         requiresAuth: true
       }

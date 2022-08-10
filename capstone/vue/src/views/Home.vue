@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <home-card />
     <br>
     <img src="../assets/home-mock.jpg" width="600">
   </div>
