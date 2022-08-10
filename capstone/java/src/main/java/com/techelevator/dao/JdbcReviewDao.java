@@ -82,8 +82,8 @@ public class JdbcReviewDao implements ReviewDao{
 
     @Override
     public Reviews createReview(Reviews reviews) {
-        String sql = "INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response);" +
-                    " VALUES (?,?,?,?,?,?);" +
+        String sql = "INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response)" +
+                    " VALUES (?,?,?,?,?,?)" +
                     " RETURNING review_id;";
         long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorID(), reviews.getPatientID(), reviews.getOfficeID(), reviews.getReviewResponse());
         return reviews;
