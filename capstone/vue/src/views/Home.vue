@@ -1,18 +1,19 @@
 <template>
   <div class="home">
-    <home-card />
     <br>
     <img src="../assets/home-mock.jpg" width="600">
+    <br>
+    <notifications />
   </div>
 </template>
 
 <script>
-import HomeCard from "../components/HomeCard.vue";
+import Notifications from "../components/Notifications.vue";
 
 export default {
   name: "home",
   components: {
-    HomeCard
+    Notifications
   }
 };
 </script>

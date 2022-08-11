@@ -32,12 +32,20 @@ export default new Vuex.Store({
     },
     notifications: [],
     notification: {
+      notificationId: "",
       user: '',
       message: '',
       isRead: false
-    }
+    },
+    about: "aboutDetails"
   },
   mutations: {
+    SET_NOTIFICATION(state, data) {
+      state.notification = data;
+    },
+    CLEAR_NOTIFICATION(state) {
+      state.notification = null;
+    },
     SET_OFFICES(state, data) {
       state.offices = data;
     },

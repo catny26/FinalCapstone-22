@@ -26,14 +26,6 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/about',
-      name: 'about',
-      component: About,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
       path: '/',
       name: 'home',
       component: Home,
@@ -93,6 +85,14 @@ const router = new Router({
       path: '/schedule',
       name: 'booking-details',
       component: BookingDetails,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About,
       meta: {
         requiresAuth: false
       }

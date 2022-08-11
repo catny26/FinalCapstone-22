@@ -1,6 +1,6 @@
 <template>
   <div class = "about">
-    <about-card />
+    <about-details />
   </div>
 </template>
 
@@ -8,12 +8,17 @@
 import AboutDetails from "../components/AboutDetails.vue";
 export default {
     name: "about",
-    component: {
+    components: {
       AboutDetails
     }
 }
 </script>
 
 <style>
-
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
 </style>
