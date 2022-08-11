@@ -21,10 +21,14 @@ INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3,1,1, '9:00', '12:00', '2022-05-17', 'Pending', 'Early Morning Surgery'); --Id:3
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3,2,1, '10:00', '14:00', '2022-08-09', 'Canceled', 'Way too long'); --Id:4
 
-INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Office 1', '1 Street, Philadelphia, PA 19101', '2155551231', '08:00', '16:00', 50.00);
-INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Office 2', '2 Street, Philadelphia, PA 19102', '2155551232', '09:00', '17:00', 60.00);
-INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Office 3', '3 Street, Philadelphia, PA 19103', '2155551233', '10:00', '18:00', 70.00);
-INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Office 4', '4 Street, Philadelphia, PA 19104', '2155551234', '11:00', '19:00', 80.00);
+INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Office 1', '1 Street, Philadelphia, PA 19101', '2155551231', '08:00', '16:00', 50.00); --Id:1
+INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Office 2', '2 Street, Philadelphia, PA 19102', '2155551232', '09:00', '17:00', 60.00); --Id:2
+INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Office 3', '3 Street, Philadelphia, PA 19103', '2155551233', '10:00', '18:00', 70.00); --Id:3
+INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Office 4', '4 Street, Philadelphia, PA 19104', '2155551234', '11:00', '19:00', 80.00); --Id:4
+
+INSERT INTO users_office_info (office_id, user_id) VALUES (1,3);
+INSERT INTO users_office_info (office_id, user_id) VALUES (2,3);
+INSERT INTO users_office_info (office_id, user_id) VALUES (3,3);
 
 INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (4, 'He listens!', 3, 1, 1, null);
 INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (5, 'I love seeing this doctor', 3, 2, 1, 'Thanks, Gina!');

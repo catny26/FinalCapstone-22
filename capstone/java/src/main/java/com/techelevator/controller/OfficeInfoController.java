@@ -32,4 +32,9 @@ public class OfficeInfoController {
     public List<Reviews> getReviewsForOffice(@PathVariable int id){
         return reviewDao.getByOfficeID(id);
     }
+
+    @RequestMapping(value="doctors/offices/{id}", method = RequestMethod.GET)
+    public List<OfficeInfo> findOfficeByDoctorId(@PathVariable int id){
+        return officeInfoDao.getAllOfficesByDoctors(id);
+    }
 }

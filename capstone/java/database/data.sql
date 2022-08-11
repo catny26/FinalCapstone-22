@@ -60,6 +60,9 @@ INSERT INTO users_office_info (office_id, user_id) VALUES (4, 19);
 INSERT INTO users_office_info (office_id, user_id) VALUES (4, 20);
 INSERT INTO users_office_info (office_id, user_id) VALUES (4, 21);
 INSERT INTO users_office_info (office_id, user_id) VALUES (4, 22);
+INSERT INTO users_office_info (office_id, user_id) VALUES (3, 22);
+INSERT INTO users_office_info (office_id, user_id) VALUES (2, 22);
+INSERT INTO users_office_info (office_id, user_id) VALUES (1, 22);
 
 INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (4, 'He listens!', 5, 23, 1, null);
 INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (5, 'I love seeing this doctor', 6, 24, 1, 'Thanks, Gina!');

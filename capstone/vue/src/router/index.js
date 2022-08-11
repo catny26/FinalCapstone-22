@@ -10,6 +10,7 @@ import Providers from '@/views/Providers.vue'
 import UserResources from '@/views/UserResources.vue'
 import BookingDetails from '@/views/BookingDetails.vue'
 import About from '@/views/About.vue'
+import OfficeDetailView from '@/views/OfficeDetailView.vue'
 Vue.use(Router)
 
 /**
@@ -93,6 +94,14 @@ const router = new Router({
       path: '/about',
       name: 'about',
       component: About,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/offices/:officeId',
+      name: 'office-details',
+      component: OfficeDetailView,
       meta: {
         requiresAuth: false
       }

@@ -20,6 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
+    officesUserBelongsTo: [],
     offices: [],
     office: {
       officeId: 0,
@@ -46,8 +47,16 @@ export default new Vuex.Store({
     CLEAR_NOTIFICATION(state) {
       state.notification = null;
     },
+    SET_USER_OFFICES(state, data){
+      state.officesUserBelongsTo = data;
+    },
     SET_OFFICES(state, data) {
       state.offices = data;
+    },
+    GET_OFFICE(state, officeId){
+      state.office =  state.offices.find( (office)=>{
+        return office.officeId === officeId;
+      })
     },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;

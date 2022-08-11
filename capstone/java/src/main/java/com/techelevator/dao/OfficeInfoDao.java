@@ -10,4 +10,5 @@ public interface OfficeInfoDao {
     public List<OfficeInfo> getAllOffices();
     public OfficeInfo getOfficeById(long officeId);
     public List<OfficeInfo> getAllDoctors(long officeId);
+    public List<OfficeInfo> getAllOfficesByDoctors(long doctorId);
 }

@@ -19,7 +19,7 @@ public class JdbcOfficeInfoDaoTest extends BaseDaoTests {
             new OfficeInfo(2, "Office 2", "2 Street, Philadelphia, PA 19102", "2155551232", LocalTime.parse("09:00"), LocalTime.parse("17:00"), BigDecimal.valueOf(60.00));
 
     private static final OfficeInfo OFFICE_3 =
-            new OfficeInfo(3, "Office 3", "3 Street, Philadelphia, PA 19103", "2155551233", LocalTime.parse("10:30"), LocalTime.parse("18:00"), BigDecimal.valueOf(70.00));
+            new OfficeInfo(3, "Office 3", "3 Street, Philadelphia, PA 19103", "2155551233", LocalTime.parse("10:00"), LocalTime.parse("18:00"), BigDecimal.valueOf(70.00));
 
     private static final OfficeInfo OFFICE_4 =
             new OfficeInfo(4, "Office 4", "4 Street, Philadelphia, PA 19104", "2155551234", LocalTime.parse("11:00"), LocalTime.parse("19:00"), BigDecimal.valueOf(80.00));
@@ -32,6 +32,15 @@ public class JdbcOfficeInfoDaoTest extends BaseDaoTests {
     public void setup() {
         sut = new JdbcOfficeInfoDao(dataSource);
         testOffice = new OfficeInfo(99, "Test Office", "123 Main Street, Hereville, HA 12345", "2155551234", LocalTime.now(), LocalTime.now(), BigDecimal.valueOf(0.00));
+    }
+
+    @Test
+    public void getAllOfficesByDoctor_returns_list_of_all_offices(){
+        List<OfficeInfo> offices = sut.getAllOfficesByDoctors(3);
+        Assert.assertEquals(3, offices.size());
+        Assert.assertEquals(OFFICE_1, offices.get(0));
+        Assert.assertEquals(OFFICE_2, offices.get(1));
+        Assert.assertEquals(OFFICE_3, offices.get(2));
     }
 
     @Test
