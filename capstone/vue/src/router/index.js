@@ -8,7 +8,7 @@ import store from '../store/index'
 import Offices from '@/views/Offices.vue'
 import Providers from '@/views/Providers.vue'
 import UserResources from '@/views/UserResources.vue'
-
+import BookingDetails from '@/views/BookingDetails.vue'
 Vue.use(Router)
 
 /**
@@ -78,6 +78,14 @@ const router = new Router({
       component: UserResources,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: '/schedule',
+      name: 'booking-details',
+      component: BookingDetails,
+      meta: {
+        requiresAuth: false
       }
     }
   ]
