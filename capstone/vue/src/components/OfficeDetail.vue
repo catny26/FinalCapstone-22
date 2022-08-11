@@ -4,6 +4,8 @@
       <img v-if="hasImage" :src="office.image" alt="An image of the current office">
       <img v-else src="../assets/generic_office_image.jpg" alt="A generic image of a doctors office">
 
+      <h3 v-if="worksHere">You work here!!</h3>
+
       <router-link :to="{name: 'offices'}"><input type="button" value="Back"></router-link>
 
   </div>
@@ -11,6 +13,11 @@
 
 <script>
 export default {
+    data(){
+        return {
+            officesUserBelongsTo: []
+        }
+    },
     name: "office-detail",
     props: ["office"],
     methods: {
@@ -29,7 +36,18 @@ export default {
       return time;
     }
   },
+  created(){
+      this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
+  },
   computed:{
+    worksHere(){
+        for(let i = 0; i < this.officesUserBelongsTo.length;i++){
+            if(this.officesUserBelongsTo[i].officeId == this.office.officeId){
+                return true
+            }
+        }
+        return false;
+    },
     hasImage(){
       return this.office.image != null;
     },
