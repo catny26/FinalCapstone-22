@@ -9,6 +9,7 @@ import Offices from '@/views/Offices.vue'
 import Providers from '@/views/Providers.vue'
 import UserResources from '@/views/UserResources.vue'
 import BookingDetails from '@/views/BookingDetails.vue'
+import About from '@/views/About.vue'
 Vue.use(Router)
 
 /**
@@ -24,6 +25,14 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/about',
+      name: 'about',
+      component: About,
+      meta: {
+        requiresAuth: false
+      }
+    },
     {
       path: '/',
       name: 'home',

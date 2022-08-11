@@ -29,6 +29,12 @@ export default new Vuex.Store({
       officeHoursOpen: '',
       officeHoursClose: '',
       costPerHour: 0
+    },
+    notifications: [],
+    notification: {
+      user: '',
+      message: '',
+      isRead: false
     }
   },
   mutations: {

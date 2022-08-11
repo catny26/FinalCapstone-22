@@ -1,13 +1,16 @@
 <template>
   <div class = "about">
-      <h3>About</h3>
+    <about-card />
   </div>
 </template>
 
 <script>
+import AboutDetails from "../components/AboutDetails.vue";
 export default {
-    name: "about"
-
+    name: "about",
+    component: {
+      AboutDetails
+    }
 }
 </script>
 
