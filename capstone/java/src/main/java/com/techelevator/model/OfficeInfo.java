@@ -14,8 +14,9 @@ public class OfficeInfo {
     private LocalTime officeHoursClose;
     private BigDecimal costPerHour;
     private String officeImageUrl;
+    private boolean delay;
 
-    public OfficeInfo(long officeId, String officeName, String address, long phoneNumber, LocalTime officeHoursOpen, LocalTime officeHoursClose, BigDecimal costPerHour) {
+    public OfficeInfo(long officeId, String officeName, String address, long phoneNumber, LocalTime officeHoursOpen, LocalTime officeHoursClose, BigDecimal costPerHour, boolean delay) {
         this.officeId = officeId;
         this.officeName = officeName;
         this.address = address;
@@ -24,6 +25,7 @@ public class OfficeInfo {
         this.officeHoursClose = officeHoursClose;
         this.costPerHour = costPerHour;
         this.officeImageUrl = null;
+        this.delay = delay;
     }
 
     public OfficeInfo() {
@@ -92,6 +94,14 @@ public class OfficeInfo {
 
     public void setOfficeImageUrl(String officeImageUrl) {
         this.officeImageUrl = officeImageUrl;
+    }
+
+    public boolean isDelay() {
+        return delay;
+    }
+
+    public void setDelay(boolean delay) {
+        this.delay = delay;
     }
 
     @Override

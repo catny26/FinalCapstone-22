@@ -36,11 +36,46 @@ export default {
 
     },
     methods:{
+        refreshData(){
+            this.user = this.$store.state.user;
+
+                OfficeService.getOffices().then(response=>{
+                    this.$store.commit('SET_OFFICES', response.data);
+                    this.offices = this.$store.state.offices;
+                })
+
+                OfficeService.getOfficesByDoctorId(this.$store.state.user.id).then(response=>{
+                    this.$store.commit('SET_USER_OFFICES', response.data);
+                    this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
+                })
+        },
         leaveOffice(officeId){
-            alert(`NO, YOU'RE NOT ALLOWED TO LEAVE OFFICE NUMBER ${officeId}!!!!!!!`);
+            OfficeService.leaveOffice(officeId, this.user.id)
+            .then(response=>{
+                if(response.status == 202){
+                    this.refreshData()
+                }
+            })
+            .catch(error=>{
+                if(error.status == 500){
+                    alert("invalid data");
+                }
+            })
         },
         joinOffices(){
-            alert(`so you wish to join offices ${this.selectedOffices}`)
+            this.selectedOffices.forEach( (officeId) =>{
+                OfficeService.joinOffice(officeId, this.user.id)
+                .then(response=>{
+                if(response.status == 201){
+                    this.refreshData()
+                }
+            })
+            .catch(error=>{
+                if(error.status == 500){
+                    alert("invalid data");
+                }
+            })
+            })
         },
         officeInArray(array, officeId){
             let output = true;
@@ -60,23 +95,24 @@ export default {
         }
     },
     created(){
-        this.user = this.$store.state.user;
-        this.offices = this.$store.state.offices;
-        this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
+        this.refreshData()
+        // this.user = this.$store.state.user;
+        // this.offices = this.$store.state.offices;
+        // this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
 
-        if(this.$store.state.offices.length == 0){
-            OfficeService.getOffices().then(response=>{
-                this.$store.commit('SET_OFFICES', response.data);
-                this.offices = this.$store.state.offices;
-            })
-        }
+        // if(this.$store.state.offices.length == 0){
+        //     OfficeService.getOffices().then(response=>{
+        //         this.$store.commit('SET_OFFICES', response.data);
+        //         this.offices = this.$store.state.offices;
+        //     })
+        // }
 
-        if(this.$store.state.officesUserBelongsTo.length == 0){
-            OfficeService.getOfficesByDoctorId(this.$store.state.user.id).then(response=>{
-                this.$store.commit('SET_USER_OFFICES', response.data);
-                this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
-            })
-        }
+        // if(this.$store.state.officesUserBelongsTo.length == 0){
+        //     OfficeService.getOfficesByDoctorId(this.$store.state.user.id).then(response=>{
+        //         this.$store.commit('SET_USER_OFFICES', response.data);
+        //         this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
+        //     })
+        // }
     }
 
 }

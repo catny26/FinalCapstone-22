@@ -40,7 +40,8 @@ export default new Vuex.Store({
       officeHoursOpen: '',
       officeHoursClose: '',
       costPerHour: 0,
-      officeImageUrl: ''
+      officeImageUrl: '',
+      delay: false
     },
     notifications: [],
     notification: {

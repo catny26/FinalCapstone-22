@@ -56,7 +56,7 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
     @Override
     public List<OfficeInfo> getAllOfficesByDoctors(long doctorId) {
         List<OfficeInfo> offices = new ArrayList<>();
-        String sql = "SELECT oi.office_id, oi.office_name, oi.address, oi.phone_number, oi.office_hours_open, oi.office_hours_close, oi.cost_per_hour, oi.office_image_url "+
+        String sql = "SELECT oi.office_id, oi.office_name, oi.address, oi.phone_number, oi.office_hours_open, oi.office_hours_close, oi.cost_per_hour, oi.office_image_url, oi.delay "+
                 "FROM office_info AS oi "+
                 "JOIN users_office_info uoi ON uoi.office_id = oi.office_id "+
                 "JOIN users u ON u.user_id = uoi.user_id "+
@@ -71,9 +71,9 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
     @Override
     public void updateOffice(OfficeInfo officeInfo){
         String sql = "UPDATE office_info "+
-                "SET office_name = ?, address = ?, phone_number = ?, office_hours_open = ?, office_hours_close = ?, cost_per_hour = ?, office_image_url = ? "+
+                "SET office_name = ?, address = ?, phone_number = ?, office_hours_open = ?, office_hours_close = ?, cost_per_hour = ?, office_image_url = ?, delay = ? "+
                 "WHERE office_id = ?;";
-        jdbcTemplate.update(sql, officeInfo.getOfficeName(), officeInfo.getAddress(), officeInfo.getPhoneNumber(), officeInfo.getOfficeHoursOpen(), officeInfo.getOfficeHoursClose(), officeInfo.getCostPerHour(), officeInfo.getOfficeImageUrl(), officeInfo.getOfficeId());
+        jdbcTemplate.update(sql, officeInfo.getOfficeName(), officeInfo.getAddress(), officeInfo.getPhoneNumber(), officeInfo.getOfficeHoursOpen(), officeInfo.getOfficeHoursClose(), officeInfo.getCostPerHour(), officeInfo.getOfficeImageUrl(), officeInfo.isDelay(), officeInfo.getOfficeId());
     }
 
     @Override
@@ -100,6 +100,7 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
         office.setOfficeHoursClose(rowSet.getTime("office_hours_close").toLocalTime());
         office.setCostPerHour(rowSet.getBigDecimal("cost_per_hour"));
         office.setOfficeImageUrl(rowSet.getString("office_image_url"));
+        office.setDelay(rowSet.getBoolean("delay"));
 
         return office;
     }

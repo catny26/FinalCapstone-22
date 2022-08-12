@@ -5,6 +5,7 @@ import com.techelevator.dao.ReviewDao;
 import com.techelevator.model.OfficeInfo;
 import com.techelevator.model.Reviews;
 import org.apache.coyote.RequestGroupInfo;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,11 +45,13 @@ public class OfficeInfoController {
     }
 
     @RequestMapping(value="offices/{officeId}/user/{userId}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.CREATED)
     public void addUserToOffice(@PathVariable int officeId, @PathVariable int userId){
         officeInfoDao.updateUserOfficeInfo(officeId, userId);
     }
 
     @RequestMapping(value="offices/{officeId}/user/{userId}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteUserFromOffice(@PathVariable int officeId, @PathVariable int userId){
         officeInfoDao.deleteUserOfficeInfo(officeId, userId);
     }

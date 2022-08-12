@@ -16,6 +16,7 @@
 
       <router-link :to="{name: 'offices'}"><input type="button" value="Back"></router-link>
       <input type="button" value="Edit Office Info" @click="editOfficeInfo = !editOfficeInfo" v-if="worksHere" >
+      <input type="button" value="no delay" @click="toggleDelay" :class="{delay: this.office.delay}" v-if="worksHere">
 
       <form v-if="editOfficeInfo" action="#" @submit.prevent="updateOfficeInfo">
         <div class="form-field">
@@ -70,6 +71,10 @@ export default {
     name: "office-detail",
     props: ["office", "doctors"],
     methods: {
+      toggleDelay(){
+        this.updatedOffice.delay = !this.updatedOffice.delay
+        this.updateOfficeInfo()
+      },
       isEmpty(object){
         return Object.keys(object).length ==0;
       },
@@ -202,5 +207,9 @@ export default {
 
 .address{
   grid-area: "address";
+}
+
+.delay{
+  background-color: red;
 }
 </style>

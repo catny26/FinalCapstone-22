@@ -6,10 +6,10 @@ INSERT INTO users (username,full_name,password_hash,role) VALUES ('testpatient',
 INSERT INTO users (username,full_name,password_hash,role) VALUES ('testdoctor','test doctor','$2a$10$3RuzpY.OPF/7nQ19TtbgRO4Cx6W9kvErZLrAtfpr55j2SLWB6NK.6','ROLE_DOCTOR');
 
 
-INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour, office_image_url) VALUES ('Cardiology Consultants of Philadelphia', '207 N Broad St, Philadelphia, PA 19107', 2152273627, '08:00', '16:00', 50.00, 'https://array-architects.com/wp-content/uploads/2021/01/Array_CCP-Hero-1.png');
-INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Philadelphia Family Medicine', '1028 W Oregon Ave, Philadelphia, PA 19148', 2153897766, '09:00', '18:00', 60.00);
-INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Ninth Street Internal Medicine', '805 Locust St, Philadelphia, PA 19107', 2154408681, '07:30', '17:00', 80.00);
-INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour) VALUES ('Philadelphia Dentistry', '1601 Walnut St #1302, Philadelphia, PA 19102', 2155686222, '08:00', '17:00', 70.00);
+INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour, office_image_url, delay) VALUES ('Cardiology Consultants of Philadelphia', '207 N Broad St, Philadelphia, PA 19107', 2152273627, '08:00', '16:00', 50.00, 'https://array-architects.com/wp-content/uploads/2021/01/Array_CCP-Hero-1.png', false);
+INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour, delay) VALUES ('Philadelphia Family Medicine', '1028 W Oregon Ave, Philadelphia, PA 19148', 2153897766, '09:00', '18:00', 60.00, false);
+INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour, delay) VALUES ('Ninth Street Internal Medicine', '805 Locust St, Philadelphia, PA 19107', 2154408681, '07:30', '17:00', 80.00, false);
+INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour, delay) VALUES ('Philadelphia Dentistry', '1601 Walnut St #1302, Philadelphia, PA 19102', 2155686222, '08:00', '17:00', 70.00, false);
 
 
 INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('madesman','Paulien Vlad', '$2a$10$FmPjRAtJ/XLPwQfAH8sf6eEjat4ehBeSnqz4L8zs5Rbudv3qiGNtu', 'ROLE_DOCTOR', 'Family');

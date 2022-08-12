@@ -30,6 +30,7 @@ CREATE TABLE office_info (
     office_hours_close time NOT NULL,
     cost_per_hour money NOT NULL,
     office_image_url varchar(500),
+    delay boolean NOT NULL,
     CONSTRAINT PK_office_info PRIMARY KEY (office_id)
 );
 
