@@ -1,13 +1,14 @@
 <template>
-  <div class = "providers-list">
+  <div class = "add-review">
       
+
   </div>
 </template>
 
 <script>
+
 export default {
-    name: "providers-list",
-    props: ["providers"]
+  name: 'add-review'
 
 }
 </script>
