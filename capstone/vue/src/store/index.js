@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     officesUserBelongsTo: [],
+    doctorsInOffice: [],
     offices: [],
     office: {
       officeId: 0,
@@ -57,6 +58,9 @@ export default new Vuex.Store({
       state.office =  state.offices.find( (office)=>{
         return office.officeId === officeId;
       })
+    },
+    SET_DOCTORS_IN_OFFICE(state, data){
+      state.doctorsInOffice = data
     },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;

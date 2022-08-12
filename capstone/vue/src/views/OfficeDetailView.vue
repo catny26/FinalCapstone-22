@@ -1,5 +1,5 @@
 <template>
-  <office-detail :office="this.$store.state.office" />
+  <office-detail :office="this.$store.state.office" :doctors="this.$store.state.doctorsInOffice"/>
 </template>
 
 <script>
