@@ -12,5 +12,9 @@ export default {
 
   getOfficesById(officeID) {
     return http.get(`/offices/${officeID}`)
+  },
+
+  getOfficesByDoctorId(doctorId){
+    return http.get(`/doctors/offices/${doctorId}`);
   }
 }

@@ -9,11 +9,19 @@
 
 <script>
 import Notifications from "../components/Notifications.vue";
+import OfficeService from "../services/OfficeService.js"
 
 export default {
   name: "home",
   components: {
-    Notifications
-  }
+    Notifications,
+  },
+  created(){
+    if(this.$store.state.user.authorities[0].name == "ROLE_DOCTOR"){
+      OfficeService.getOfficesByDoctorId(this.$store.state.user.id).then( response=>{
+        this.$store.commit('SET_USER_OFFICES', response.data);
+      })
+    }
+  },
 };
 </script>

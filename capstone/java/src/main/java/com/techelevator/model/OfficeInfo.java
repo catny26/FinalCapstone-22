@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class OfficeInfo {
 
@@ -81,6 +82,19 @@ public class OfficeInfo {
 
     public void setCostPerHour(BigDecimal costPerHour) {
         this.costPerHour = costPerHour;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OfficeInfo that = (OfficeInfo) o;
+        return officeId == that.officeId && Objects.equals(officeName, that.officeName) && Objects.equals(address, that.address) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(officeHoursOpen, that.officeHoursOpen) && Objects.equals(officeHoursClose, that.officeHoursClose) && Objects.equals(costPerHour, that.costPerHour);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(officeId, officeName, address, phoneNumber, officeHoursOpen, officeHoursClose, costPerHour);
     }
 }
 

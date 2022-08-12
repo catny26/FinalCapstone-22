@@ -55,6 +55,21 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
         return doctors;
     }
 
+    @Override
+    public List<OfficeInfo> getAllOfficesByDoctors(long doctorId) {
+        List<OfficeInfo> offices = new ArrayList<>();
+        String sql = "SELECT oi.office_id, oi.office_name, oi.address, oi.phone_number, oi.office_hours_open, oi.office_hours_close, oi.cost_per_hour "+
+                "FROM office_info AS oi "+
+                "JOIN users_office_info uoi ON uoi.office_id = oi.office_id "+
+                "JOIN users u ON u.user_id = uoi.user_id "+
+                "WHERE u.user_id =?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+        while(results.next()) {
+            offices.add(mapRowToOfficeInfo(results));
+        }
+        return offices;
+    }
+
     private OfficeInfo mapRowToOfficeInfo(SqlRowSet rowSet) {
         OfficeInfo office = new OfficeInfo();
         office.setOfficeId(rowSet.getLong("office_id"));

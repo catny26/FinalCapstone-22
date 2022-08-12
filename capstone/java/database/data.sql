@@ -30,6 +30,7 @@ INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VAL
 INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('eziegler','Agnija Eliana', '$2a$10$E1H5vZicpwwi6t6ijfXCueZlUBikOTpeXbNXCfRFIa.4pbjwdBUNu', 'ROLE_DOCTOR', 'Anesthesiologist');
 INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('okhan','Krystyna Eugen', '$2a$10$wW5L2OkNPjNRUsSe0NopYunl9QFsKo05mB7diM0UH4iqQLR6t35wK', 'ROLE_DOCTOR', 'Anesthesiologist');
 INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('zlyons','Catherine Karen', '$2a$10$MQE4fwQ0uGwd4k2WnRoHYeRLUwjzw0Ih44L.kfMEagGsZwOHXhxrG', 'ROLE_DOCTOR', 'Anesthesiologist');
+INSERT INTO users (username, full_name, password_hash, role, type_of_doctor) VALUES ('test', 'test', '$2a$10$kKRzGHx/1nyYJY79NFluU.hAQniAaQwVjK6l7Px3YLiCB.iE8BAei', 'ROLE_DOCTOR', 'Test');
 
 INSERT INTO users (username, full_name, password_hash, role) VALUES ('ibenton','Bojidar Veronika', '$2a$10$jjcNLETKswckI1/ABwir/.qvatRV3MZQvqV..nmsbhJQcgVMqDCva', 'ROLE_USER');
 INSERT INTO users (username, full_name, password_hash, role) VALUES ('gbrook','Oberon Valentina', '$2a$10$5S/w4GBdqyN7XRlqeMWr1eRVcG1CQICw4.qoZIjiPHcKlTRHtwdcS', 'ROLE_USER');
@@ -60,6 +61,13 @@ INSERT INTO users_office_info (office_id, user_id) VALUES (4, 19);
 INSERT INTO users_office_info (office_id, user_id) VALUES (4, 20);
 INSERT INTO users_office_info (office_id, user_id) VALUES (4, 21);
 INSERT INTO users_office_info (office_id, user_id) VALUES (4, 22);
+INSERT INTO users_office_info (office_id, user_id) VALUES (3, 22);
+INSERT INTO users_office_info (office_id, user_id) VALUES (2, 22);
+INSERT INTO users_office_info (office_id, user_id) VALUES (1, 22);
+INSERT INTO users_office_info (office_id, user_id) VALUES (4, 23);
+INSERT INTO users_office_info (office_id, user_id) VALUES (3, 23);
+INSERT INTO users_office_info (office_id, user_id) VALUES (2, 23);
+INSERT INTO users_office_info (office_id, user_id) VALUES (1, 23);
 
 INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (4, 'He listens!', 5, 23, 1, null);
 INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response) VALUES (5, 'I love seeing this doctor', 6, 24, 1, 'Thanks, Gina!');

@@ -14,7 +14,7 @@
     <p class="address">{{office.address}}</p>
     <p class="hours">Open Hours: {{formattedOfficeHours}}</p>
     <p class="phone-number">{{formattedPhoneNumber}}</p>
-    <input type="button" value="Further Details">
+    <router-link :to="{name: 'office-details', params: {officeId: office.officeId}}"><input @click="setOffice(office.officeId)" type="button" value="Further Details"> </router-link>
   </div>
 </template>
 
@@ -36,6 +36,9 @@ export default {
         time = time.substring(1);
       }
       return time;
+    },
+    setOffice(officeId){
+      this.$store.commit('GET_OFFICE', officeId);
     }
   },
   computed:{
