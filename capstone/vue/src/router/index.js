@@ -10,6 +10,8 @@ import Providers from '@/views/Providers.vue'
 import UserResources from '@/views/UserResources.vue'
 import BookingDetails from '@/views/BookingDetails.vue'
 import About from '@/views/About.vue'
+import Portal from '@/views/Portal.vue'
+
 Vue.use(Router)
 
 /**
@@ -96,6 +98,15 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: '/portal',
+      name: 'portal',
+      component: Portal,
+      meta: {
+        requiresAuth: true
+      }
+
     }
   ]
 })
