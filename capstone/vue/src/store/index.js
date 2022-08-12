@@ -20,8 +20,15 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    officeChoice: 0,
     filter: 0,
+    providerChoice: 0,
+    providers: [],
+    provider: {
+      userId: 0,
+      fullName: '',
+      typeOfDoctor: '',
+      stars: 0
+    },
     officesUserBelongsTo: [],
     doctorsInOffice: [],
     offices: [],
@@ -37,7 +44,7 @@ export default new Vuex.Store({
     },
     notifications: [],
     notification: {
-      notificationId: '',
+      notificationId: 0,
       user: '',
       message: '',
       isRead: false
@@ -45,11 +52,10 @@ export default new Vuex.Store({
     about: "aboutDetails",
     reviews: [],
     review: {
-        reviewId: '',
-        officeId: '',
-        providerId: '',
-        patientId: '',
-        stars: '',
+        reviewId: 0,
+        providerId: 0,
+        patientId: 0,
+        stars: 0,
         message: '',
         response: ''
     }
@@ -64,8 +70,8 @@ export default new Vuex.Store({
     SET_OFFICES(state, data) {
       state.offices = data;
     },
-    SET_OFFICE_CHOICE(state, officeId) {
-      state.officeChoice = officeId;
+    SET_PROVIDER_CHOICE(state, providerId) {
+      state.providerChoice = providerId;
     },
     UPDATE_FILTER(state, filter) {
       state.filter = filter;

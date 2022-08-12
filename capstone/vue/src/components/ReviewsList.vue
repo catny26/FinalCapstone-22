@@ -1,5 +1,5 @@
 <template>
-  <div class="review-list">
+  <div class="reviews-list">
     <review-display
       v-for="review in filteredReviews"
       v-bind:key="review.reviewId"
@@ -9,20 +9,19 @@
 </template>
 
 <script>
-import ReviewDisplay from "@/ReviewDisplay.vue";
-
+import ReviewDisplay from "@/components/ReviewDisplay.vue";
 export default {
-  name: "review-list",
+  name: "reviews-list",
   components: {
     ReviewDisplay
   },
   computed: {
     filteredReviews() {
-      const officeChoice = this.$store.state.office.find(
-        office => office.officeId == this.$store.state.officeChoice
+      const providerChoice = this.$store.state.providers.find(
+        provider => provider.userId == this.$store.state.providerChoice
       );
       const reviewsFilter = this.$store.state.filter;
-      return officeChoice.reviews.filter(review => {
+      return providerChoice.reviews.filter(review => {
         return reviewsFilter === 0 ? true : reviewsFilter === review.stars;
       });
     }
