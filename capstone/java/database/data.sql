@@ -64,8 +64,6 @@ INSERT INTO users_office_info (office_id, user_id) VALUES (4, 22);
 INSERT INTO users_office_info (office_id, user_id) VALUES (3, 22);
 INSERT INTO users_office_info (office_id, user_id) VALUES (2, 22);
 INSERT INTO users_office_info (office_id, user_id) VALUES (1, 22);
-INSERT INTO users_office_info (office_id, user_id) VALUES (4, 23);
-INSERT INTO users_office_info (office_id, user_id) VALUES (3, 23);
 INSERT INTO users_office_info (office_id, user_id) VALUES (2, 23);
 INSERT INTO users_office_info (office_id, user_id) VALUES (1, 23);
 

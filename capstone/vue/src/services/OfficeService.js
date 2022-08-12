@@ -20,5 +20,13 @@ export default {
   
   updateOfficeInfo(officeInfo){
     return http.put('/offices/', officeInfo)
+  },
+
+  leaveOffice(officeId, userId){
+    return http.delete(`/offices/${officeId}/user/${userId}`)
+  },
+
+  joinOffice(officeId, userId){
+    return http.put(`/offices/${officeId}/user/${userId}`)
   }
 }

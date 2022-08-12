@@ -76,6 +76,20 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
         jdbcTemplate.update(sql, officeInfo.getOfficeName(), officeInfo.getAddress(), officeInfo.getPhoneNumber(), officeInfo.getOfficeHoursOpen(), officeInfo.getOfficeHoursClose(), officeInfo.getCostPerHour(), officeInfo.getOfficeImageUrl(), officeInfo.getOfficeId());
     }
 
+    @Override
+    public void updateUserOfficeInfo(int officeId, int userId){
+        String sql = "INSERT INTO users_office_info (office_id, user_id) " +
+                "VALUES (?,?);";
+        jdbcTemplate.update(sql, officeId, userId);
+    }
+
+    @Override
+    public void deleteUserOfficeInfo(int officeId, int userId){
+        String sql = "DELETE FROM users_office_info "+
+                "WHERE office_id = ? AND user_id = ?;";
+        jdbcTemplate.update(sql, officeId, userId);
+    }
+
     private OfficeInfo mapRowToOfficeInfo(SqlRowSet rowSet) {
         OfficeInfo office = new OfficeInfo();
         office.setOfficeId(rowSet.getLong("office_id"));

@@ -42,4 +42,14 @@ public class OfficeInfoController {
     public void updateOffice(@RequestBody OfficeInfo officeInfo){
         officeInfoDao.updateOffice(officeInfo);
     }
+
+    @RequestMapping(value="offices/{officeId}/user/{userId}", method = RequestMethod.PUT)
+    public void addUserToOffice(@PathVariable int officeId, @PathVariable int userId){
+        officeInfoDao.updateUserOfficeInfo(officeId, userId);
+    }
+
+    @RequestMapping(value="offices/{officeId}/user/{userId}", method = RequestMethod.DELETE)
+    public void deleteUserFromOffice(@PathVariable int officeId, @PathVariable int userId){
+        officeInfoDao.deleteUserOfficeInfo(officeId, userId);
+    }
 }

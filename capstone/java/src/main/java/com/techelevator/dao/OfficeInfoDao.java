@@ -13,4 +13,8 @@ public interface OfficeInfoDao {
     public List<OfficeInfo> getAllOfficesByDoctors(long doctorId);
 
     void updateOffice(OfficeInfo officeInfo);
+
+    void updateUserOfficeInfo(int officeId, int userId);
+
+    void deleteUserOfficeInfo(int officeId, int userId);
 }
