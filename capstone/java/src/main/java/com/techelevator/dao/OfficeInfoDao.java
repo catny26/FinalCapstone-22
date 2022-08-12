@@ -17,4 +17,6 @@ public interface OfficeInfoDao {
     void updateUserOfficeInfo(int officeId, int userId);
 
     void deleteUserOfficeInfo(int officeId, int userId);
+
+    OfficeInfo addNewOffice(OfficeInfo officeInfo);
 }

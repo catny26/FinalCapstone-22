@@ -90,6 +90,15 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
         jdbcTemplate.update(sql, officeId, userId);
     }
 
+    @Override
+    public OfficeInfo addNewOffice(OfficeInfo officeInfo){
+        String sql = "INSERT INTO office_info (office_name, address, phone_number, office_hours_open, office_hours_close, cost_per_hour, office_image_url, delay) "+
+                "VALUES (?,?,?,?,?,?,?,?) RETURNING office_id;";
+        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, officeInfo.getOfficeName(), officeInfo.getAddress(), officeInfo.getPhoneNumber(), officeInfo.getOfficeHoursOpen(), officeInfo.getOfficeHoursClose(), officeInfo.getCostPerHour(), officeInfo.getOfficeImageUrl(), officeInfo.isDelay());
+        officeInfo.setOfficeId(id);
+        return officeInfo;
+    }
+
     private OfficeInfo mapRowToOfficeInfo(SqlRowSet rowSet) {
         OfficeInfo office = new OfficeInfo();
         office.setOfficeId(rowSet.getLong("office_id"));

@@ -15,6 +15,39 @@
             <input type="checkbox" :name="office.officeId" :id="office.officeId" :value="office.officeId"  v-model="selectedOffices">
         </div>
         <input type="button" value="Join Offices" @click="joinOffices">
+
+        <p>Add a new office!</p>
+        <form action="#" @submit.prevent="addOffice">
+        <div class="form-field">
+          <label for="office-name">Office Name: </label>
+          <input type="text" name="office-name" id="office-name" v-model="newOffice.officeName">
+        </div>
+        <div class="form-field">
+          <label for="office-address">Office Address: </label>
+          <input type="text" name="office-address" id="office-address" v-model="newOffice.address">
+        </div>
+        <div class="form-field">
+          <label for="office-phone-number">Phone Number: </label>
+          <input type="tel" name="office-phone-number" id="office-phone-number" v-model="newOffice.phoneNumber">
+        </div>
+        <div class="form-field">
+          <label for="office-hours-open">When The Office Opens: </label>
+          <input type="time" name="office-hours-open" id="office-hours-open" v-model="newOffice.officeHoursOpen">
+        </div>
+        <div class="form-field">
+          <label for="office-hours-close">When The Office Closes: </label>
+          <input type="time" name="office-hours-close" id="office-hours-close" v-model="newOffice.officeHoursClose">
+        </div>
+        <div class="form-field">
+          <label for="office-cost-per-hour">Cost per Hour to See Doctor: </label>
+          <input type="number" name="office-cost-per-hour" id="office-cost-per-hour" v-model="newOffice.costPerHour">
+        </div>
+        <div class="form-field">
+          <label for="office-image">URL to picture of Office</label>
+          <input type="text" name="office-image" id="office-image" v-model="newOffice.officeImageUrl">
+        </div>
+        <input type="submit" value="Add New Office">
+      </form>
   </div>
 </template>
 
@@ -31,7 +64,18 @@ export default {
             user: {},
             officesUserBelongsTo: [],
             selectedOffices: [],
-            offices: []
+            offices: [],
+            newOffice: {
+                officeId: 0,
+                officeName: '',
+                address: '',
+                phoneNumber: 0,
+                officeHoursOpen: '',
+                officeHoursClose: '',
+                costPerHour: 0,
+                officeImageUrl: '',
+                delay: false
+            }
         }
 
     },
@@ -75,6 +119,19 @@ export default {
                     alert("invalid data");
                 }
             })
+            })
+        },
+        addOffice(){
+            OfficeService.createOffice(this.newOffice, this.user.id)
+            .then(response=>{
+                if(response.status == 201){
+                    this.newOffice = {}
+                }
+            })
+            .catch(error=>{
+                if(error.status == 500){
+                    alert("invalid data");
+                }
             })
         },
         officeInArray(array, officeId){

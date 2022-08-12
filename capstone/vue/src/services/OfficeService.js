@@ -28,5 +28,9 @@ export default {
 
   joinOffice(officeId, userId){
     return http.put(`/offices/${officeId}/user/${userId}`)
+  },
+
+  createOffice(office, userId){
+    return http.put(`/offices/${userId}`, office);
   }
 }

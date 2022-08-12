@@ -55,4 +55,10 @@ public class OfficeInfoController {
     public void deleteUserFromOffice(@PathVariable int officeId, @PathVariable int userId){
         officeInfoDao.deleteUserOfficeInfo(officeId, userId);
     }
+
+    @RequestMapping(value="offices/{userId}", method = RequestMethod.PUT)
+    public void addNewOffice(@RequestBody OfficeInfo officeInfo, @PathVariable int userId){
+        officeInfo = officeInfoDao.addNewOffice(officeInfo);
+        officeInfoDao.updateUserOfficeInfo((int) officeInfo.getOfficeId(), userId);
+    }
 }
