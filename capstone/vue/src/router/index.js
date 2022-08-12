@@ -10,7 +10,8 @@ import Providers from '@/views/Providers.vue'
 import UserResources from '@/views/UserResources.vue'
 import BookingDetails from '@/views/BookingDetails.vue'
 import About from '@/views/About.vue'
-import OfficeDetailView from '@/views/OfficeDetailView.vue'
+import Portal from '@/views/Portal.vue'
+
 Vue.use(Router)
 
 /**
@@ -99,12 +100,13 @@ const router = new Router({
       }
     },
     {
-      path: '/offices/:officeId',
-      name: 'office-details',
-      component: OfficeDetailView,
+      path: '/portal',
+      name: 'portal',
+      component: Portal,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
+
     }
   ]
 })
