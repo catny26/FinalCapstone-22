@@ -1,12 +1,13 @@
 <template>
     <div>
-        <h3>Doctor card</h3>
+        <h4>{{doctor.fullName}}</h4>
+        <p>{{doctor.typeOfDoctor}}</p>
     </div>
 </template>
 
 <script>
 export default {
-    props:["Doctor"]
+    props:["doctor"]
 
 }
 </script>

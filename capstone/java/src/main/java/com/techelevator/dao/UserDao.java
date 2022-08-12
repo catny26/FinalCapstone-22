@@ -12,6 +12,8 @@ public interface UserDao {
 
     List<User> findAllPatients();
 
+    List<User> getDoctorsByOffice(int id);
+
     User getUserById(int userId);
 
     User findByUsername(String username);

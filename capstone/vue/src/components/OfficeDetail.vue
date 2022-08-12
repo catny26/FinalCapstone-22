@@ -1,10 +1,8 @@
 <template>
   <div id="office-detail">
       <h2 class="title">{{office.officeName}}</h2>
-      <img v-if="hasImage" :src="office.image" alt="An image of the current office">
+      <img v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
       <img v-else src="../assets/generic_office_image.jpg" alt="A generic image of a doctors office">
-
-      <h3 v-if="worksHere">You work here!!</h3>
 
       <p class="address">{{office.address}}</p>
       <p class="hours">Open Hours: {{formattedOfficeHours}}</p>
@@ -12,10 +10,45 @@
       <p class="cost-per-hour">${{office.costPerHour}} per hour</p>
 
       <div>
-        <doctor-card v-for="doctor in doctors" :key="doctor" :doctor="doctor" />
+        <h3>Our Doctors</h3>
+        <doctor-card v-for="doctor in doctors" :key="doctor.id" :doctor="doctor" />
       </div>
 
       <router-link :to="{name: 'offices'}"><input type="button" value="Back"></router-link>
+      <input type="button" value="Edit Office Info" @click="editOfficeInfo = !editOfficeInfo" v-if="worksHere" >
+
+      <form v-if="editOfficeInfo" action="#" @submit.prevent="updateOfficeInfo">
+        <div class="form-field">
+          <label for="office-name">Office Name: </label>
+          <input type="text" name="office-name" id="office-name" v-model="updatedOffice.officeName">
+        </div>
+        <div class="form-field">
+          <label for="office-address">Office Address: </label>
+          <input type="text" name="office-address" id="office-address" v-model="updatedOffice.address">
+        </div>
+        <div class="form-field">
+          <label for="office-phone-number">Phone Number: </label>
+          <input type="tel" name="office-phone-number" id="office-phone-number" v-model="updatedOffice.phoneNumber">
+        </div>
+        <div class="form-field">
+          <label for="office-hours-open">When The Office Opens: </label>
+          <input type="time" name="office-hours-open" id="office-hours-open" v-model="updatedOffice.officeHoursOpen">
+        </div>
+        <div class="form-field">
+          <label for="office-hours-close">When The Office Closes: </label>
+          <input type="time" name="office-hours-close" id="office-hours-close" v-model="updatedOffice.officeHoursClose">
+        </div>
+        <div class="form-field">
+          <label for="office-cost-per-hour">Cost per Hour to See Doctor: </label>
+          <input type="number" name="office-cost-per-hour" id="office-cost-per-hour" v-model="updatedOffice.costPerHour">
+        </div>
+        <div class="form-field" v-if="hasImage">
+          <label for="office-image">URL to picture of Office</label>
+          <input type="text" name="office-image" id="office-image" v-model="updatedOffice.officeImageUrl">
+        </div>
+        <input type="submit" value="Update Office Info">
+      </form>
+    
 
   </div>
 </template>
@@ -23,17 +56,23 @@
 <script>
 import DoctorCard from '@/components/DoctorCard'
 import OfficeService from '@/services/OfficeService'
+import DoctorService from '@/services/DoctorService'
 
 export default {
   components:{DoctorCard},
     data(){
         return {
             officesUserBelongsTo: [],
+            editOfficeInfo: false,
+            updatedOffice: {}
         }
     },
     name: "office-detail",
     props: ["office", "doctors"],
     methods: {
+      isEmpty(object){
+        return Object.keys(object).length ==0;
+      },
     formatTime(time){
       if(parseInt(time.substring(0,2)) > 12){
         time += " pm"
@@ -47,6 +86,24 @@ export default {
         time = time.substring(1);
       }
       return time;
+    },
+    updateOfficeInfo(){
+      OfficeService.updateOfficeInfo(this.updatedOffice)
+      .then(response=>{
+        if(response.status == 200){
+          OfficeService.getOffices().then(responseSecond=>{this.$store.commit('SET_OFFICES', responseSecond.data)})
+        }
+        this.$store.commit('GET_OFFICE', this.updatedOffice.officeId)
+        this.editOfficeInfo = !this.editOfficeInfo;
+      })
+      .catch((error)=>{
+        const response = error.response;
+
+        if(response.status === 400){
+          alert("Invalid Data entered, please try again")
+          this.updatedOffice = this.office;
+        }
+      })
     }
   },
   created(){
@@ -55,26 +112,38 @@ export default {
         this.$store.commit('SET_USER_OFFICES', response.data);
         this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
         this.$store.commit('GET_OFFICE', parseInt(this.$route.params.officeId));
+        this.updatedOffice = this.$store.state.office;
       })
     }
     else {
     this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
+    this.updatedOffice = this.office;
+    }
+
+    if(this.$store.state.doctorsInOffice.length == 0){
+      DoctorService.getDoctorsInOffice(this.$route.params.officeId).then(response=>{
+        this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
+      })
     }
   },
   computed:{
     worksHere(){
+      if(! this.isEmpty(this.$store.state.user)){
+        if(this.$store.state.user.authorities[0].name == 'ROLE_DOCTOR'){
         for(let i = 0; i < this.officesUserBelongsTo.length;i++){
             if(this.officesUserBelongsTo[i].officeId == this.office.officeId){
                 return true
             }
         }
+        }
+    }
         return false;
     },
     hasImage(){
-      return this.office.image != null;
+      return this.office.officeImageUrl != null && this.office.officeImageUrl != '';
     },
     formattedPhoneNumber(){
-      return "(" + this.office.phoneNumber.substring(0,3) + ")-" + this.office.phoneNumber.substring(3,6) + "-" + this.office.phoneNumber.substring(6);
+      return "(" + this.office.phoneNumber.toString().substring(0,3) + ")-" + this.office.phoneNumber.toString().substring(3,6) + "-" + this.office.phoneNumber.toString().substring(6);
     },
     formattedOfficeHours(){
       return this.formatTime(this.office.officeHoursOpen.substring(0,5)) + " - " + this.formatTime(this.office.officeHoursClose.substring(0,5));

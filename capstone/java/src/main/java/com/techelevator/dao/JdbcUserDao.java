@@ -89,6 +89,22 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public List<User> getDoctorsByOffice(int id) {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT u.user_id, u.username, u.full_name, u.password_hash, u.role, u.type_of_doctor "+
+                "FROM users AS u "+
+                "JOIN users_office_info uoi ON uoi.user_id = u.user_id "+
+                "WHERE uoi.office_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        while (results.next()) {
+            User user = mapRowToUser(results);
+            users.add(user);
+        }
+
+        return users;
+    }
+
+    @Override
     public User findByUsername(String username) {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
 

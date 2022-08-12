@@ -30,7 +30,8 @@ export default new Vuex.Store({
       phoneNumber: 0,
       officeHoursOpen: '',
       officeHoursClose: '',
-      costPerHour: 0
+      costPerHour: 0,
+      officeImageUrl: ''
     },
     notifications: [],
     notification: {

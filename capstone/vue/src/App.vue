@@ -7,6 +7,7 @@
 <script>
 import HealthHeader from "@/components/HealthHeader.vue"
 import OfficeService from '@/services/OfficeService'
+//import DoctorService from '@/services/DoctorService'
 
 export default{
   components: {
@@ -17,15 +18,20 @@ export default{
       OfficeService.getOffices().then(response=>{
         this.$store.commit('SET_OFFICES', response.data);
       })
+    }
       if(this.$store.state.officesUserBelongsTo.length == 0){
       OfficeService.getOfficesByDoctorId(this.$store.state.user.id).then(response=>{
         this.$store.commit('SET_USER_OFFICES', response.data);
       })
     }
-  }
+  //   if(this.$store.state.doctorsInOffice.length == 0){
+  //     DoctorService.getDoctorsInOffice(this.$route.params.officeId).then(response=>{
+  //       this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
+  //     })
+  // }
 
 }
-}
+  }
 </script>
 
 

@@ -9,12 +9,13 @@ public class OfficeInfo {
     private long officeId;
     private String officeName;
     private String address;
-    private String phoneNumber;
+    private long phoneNumber;
     private LocalTime officeHoursOpen;
     private LocalTime officeHoursClose;
     private BigDecimal costPerHour;
+    private String officeImageUrl;
 
-    public OfficeInfo(long officeId, String officeName, String address, String phoneNumber, LocalTime officeHoursOpen, LocalTime officeHoursClose, BigDecimal costPerHour) {
+    public OfficeInfo(long officeId, String officeName, String address, long phoneNumber, LocalTime officeHoursOpen, LocalTime officeHoursClose, BigDecimal costPerHour) {
         this.officeId = officeId;
         this.officeName = officeName;
         this.address = address;
@@ -22,6 +23,7 @@ public class OfficeInfo {
         this.officeHoursOpen = officeHoursOpen;
         this.officeHoursClose = officeHoursClose;
         this.costPerHour = costPerHour;
+        this.officeImageUrl = null;
     }
 
     public OfficeInfo() {
@@ -52,11 +54,11 @@ public class OfficeInfo {
         this.address = address;
     }
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -82,6 +84,14 @@ public class OfficeInfo {
 
     public void setCostPerHour(BigDecimal costPerHour) {
         this.costPerHour = costPerHour;
+    }
+
+    public String getOfficeImageUrl() {
+        return officeImageUrl;
+    }
+
+    public void setOfficeImageUrl(String officeImageUrl) {
+        this.officeImageUrl = officeImageUrl;
     }
 
     @Override
