@@ -12,6 +12,7 @@ import BookingDetails from '@/views/BookingDetails.vue'
 import About from '@/views/About.vue'
 import Portal from '@/views/Portal.vue'
 import SubmitReview from '@/views/SubmitReview.vue'
+import OfficeDetailView from '@/views/OfficeDetailView.vue'
 
 Vue.use(Router)
 
@@ -66,6 +67,14 @@ const router = new Router({
       component: Offices,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/offices/:officeId',
+      name: 'office-details',
+      component: OfficeDetailView,
+      meta: {
+        requires: false
       }
     },
     {

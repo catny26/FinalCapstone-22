@@ -33,4 +33,9 @@ public class UserController {
     public List<User> getDoctors(){
         return userDao.findAllDoctors();
     }
+
+    @RequestMapping(value="/doctors/office/{id}", method = RequestMethod.GET)
+    public List<User> getDoctorsByOffice(@PathVariable int id){
+        return userDao.getDoctorsByOffice(id);
+    }
 }

@@ -37,4 +37,9 @@ public class OfficeInfoController {
     public List<OfficeInfo> findOfficeByDoctorId(@PathVariable int id){
         return officeInfoDao.getAllOfficesByDoctors(id);
     }
+
+    @RequestMapping(value="offices", method = RequestMethod.PUT)
+    public void updateOffice(@RequestBody OfficeInfo officeInfo){
+        officeInfoDao.updateOffice(officeInfo);
+    }
 }

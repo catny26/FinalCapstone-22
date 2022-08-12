@@ -22,6 +22,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     officeChoice: 0,
     filter: 0,
+    officesUserBelongsTo: [],
+    doctorsInOffice: [],
     offices: [],
     office: {
       officeId: 0,
@@ -30,7 +32,8 @@ export default new Vuex.Store({
       phoneNumber: 0,
       officeHoursOpen: '',
       officeHoursClose: '',
-      costPerHour: 0
+      costPerHour: 0,
+      officeImageUrl: ''
     },
     notifications: [],
     notification: {
@@ -66,6 +69,17 @@ export default new Vuex.Store({
     },
     UPDATE_FILTER(state, filter) {
       state.filter = filter;
+    },
+    SET_USER_OFFICES(state, data){
+      state.officesUserBelongsTo = data;
+    },
+    GET_OFFICE(state, officeId){
+      state.office = state.offices.find( (office =>{
+        return office.officeId = officeId
+      }))
+    },
+    SET_DOCTORS_IN_OFFICE(state, data){
+      state.doctorsInOffice = data;
     },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;

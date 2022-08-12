@@ -16,5 +16,9 @@ export default {
 
   getOfficesByDoctorId(doctorId){
     return http.get(`/doctors/offices/${doctorId}`);
+  },
+  
+  updateOfficeInfo(officeInfo){
+    return http.put('/offices/', officeInfo)
   }
 }
