@@ -6,14 +6,22 @@ const http = axios.create({
 
 export default{
     getReviews(){
-        return http.get('/providers/reviews');
+        return http.get('/reviews');
     },
 
-    getReviewsByDoctor(userId){
-        return http.get(`/providers/reviews/${userId}`);
+    getReviewsByDoctorId(doctorId){
+        return http.get(`/reviews/${doctorId}`);
+    },
+
+    createReview(){
+        return http.post('/reviews');
     },
 
     updateReview(reviewId){
-        return http.put('/reviews/', reviewId)
+        return http.put(`/reviews/${reviewId}`)
+    },
+
+    respondToReview(reviewId){
+        return http.put(`/reviews/${reviewId}`)
     }
 }

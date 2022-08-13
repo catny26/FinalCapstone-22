@@ -21,10 +21,11 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     filter: 0,
-    providerChoice: 0,
-    providers: [],
-    provider: {
+    doctorChoice: 0,
+    doctors: [],
+    doctor: {
       userId: 0,
+      role: '',
       fullName: '',
       typeOfDoctor: '',
       stars: 0
@@ -46,7 +47,7 @@ export default new Vuex.Store({
     notifications: [],
     notification: {
       notificationId: 0,
-      user: '',
+      userId: '',
       message: '',
       isRead: false
     },
@@ -54,25 +55,42 @@ export default new Vuex.Store({
     reviews: [],
     review: {
         reviewId: 0,
-        providerId: 0,
-        patientId: 0,
         stars: 0,
         message: '',
+        doctorId: 0,
+        patientId: 0,
+        officeId: 0,
         response: ''
     }
   },
   mutations: {
-    SET_NOTIFICATION(state, data) {
-      state.notification = data;
+    SET_DOCTORS(state, data) {
+      state.doctors = data;
+    },
+    SET_DOCTOR_CHOICE(state, data) {
+      state.doctorChoice = data;
+    },
+    GET_DOCTORS(state, userId){
+      state.doctors = state.doctors.find( (doctor =>{
+        return doctor.userId = userId
+      }))
+    },
+    SET_REVIEWS(state, data) {
+      state.reviews = data;
+    },
+    GET_REVIEWS(state, reviewId){
+      state.reviews = state.reviews.find( (review =>{
+        return review.reviewId = reviewId
+      }))
+    },
+    SET_NOTIFICATIONS(state, data) {
+      state.notifications = data;
     },
     CLEAR_NOTIFICATION(state) {
       state.notification = null;
     },
     SET_OFFICES(state, data) {
       state.offices = data;
-    },
-    SET_PROVIDER_CHOICE(state, providerId) {
-      state.providerChoice = providerId;
     },
     UPDATE_FILTER(state, filter) {
       state.filter = filter;

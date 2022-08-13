@@ -1,8 +1,8 @@
 <template>
   <div class = "reviews">
-    <h1>Reviews</h1>
+    <h2>Reviews From Our Patients</h2>
     <reviews-list />
-    <h2>Submit Review</h2>
+    <h2>Submit a Review</h2>
     <add-review />
   </div>
 </template>

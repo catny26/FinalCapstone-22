@@ -78,7 +78,7 @@ const router = new Router({
       }
     },
     {
-      path: '/providers',
+      path: '/doctors',
       name: 'providers',
       component: Providers,
       meta: {
@@ -119,7 +119,7 @@ const router = new Router({
 
     },
     {
-      path: '/providers/reviews',
+      path: '/reviews',
       name: 'reviews',
       component: Reviews,
       meta: {
