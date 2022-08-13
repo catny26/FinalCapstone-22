@@ -28,6 +28,11 @@ public class AgendaController {
         return agendaDao.getAgendasByAvailabilityDay(day);
     }
 
+    @GetMapping("doctors/offDays/{id}")
+    public List<Integer> getOffDays(@PathVariable long id) {
+        return agendaDao.getUnavailableDays(id);
+    }
+
     @PostMapping("/doctors/{id}/agenda")
     @ResponseStatus(HttpStatus.CREATED)
     public Agenda postAgenda(@PathVariable long id, @RequestBody Agenda newAgenda){

@@ -12,6 +12,8 @@ public interface AgendaDao {
 
     List<Agenda> getAgendasByAvailabilityDay(String day);
 
+    List<Integer> getUnavailableDays(long doctorId);
+
     Agenda getAgendaById(long agendaId);
 
     Agenda createAgenda(Agenda agenda);
