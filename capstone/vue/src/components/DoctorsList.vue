@@ -18,6 +18,7 @@ export default {
     },
     created() {
       this.getDoctors();
+      this.getDoctorsByOfficeId();
     },
     methods: {
       getDoctors() {
