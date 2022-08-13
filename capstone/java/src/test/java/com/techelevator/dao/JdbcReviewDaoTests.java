@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +25,8 @@ public class JdbcReviewDaoTests extends BaseDaoTests{
 
     @Before
     public void setup(){
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        sut = new JdbcReviewDao(jdbcTemplate);
+        sut = new JdbcReviewDao(dataSource);
+
     }
 
     @Test

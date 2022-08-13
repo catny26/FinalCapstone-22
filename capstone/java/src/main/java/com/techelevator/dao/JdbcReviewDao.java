@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class JdbcReviewDao implements ReviewDao{
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcReviewDao (JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public JdbcReviewDao (DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate((dataSource));
     }
 
     @Override
@@ -80,9 +81,17 @@ public class JdbcReviewDao implements ReviewDao{
                     " VALUES (?,?,?,?,?,?)" +
                     " RETURNING review_id;";
         long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorID(), reviews.getPatientID(), reviews.getOfficeID(), reviews.getReviewResponse());
+        reviews.setId(id);
         return reviews;
     }
 
+    @Override
+    public void updateReview(long reviewId, Reviews reviews){
+        String sql = "UPDATE reviews " +
+                     "SET amount_of_stars = ?, review_message = ?, doctor_id = ?, patient_id = ?, office_id = ?, review_response = ? " +
+                     "WHERE review_id = ?;";
+        jdbcTemplate.update(sql, reviewId, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorID(), reviews.getPatientID(), reviews.getOfficeID(), reviews.getReviewResponse());
+    }
 
     private Reviews mapRowToReview(SqlRowSet results) {
         Reviews review = new Reviews();

@@ -29,25 +29,25 @@ public class ReviewsController {
         return reviewDao.getAllReviews();
     }
 
-    @RequestMapping(value = "/reviews", method = RequestMethod.POST)
+    @RequestMapping(value = "/reviews/add", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Reviews createReview(@RequestBody Reviews review) {
         return reviewDao.createReview(review);
     }
 
-    @RequestMapping(value = "/reviews/{doctorID}", method = RequestMethod.GET)
-    public List<Reviews> getReviewsByDoctorID(@PathVariable long doctorID) {
-        return reviewDao.getByDoctorID(doctorID);
+    @RequestMapping(value = "/reviews/doctor/{doctorId}", method = RequestMethod.GET)
+    public List<Reviews> getReviewsByDoctorID(@PathVariable long doctorId) {
+        return reviewDao.getByDoctorID(doctorId);
     }
 
-    @RequestMapping(value = "/reviews/{patientID}", method = RequestMethod.GET)
-    public List<Reviews> getReviewsByPatientID(@PathVariable long patientID) {
-        return reviewDao.getByPatientID(patientID);
+    @RequestMapping(value = "/reviews/patient/{patientId}", method = RequestMethod.GET)
+    public List<Reviews> getReviewsByPatientID(@PathVariable long patientId) {
+        return reviewDao.getByPatientID(patientId);
     }
 
-    @RequestMapping(value = "/reviews/{patientID}/{reviewsID}", method = RequestMethod.GET)
-    public List<Reviews> getReviewsByPatientIDReviewID(@PathVariable long patientID) {
-        return reviewDao.getByPatientID(patientID);
+    @RequestMapping(value = "/reviews/{patientId}/{reviewsId}", method = RequestMethod.GET)
+    public List<Reviews> getReviewsByPatientIDReviewID(@PathVariable long patientId) {
+        return reviewDao.getByPatientID(patientId);
     }
 //    //allow original reviewer to update their review, must be authenticated to access specific review/their own review
 //    @RequestMapping(value = "/reviews/{patientID}/{reviewID}", method = RequestMethod.PUT)
@@ -55,9 +55,9 @@ public class ReviewsController {
 //        return reviewDao.getByPatientID(Long.parseLong(principal.getName()));
 //    }
     //allow doctors (only) to reply to reviews
-    @RequestMapping(value = "/reviews/{doctorID}/{reviewID}", method = RequestMethod.POST)
-    public Reviews respondToReviews(@PathVariable long doctorID) {
-        return reviewDao.getByReviewID(doctorID);
+    @RequestMapping(value = "/reviews/response/{reviewId}", method = RequestMethod.PUT)
+    public void respondToReviews(@PathVariable long reviewId, @RequestBody Reviews reviews) {
+        reviewDao.updateReview(reviewId, reviews);
     }
 
 //    @RequestMapping(path = "whoami")
