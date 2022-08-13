@@ -19,8 +19,8 @@ public class AgendaController {
     }
 
     @GetMapping("doctors/agenda/{id}")
-    public List<Agenda> getAgendaByDoctor(@PathVariable long id) {
-        return agendaDao.getAgendasByDoctorId(id);
+    public Agenda getAgendaByDoctor(@PathVariable long id) {
+        return agendaDao.getAgendaByDoctorId(id);
     }
 
     @GetMapping("/agenda/{day}")

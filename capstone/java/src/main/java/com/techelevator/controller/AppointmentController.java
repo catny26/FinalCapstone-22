@@ -28,7 +28,7 @@ public class AppointmentController {
         return appointmentDao.getAppointmentsByPatient(id);
     }
 
-    @PostMapping("patients/{id}/appointments")
+    @PostMapping("appointments/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Appointment createAppointment(@RequestBody Appointment newAppointment) {
         return appointmentDao.createAppointment(newAppointment);

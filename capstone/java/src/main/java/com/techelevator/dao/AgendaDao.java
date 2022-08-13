@@ -8,7 +8,7 @@ public interface AgendaDao {
 
     List<Agenda> findAll();
 
-    List<Agenda> getAgendasByDoctorId(long doctorId);
+    public Agenda getAgendaByDoctorId(long doctorId) ;
 
     List<Agenda> getAgendasByAvailabilityDay(String day);
 

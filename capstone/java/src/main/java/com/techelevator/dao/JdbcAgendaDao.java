@@ -29,14 +29,14 @@ public class JdbcAgendaDao implements AgendaDao{
     }
 
     @Override
-    public List<Agenda> getAgendasByDoctorId(long doctorId) {
-        List<Agenda> output = new ArrayList<>();
+    public Agenda getAgendaByDoctorId(long doctorId) {
+        Agenda output = new Agenda();
         String sql = "SELECT agenda_id, doctor_id, mon_start, mon_end, tue_start, tue_end, wen_start, wen_end, thur_start, thur_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end, lunch_start, lunch_end"+
                 " FROM agenda"+
                 " WHERE doctor_id = ?;";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, doctorId);
-        while(sqlRowSet.next()){
-            output.add(mapRowSetToAgenda(sqlRowSet));
+        if(sqlRowSet.next()){
+            output = mapRowSetToAgenda(sqlRowSet);
         }
         return output;
     }
