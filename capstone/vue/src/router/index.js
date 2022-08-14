@@ -12,6 +12,7 @@ import BookingDetails from '@/views/BookingDetails.vue'
 import About from '@/views/About.vue'
 // import Portal from '@/views/Portal.vue'
 import Reviews from '@/views/Reviews.vue'
+import AddReview from '@/views/AddReview.vue'
 import OfficeDetailView from '@/views/OfficeDetailView.vue'
 
 Vue.use(Router)
@@ -123,6 +124,14 @@ const router = new Router({
       path: '/reviews',
       name: 'reviews',
       component: Reviews,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/reviews/add',
+      name: 'add-review',
+      component: AddReview,
       meta: {
         requiresAuth: false
       }

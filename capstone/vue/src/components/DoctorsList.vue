@@ -38,7 +38,7 @@ export default {
 <style>
 .doctors-list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
 }

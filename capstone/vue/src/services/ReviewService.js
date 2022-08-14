@@ -9,19 +9,27 @@ export default{
         return http.get('/reviews');
     },
 
+    getReview(id) {
+        return http.get(`/reviews/${id}`);
+    },
+
     getReviewsByDoctorId(doctorId){
-        return http.get(`/reviews/${doctorId}`);
+        return http.get(`/reviews/doctor/${doctorId}`);
     },
 
-    createReview(){
-        return http.post('/reviews');
+    getReviewsByPatientId(patientId){
+        return http.get(`/reviews/patient/${patientId}`);
     },
 
-    updateReview(reviewId){
-        return http.put(`/reviews/${reviewId}`)
+    createReview(review){
+        return http.post('/reviews/add', review);
     },
 
-    respondToReview(reviewId){
-        return http.put(`/reviews/${reviewId}`)
+    updateReview(id, review){
+        return http.put(`/reviews/update/${id}`, review)
+    },
+
+    respondToReview(id, review){
+        return http.put(`/reviews/response/${id}`, review)
     }
 }

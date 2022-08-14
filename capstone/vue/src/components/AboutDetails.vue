@@ -2,7 +2,6 @@
   <div class = "about-details">
     <div>
       <h1 class = "heading">What is TE Health?</h1>
-
       <img src="../assets/generic_office_image.jpg" alt="A generic image of a doctors office">
 
       <p class = "content">TE Health is a dynamic application that connects doctors and pharmacists to their patients. By allowing doctors and patients to connect and schedule times for either online sessions, emails, or schedule appointments, people will be easily able to see when their doctors are available and how much the prescriptions will cost upon being prescribed.</p>
@@ -34,7 +33,6 @@ export default {
 }
 
 .about-details img{
-  /* grid-area: "header-img"; */
   display: block;
   width: 100%;
   height: 25%;
@@ -42,7 +40,6 @@ export default {
 }
 
 .about-details h1 {
-  /* grid-area: "heading"; */
   font-size: 2vw;
   margin: 5px;
   padding: 5px;
@@ -50,14 +47,10 @@ export default {
 }
 
 .about-details p {
-  /* grid-area: "content"; */
   font-size: 1.2vw;
   margin: 5px;
   padding: 5px;
   text-align: left;
 }
 
-/* .about-details button {
-  grid-area: auto;
-} */
 </style>

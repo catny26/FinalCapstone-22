@@ -2,9 +2,8 @@
   <div class="providers">
     <h2>Meet Our Providers</h2>
     <doctors-list />
-    <br>
-    <img src="../assets/doctors-mock.jpg" width="600">
-  </div>
+
+    </div>
 </template>
 
 <script>

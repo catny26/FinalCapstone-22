@@ -24,11 +24,10 @@ export default new Vuex.Store({
     doctorChoice: 0,
     doctors: [],
     doctor: {
-      userId: 0,
-      role: '',
+      doctorId: 0,
       fullName: '',
       typeOfDoctor: '',
-      stars: 0
+      amountOfStars: 0
     },
     officesUserBelongsTo: [],
     doctorsInOffice: [],
@@ -81,15 +80,16 @@ export default new Vuex.Store({
     activeStringTimeEnd: '',
     activeStringDate: '',
     activeConfirmation: '',
+    activeReviewId: 0,
     reviews: [],
     review: {
-        reviewId: 0,
-        stars: 0,
-        message: '',
-        doctorId: 0,
-        patientId: 0,
-        officeId: 0,
-        response: ''
+      id: 0,
+      amountOfStars: 0,
+      reviewMessage: '',
+      doctorId: 0,
+      patientId: 0,
+      officeId: 0,
+      reviewResponse: ''
     }
   },
   mutations: {
@@ -107,9 +107,12 @@ export default new Vuex.Store({
     SET_REVIEWS(state, data) {
       state.reviews = data;
     },
-    GET_REVIEWS(state, reviewId){
+    SET_ACTIVE_REVIEW(state, id) {
+      state.activeReviewId = id;
+    },
+    GET_REVIEWS(state, id){
       state.reviews = state.reviews.find( (review =>{
-        return review.reviewId = reviewId
+        return review.id = id
       }))
     },
     SET_NOTIFICATIONS(state, data) {

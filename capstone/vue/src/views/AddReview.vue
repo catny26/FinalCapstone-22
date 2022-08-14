@@ -4,7 +4,7 @@
     <form v-on:submit.prevent="addNewReview">
       <div class="form-element">
         <label for="rating">Star Rating: </label>
-          <select id="rating" v-model.number="newReview.stars">
+          <select id="rating" v-model.number="newReview.amountOfStars">
           <option value="1">1 Star</option>
           <option value="2">2 Stars</option>
           <option value="3">3 Stars</option>
@@ -14,15 +14,17 @@
       </div>
       <div class="form-element">
         <label for="review">Review: </label>
-        <textarea id="review" v-model="newReview.message"></textarea>
+        <textarea id="review" v-model="newReview.reviewMessage"/>
       </div>
       <div class="form-element">
         <label for="response">Response: </label>
-        <textarea id="response" v-model="newReview.response"></textarea>
+        <textarea id="response" v-model="newReview.reviewResponse" />
       </div>
       <div class="buttons">
-        <button v-on:click.prevent="resetForm" >Submit</button>&nbsp;
-        <button v-on:click.prevent="resetForm" type="cancel">Cancel</button>
+        <input type = "submit" value="Submit">&nbsp;
+        <input type="button" value="Cancel" v-on:click.prevent="resetForm">&nbsp;
+        <router-link v-bind:to="{name: 'reviews'}"><input type="button" value = "Reviews"></router-link>&nbsp;
+        <router-link v-bind:to="{name: 'providers'}"><input type="button" value = "Return to Providers"></router-link>
       </div>
     </form>
     </div>
@@ -30,27 +32,27 @@
 </template>
 
 <script>
+import ReviewService from '@/services/ReviewService.js'
 export default {
   name: 'add-review',
   data() {
     return {
       newReview: {
-        reviewId: 0,
-        stars: 0,
-        message: '',
+        id: 0,
+        amountOfStars: 0,
+        reviewMessage: '',
         doctorId: 0,
         patientId: 0,
         officeId: 0,
-        response: ''
+        reviewResponse: ''
       }
     };
   },
   methods: {
     addNewReview() {
-      const reviewId = this.$route.params.reviewId;
-      this.newReview.reviewId = reviewId;
-      this.$store.commit("SET_REVIEW", this.newReview);
-      this.$router.push({ name: 'reviews'});
+      ReviewService.createReview(this.newReview).then((response) => {
+        this.$store.commit('SET_REVIEWS', response.data);
+      })
     },
     resetForm() {
       this.newReview = {};
@@ -83,12 +85,10 @@ form {
   height: 100px;
 }
 .form-element select {
-  height: 50px;
+  height: 40px;
 }
-.actions {
-  float: right;
-}
-.actions button {
-  margin-left: 10px;
+.buttons {
+  display: flex;
+  flex-direction: row;
 }
 </style>

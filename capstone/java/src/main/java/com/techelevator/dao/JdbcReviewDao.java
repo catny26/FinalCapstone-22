@@ -32,9 +32,9 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Reviews getByReviewID(long reviewID) {
+    public Reviews getByReviewID(long reviewId) {
         String sql = "SELECT * FROM reviews WHERE review_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewID);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
         if(results.next()){
             return mapRowToReview(results);
         }
@@ -42,10 +42,10 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public List<Reviews> getByDoctorID(long doctorID) {
+    public List<Reviews> getByDoctorID(long doctorId) {
         List<Reviews> output = new ArrayList<>();
         String sql = "SELECT * FROM reviews WHERE doctor_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorID);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
         while(results.next()){
             output.add(mapRowToReview(results));
         }
@@ -53,10 +53,10 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public List<Reviews> getByPatientID(long patientID) {
+    public List<Reviews> getByPatientID(long patientId) {
         List<Reviews> output = new ArrayList<>();
         String sql = "SELECT * FROM reviews WHERE patient_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, patientID);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, patientId);
         while(results.next()){
             output.add(mapRowToReview(results));
         }
@@ -64,10 +64,10 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public List<Reviews> getByOfficeID(long officeID) {
+    public List<Reviews> getByOfficeID(long officeId) {
         List<Reviews> output = new ArrayList<>();
         String sql = "SELECT * FROM reviews WHERE office_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeID);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeId);
         while(results.next()){
             output.add(mapRowToReview(results));
         }
@@ -79,7 +79,7 @@ public class JdbcReviewDao implements ReviewDao{
         String sql = "INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response)" +
                     " VALUES (?,?,?,?,?,?)" +
                     " RETURNING review_id;";
-        long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorID(), reviews.getPatientID(), reviews.getOfficeID(), reviews.getReviewResponse());
+        long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorId(), reviews.getPatientId(), reviews.getOfficeId(), reviews.getReviewResponse());
         reviews.setId(id);
         return reviews;
     }
@@ -97,9 +97,9 @@ public class JdbcReviewDao implements ReviewDao{
         review.setId(results.getLong("review_id"));
         review.setAmountOfStars(results.getInt("amount_of_stars"));
         review.setReviewMessage(results.getString("review_message"));
-        review.setDoctorID(results.getLong("doctor_id"));
-        review.setPatientID(results.getLong("patient_id"));
-        review.setOfficeID(results.getLong("office_id"));
+        review.setDoctorId(results.getLong("doctor_id"));
+        review.setPatientId(results.getLong("patient_id"));
+        review.setOfficeId(results.getLong("office_id"));
         review.setReviewResponse(results.getString("review_response"));
         return review;
     }
