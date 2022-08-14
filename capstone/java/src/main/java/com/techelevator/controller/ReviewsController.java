@@ -29,6 +29,11 @@ public class ReviewsController {
         return reviewDao.getAllReviews();
     }
 
+    @RequestMapping(value = "/reviews/{reviewId}", method = RequestMethod.GET)
+    public Reviews getReviewById(@PathVariable long reviewId) {
+        return reviewDao.getByReviewID(reviewId);
+    }
+
     @RequestMapping(value = "/reviews/add", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Reviews createReview(@RequestBody Reviews review) {

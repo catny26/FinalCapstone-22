@@ -39,7 +39,6 @@ public class JdbcReviewDao implements ReviewDao{
             return mapRowToReview(results);
         }
         return null;
-
     }
 
     @Override
@@ -86,11 +85,11 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public void updateReview(long reviewId, Reviews reviews){
+    public void updateReview(long reviewId, Reviews review){
         String sql = "UPDATE reviews " +
-                     "SET amount_of_stars = ?, review_message = ?, doctor_id = ?, patient_id = ?, office_id = ?, review_response = ? " +
+                     "SET review_response = ? " +
                      "WHERE review_id = ?;";
-        jdbcTemplate.update(sql, reviewId, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorID(), reviews.getPatientID(), reviews.getOfficeID(), reviews.getReviewResponse());
+        jdbcTemplate.update(sql, reviewId, review.getReviewResponse());
     }
 
     private Reviews mapRowToReview(SqlRowSet results) {
