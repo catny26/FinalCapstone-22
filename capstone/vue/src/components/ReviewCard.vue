@@ -1,5 +1,5 @@
 <template>
-  <div class = "review-display">
+  <div class = "review-card">
     <div class = "star-rating">
       <img
         src="../assets/star.png"
@@ -18,7 +18,7 @@
 <script>
 import reviewService from '@/services/ReviewService.js'
 export default {
-  name: "review-display",
+  name: "review-card",
   props: ["review"],
   created() {
     this.retrieveReview();
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style>
-.review-display {
+.review-card {
   display: grid;
   /* flex-direction: column; */
   grid-template-rows: auto auto auto;
@@ -48,7 +48,7 @@ export default {
   margin: 10px;
   padding: 15px;
 }
-.review-display img {
+.review-card img {
   width: 30px;
   height: 30px;
 }

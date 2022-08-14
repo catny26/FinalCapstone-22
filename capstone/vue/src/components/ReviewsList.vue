@@ -1,6 +1,6 @@
 <template>
   <div class="reviews-list">
-    <review-display
+    <review-card
       v-for="review in this.$store.state.reviews" v-bind:key="review.id"
       v-bind:review="review"
     />
@@ -9,11 +9,11 @@
 
 <script>
 import reviewService from '@/services/ReviewService.js';
-import ReviewDisplay from '@/components/ReviewDisplay.vue';
+import ReviewCard from '@/components/ReviewCard.vue';
 export default {
   name: "reviews-list",
   components: {
-    ReviewDisplay
+    ReviewCard
   },
   created() {
     this.getReviews();
