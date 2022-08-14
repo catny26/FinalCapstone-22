@@ -52,6 +52,35 @@ export default new Vuex.Store({
       isRead: false
     },
     about: "aboutDetails",
+    activeAgenda: {
+      agendaId: 0,
+      doctorId: 0,
+      monStart: '',
+      monEnd: '',
+      tueStart: '',
+      tueEnd: '',
+      wenStart: '',
+      wenEnd: '',
+      thurStart: '',
+      thurEnd: '',
+      friStart: '',
+      friEnd: '',
+      satStart: '',
+      satEnd: '',
+      sunStart: '',
+      sunEnd: '',
+      lunchStart: '',
+      lunchEnd: '',
+    },
+    disabledDates: [],
+    dayScheduleArray: [],
+    eveningScheduleArray: [],
+    activeDate: '',
+    activeHour: 0,
+    activeStringTimeStart: '',
+    activeStringTimeEnd: '',
+    activeStringDate: '',
+    activeConfirmation: '',
     reviews: [],
     review: {
         reviewId: 0,
@@ -121,6 +150,39 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_DISABLED_DATES(state, data) {
+      state.disabledDates = data;
+    },
+    SET_ACTIVE_DOCTOR(state, data) {
+      state.doctor = data;
+    },
+    SET_ACTIVE_AGENDA(state, data) {
+      state.activeAgenda = data;
+    },
+    SET_ACTIVE_DAY_SCHED(state, data) {
+      state.dayScheduleArray = data;
+    },
+    SET_ACTIVE_EVE_SCHED(state, data) {
+      state.eveningScheduleArray = data;
+    },
+    SET_ACTIVE_HOUR(state, data) {
+      state.activeHour = data;
+    },
+    SET_ACTIVE_DATE(state, data) {
+      state.activeDate = data;
+    },
+    SET_ACTIVE_STRING_TIME_START(state, data) {
+      state.activeStringTimeStart = data;
+    },
+    SET_ACTIVE_STRING_TIME_END(state, data) {
+      state.activeStringTimeEnd = data;
+    },
+    SET_ACTIVE_STRING_DATE(state, data) {
+      state.activeStringDate = data;
+    },
+    SET_ACTIVE_CONFIRM(state, data) {
+      state.activeConfirmation = data;
     }
   }
 })

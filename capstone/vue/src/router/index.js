@@ -94,8 +94,8 @@ const router = new Router({
       }
     },
     {
-      path: '/schedule',
-      name: 'booking-details',
+      path: '/doctors/:id/appointments',
+      name: 'appointment-page',
       component: BookingDetails,
       meta: {
         requiresAuth: false
