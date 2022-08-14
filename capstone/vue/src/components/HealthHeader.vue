@@ -10,7 +10,7 @@
       <router-link v-bind:to="{ name: 'offices' }">Offices</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'providers' }">Providers</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'patient-resources' }">Patient Resources</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'portal' }">Portal</router-link>&nbsp;|&nbsp;
+      <!-- <router-link v-bind:to="{ name: 'portal' }">Portal</router-link>&nbsp;|&nbsp; -->
       <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Login</router-link>
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </div>

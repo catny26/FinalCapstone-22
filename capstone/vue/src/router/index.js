@@ -10,7 +10,7 @@ import Providers from '@/views/Providers.vue'
 import UserResources from '@/views/UserResources.vue'
 import BookingDetails from '@/views/BookingDetails.vue'
 import About from '@/views/About.vue'
-import Portal from '@/views/Portal.vue'
+// import Portal from '@/views/Portal.vue'
 import Reviews from '@/views/Reviews.vue'
 import OfficeDetailView from '@/views/OfficeDetailView.vue'
 
@@ -90,7 +90,8 @@ const router = new Router({
       name: 'patient-resources',
       component: UserResources,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
+        //change to true later when user needs to login to see specific portal details
       }
     },
     {
@@ -109,15 +110,15 @@ const router = new Router({
         requiresAuth: false
       }
     },
-    {
-      path: '/portal',
-      name: 'portal',
-      component: Portal,
-      meta: {
-        requiresAuth: true
-      }
+    // {
+    //   path: '/portal',
+    //   name: 'portal',
+    //   component: Portal,
+    //   meta: {
+    //     requiresAuth: true
+    //   }
 
-    },
+    // },
     {
       path: '/reviews',
       name: 'reviews',

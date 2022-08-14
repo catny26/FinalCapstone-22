@@ -7,7 +7,7 @@
     
       <h1 class = "portal-heading">Welcome Back to Your Portal!</h1>
 
-    <thead>
+    <!-- <thead>
       <tr>
         <th>Messages</th>
         <th>Appointments</th>
@@ -27,7 +27,7 @@
                 <router-link v-bind:to="{ name: 'prescriptions', params: { id:elements.id }}"></router-link>
             </td>
         </tr>
-    </tbody>
+    </tbody> -->
     
 <!-- I originally made a portal-row file with the intent to display the messages/apptmts/rx elements in three different rows,
 but did not make that file here in case we weren't going to use it -->
