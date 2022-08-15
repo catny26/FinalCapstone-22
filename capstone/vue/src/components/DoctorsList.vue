@@ -19,7 +19,7 @@ export default {
     },
     created() {
       this.getDoctors();
-      this.getDoctorsByOfficeId();
+      // this.getDoctorsByOfficeId();
     },
     methods: {
       getDoctors() {
@@ -28,7 +28,7 @@ export default {
         })
       },
       getDoctorsByOfficeId(officeId) {
-        DoctorService.getDoctorsByOfficeId(officeId).then((response) => {
+        DoctorService.getDoctorsInOffice(officeId).then((response) => {
           this.$store.commit("SET_DOCTORS_IN_OFFICE", response.data);
         })
       }

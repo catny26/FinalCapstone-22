@@ -14,6 +14,6 @@ export default{
     },
     
     getDoctor(doctorId) {
-        return http.get(`users/${doctorId}`);
+        return http.get(`/users/${doctorId}`);
     }
 }

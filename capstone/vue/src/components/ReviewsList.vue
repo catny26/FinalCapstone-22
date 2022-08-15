@@ -21,39 +21,27 @@ export default {
   },
   created() {
     this.retrieveReviews();
-    // this.getReview(this.id);
-    // this.getDoctorInformation(this.doctorId);
-  },
+ },
   methods: {
     retrieveReviews(){
       ReviewService.getReviewsByDoctorId(this.$route.params.id).then((response) => {
-        this.$store.commit("SET_ACTIVE_REVIEW", response.data);
+        this.$store.commit("SET_REVIEWS", response.data);
       })
-    },
-    // getReview(id) {
-    //   ReviewService.getReview(id).then((response) => {
-    //     this.$store.commit("SET_ACTIVE_REVIEW", response.data);
-    //   })
-    // },
-    // getDoctorInformation() {
-    //   DoctorService.getDoctor(this.doctorId).then((response) => {
-    //     this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
-    //   })
-    // }
+    }
+  },
+  computed: {
+    filteredReviews() {
+      const doctorChoice = this.$store.state.doctors.find(
+        doctor => doctor.userId == this.$store.state.doctorChoice
+      );
+      const reviewsFilter = this.$store.state.filter;
+      return doctorChoice.reviews.filter(review => {
+        return reviewsFilter === 0 ? true : reviewsFilter === review.stars;
+      });
+    }
   }
+}
 
-  // computed: {
-  //   filteredReviews() {
-  //     const doctorChoice = this.$store.state.doctors.find(
-  //       doctor => doctor.userId == this.$store.state.doctorChoice
-  //     );
-  //     const reviewsFilter = this.$store.state.filter;
-  //     return doctorChoice.reviews.filter(review => {
-  //       return reviewsFilter === 0 ? true : reviewsFilter === review.stars;
-  //     });
-  //   }
-  // }
-};
 </script>
 
 <style>

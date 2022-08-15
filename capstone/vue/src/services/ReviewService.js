@@ -9,7 +9,8 @@ export default{
         return http.get('/reviews');
     },
 
-    getReview(id) {
+    getReview(id) { 
+        console.log("in getReview id = " + id)
         return http.get(`/reviews/${id}`);
     },
 

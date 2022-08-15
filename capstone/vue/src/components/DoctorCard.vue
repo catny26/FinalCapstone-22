@@ -7,7 +7,7 @@
       </div>
       <div class="link">
         <router-link :to="{name: 'offices'}"><input type="button"  value="Office Information"></router-link>&nbsp;
-        <router-link :to="{name: 'reviews'}"><input type="button" value="See Reviews"></router-link>&nbsp;
+        <router-link :to="{name: 'reviews', params: {id: this.doctorId}}"><input type="button" value="See Reviews"></router-link>&nbsp;
         <router-link :to="{name: 'add-review'}"><input type="button" value="Add a Review"></router-link>&nbsp;
         <router-link v-if="isAuthorized" :to="{name: 'appointment-page', params: {id: this.doctorId}}"><input type="button" value="Schedule an appointment!"></router-link>
       </div>
@@ -43,7 +43,7 @@ export default {
           })
         },
         getReview() {
-          ReviewService.getReview(this.$route.params.id).then((response) => {
+          ReviewService.getReview(this.doctorId).then((response) => {
             this.$store.commit("SET_ACTIVE_REVIEW", response.data);
             this.storedReview = response.data;
           });

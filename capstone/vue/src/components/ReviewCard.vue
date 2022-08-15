@@ -26,7 +26,7 @@ export default {
   created() {
     this.retrieveReview();
     this.getDoctorInformation();
-    this.retrieveReviewById();
+    // this.retrieveReviewById();
   },
   data() {
     return {
@@ -38,12 +38,12 @@ export default {
       ReviewService.getReviewsByDoctorId(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
       })
-    },
-    retrieveReviewById(){
-      ReviewService.getReview(this.route.params.id).then((response) => {
-        this.$store.commit("SET_ACTIVE_REVIEW", response.data);
-        this.storedReview = response.data;
-      })
+    // },
+    // retrieveReviewById(){
+    //   ReviewService.getReview(this.$route.params.id).then((response) => {
+    //     this.$store.commit("SET_ACTIVE_REVIEW", response.data);
+    //     this.storedReview = response.data;
+    //   })
     },
     getDoctorInformation() {
       DoctorService.getDoctor(this.doctorId).then((response) => {
