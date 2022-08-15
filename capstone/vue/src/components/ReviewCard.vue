@@ -9,10 +9,10 @@
         v-bind:key="n"
       />
     </div>
-    <h4 v-bind="retrieveReview">{{ review.reviewMessage }}</h4>
+    <h4>{{ review.reviewMessage }}</h4>
     <p><i>Provider's Response: </i>{{ review.reviewResponse }}</p>
     <!-- <router-link class="link" v-bind:to="{name: 'review-response'}"><input type="button" value="Respond to Review" v-if="retrieveReviewById"></router-link>&nbsp; -->
-    <router-link class="link" v-bind:to="{name: 'providers'}"><input type="button" value="Back to Providers List"></router-link>
+    <router-link class="link" v-bind:to="{name: 'doctors'}"><input type="button" value="Back to Providers List"></router-link>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ import DoctorService from '@/services/DoctorService.js'
 
 export default {
   name: "review-card",
-  props: ["review"],
+  props: ["review", "doctor"],
   created() {
     this.retrieveReview();
     this.getDoctorInformation();
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     retrieveReview(){
-      ReviewService.getReview(this.$route.review).then((response) => {
+      ReviewService.getReviewsByDoctorId(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
       })
     },

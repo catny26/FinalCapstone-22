@@ -23,10 +23,9 @@ export default new Vuex.Store({
     filter: 0,
     doctors: [],
     doctor: {
-      doctorId: 0,
+      id: 0,
       fullName: '',
-      typeOfDoctor: '',
-      amountOfStars: 0
+      typeOfDoctor: ''
     },
     officesUserBelongsTo: [],
     doctorsInOffice: [],
@@ -80,7 +79,7 @@ export default new Vuex.Store({
     activeStringTimeEnd: '',
     activeStringDate: '',
     activeConfirmation: '',
-    activeReviewId: 0,
+    activeReview: 0,
     reviews: [],
     review: {
       id: 0,
@@ -104,8 +103,8 @@ export default new Vuex.Store({
     SET_REVIEWS(state, data) {
       state.reviews = data;
     },
-    SET_ACTIVE_REVIEW(state, id) {
-      state.activeReviewId = id;
+    SET_ACTIVE_REVIEW(state, data) {
+      state.activeReview = data;
     },
     GET_REVIEW(state, id){
       state.reviews = state.reviews.find( (review =>{

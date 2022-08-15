@@ -13,8 +13,8 @@ export default{
         return http.get(`/reviews/${id}`);
     },
 
-    getReviewsByDoctorId(doctorId){
-        return http.get(`/reviews/doctor/${doctorId}`);
+    getReviewsByDoctorId(id){
+        return http.get(`/reviews/doctor/${id}`);
     },
 
     getReviewsByPatientId(patientId){

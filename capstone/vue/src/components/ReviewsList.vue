@@ -4,12 +4,14 @@
       v-for="review in this.$store.state.reviews" v-bind:key="review.id"
       v-bind:review="review"
     />
+
+    {{this.$route.params.id}}
   </div>
 </template>
 
 <script>
 import ReviewService from '@/services/ReviewService.js';
-import DoctorService from '@/services/DoctorService.js';
+// import DoctorService from '@/services/DoctorService.js';
 import ReviewCard from '@/components/ReviewCard.vue';
 
 export default {
@@ -18,26 +20,26 @@ export default {
     ReviewCard
   },
   created() {
-    this.getReviews();
-    this.getReview(this.id);
-    this.getDoctorInformation(this.doctorId);
+    this.retrieveReviews();
+    // this.getReview(this.id);
+    // this.getDoctorInformation(this.doctorId);
   },
   methods: {
-    getReviews(){
-      ReviewService.getReviews().then((response) => {
-        this.$store.commit("SET_REVIEWS", response.data);
-      })
-    },
-    getReview(id) {
-      ReviewService.getReview(id).then((response) => {
+    retrieveReviews(){
+      ReviewService.getReviewsByDoctorId(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
       })
     },
-    getDoctorInformation() {
-      DoctorService.getDoctor(this.doctorId).then((response) => {
-        this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
-      })
-    }
+    // getReview(id) {
+    //   ReviewService.getReview(id).then((response) => {
+    //     this.$store.commit("SET_ACTIVE_REVIEW", response.data);
+    //   })
+    // },
+    // getDoctorInformation() {
+    //   DoctorService.getDoctor(this.doctorId).then((response) => {
+    //     this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
+    //   })
+    // }
   }
 
   // computed: {
