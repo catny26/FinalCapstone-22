@@ -48,16 +48,19 @@
         </div>
         <input type="submit" value="Add New Office">
       </form>
+      <availability />
   </div>
 </template>
 
 <script>
 import OfficeService from '@/services/OfficeService'
 import OfficeCard from '@/components/OfficeCard'
+import Availability from '@/components/Availability'
 
 export default {
     components:{
-        OfficeCard
+        OfficeCard,
+        Availability
     },
     data(){
         return {
