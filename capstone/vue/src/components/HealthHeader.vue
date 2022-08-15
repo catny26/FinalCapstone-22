@@ -18,8 +18,8 @@
         <b-nav-item class="tab" active v-bind:to="{ name: 'patient-resources' }"
           >Patient Resources</b-nav-item
         >
-        <b-nav-item class="tab" active v-bind:to="{ name: 'portal' }"
-          >Portal</b-nav-item
+        <b-nav-item class="tab" active v-bind:to="{ name: 'appointments' }"
+          >Make An Appointment</b-nav-item
         >
 
         <b-nav-item
