@@ -23,7 +23,7 @@
 
     <div class="patient-prescription-card">
       <div>
-        <img src="../assets/prescription.jpg" alt="Prescriptions Image" class="prescriptions-image">
+        <img src="../assets/prescription.png" alt="Prescriptions Image" class="prescriptions-image">
       </div>
       <router-link v-bind:to="{ path: '/portal/prescriptions' }">
         <button class="prescriptions">See My Prescriptions</button>
@@ -47,5 +47,9 @@ export default {
   width: 80;
   grid-template-rows: 60px 1fr;
 
+}
+
+.resources-card div {
+  margin-top: 20px;
 }
 </style>
