@@ -31,6 +31,6 @@ export default {
   },
 
   createOffice(office, userId){
-    return http.put(`/offices/${userId}`, office);
+    return http.post(`/offices/${userId}`, office);
   }
 }

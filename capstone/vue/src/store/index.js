@@ -32,6 +32,7 @@ export default new Vuex.Store({
     officesUserBelongsTo: [],
     doctorsInOffice: [],
     offices: [],
+    activeOfficeId: 0,
     office: {
       officeId: 0,
       officeName: '',
@@ -84,6 +85,9 @@ export default new Vuex.Store({
       state.office = state.offices.find( (office =>{
         return office.officeId = officeId
       }))
+    },
+    UPDATE_ACTIVE_OFFICE(state, officeId){
+      state.activeOfficeId = officeId;
     },
     SET_DOCTORS_IN_OFFICE(state, data){
       state.doctorsInOffice = data;

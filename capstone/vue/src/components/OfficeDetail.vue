@@ -1,6 +1,7 @@
 <template>
   <div id="office-detail">
       <h2 class="title">{{office.officeName}}</h2>
+      <input type="button" :value="office.delay? 'opperating on a delay' : 'no Delay'" @click="toggleDelay" :class="{delay: office.delay}" :disabled="!worksHere">
       <img v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
       <img v-else src="../assets/generic_office_image.jpg" alt="A generic image of a doctors office">
 
@@ -16,7 +17,7 @@
 
       <router-link :to="{name: 'offices'}"><input type="button" value="Back"></router-link>
       <input type="button" value="Edit Office Info" @click="editOfficeInfo = !editOfficeInfo" v-if="worksHere" >
-      <input type="button" value="no delay" @click="toggleDelay" :class="{delay: this.office.delay}" v-if="worksHere">
+      
 
       <form v-if="editOfficeInfo" action="#" @submit.prevent="updateOfficeInfo">
         <div class="form-field">
@@ -60,17 +61,41 @@ import OfficeService from '@/services/OfficeService'
 import DoctorService from '@/services/DoctorService'
 
 export default {
+  created(){
+      this.$store.commit('GET_OFFICE', this.$route.params.officeId);
+      this.offices = this.$store.state.offices;
+      this.setActiveOffice();
+      if(!this.isEmpty(this.$store.state.user)){
+        OfficeService.getOfficesByDoctorId(this.$store.state.user.id).then(response=>{
+          this.$store.commit('SET_USER_OFFICES', response.data);
+          this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
+        })
+      }
+
+      DoctorService.getDoctorsInOffice(this.$route.params.officeId).then(response=>{
+        this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
+      })
+  },
   components:{DoctorCard},
     data(){
         return {
+            offices: [],
             officesUserBelongsTo: [],
             editOfficeInfo: false,
-            updatedOffice: {}
+            updatedOffice: {},
+            office: {}
         }
     },
     name: "office-detail",
-    props: ["office", "doctors"],
+    props: ["doctors"],
     methods: {
+      setActiveOffice(){
+        this.offices.forEach( (office)=>{
+          if(office.officeId == this.$store.state.activeOfficeId){
+            this.office = office;
+          }
+        })
+      },
       toggleDelay(){
         this.updatedOffice.delay = !this.updatedOffice.delay
         this.updateOfficeInfo()
@@ -109,26 +134,6 @@ export default {
           this.updatedOffice = this.office;
         }
 
-      })
-    }
-  },
-  created(){
-    if(this.$store.state.officesUserBelongsTo.length == 0){
-      OfficeService.getOfficesByDoctorId(this.$store.state.user.id).then(response=>{
-        this.$store.commit('SET_USER_OFFICES', response.data);
-        this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
-        this.$store.commit('GET_OFFICE', parseInt(this.$route.params.officeId));
-        this.updatedOffice = this.$store.state.office;
-      })
-    }
-    else {
-    this.officesUserBelongsTo = this.$store.state.officesUserBelongsTo;
-    this.updatedOffice = this.office;
-    }
-
-    if(this.$store.state.doctorsInOffice.length == 0){
-      DoctorService.getDoctorsInOffice(this.$route.params.officeId).then(response=>{
-        this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
       })
     }
   },

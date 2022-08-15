@@ -21,7 +21,7 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
     @Override
     public List<OfficeInfo> getAllOffices() {
         List<OfficeInfo> offices = new ArrayList<>();
-        String sql = "SELECT * FROM office_info;";
+        String sql = "SELECT * FROM office_info ORDER BY office_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()) {
             offices.add(mapRowToOfficeInfo(results));
@@ -32,7 +32,7 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
     @Override
     public OfficeInfo getOfficeById(long officeId) {
         OfficeInfo office = new OfficeInfo();
-        String sql = "SELECT * FROM office_info WHERE office_id = ?;";
+        String sql = "SELECT * FROM office_info WHERE office_id = ? ORDER BY office_id;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, officeId);
         if(result.next()) {
             office = mapRowToOfficeInfo(result);
@@ -45,7 +45,7 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
         List<OfficeInfo> doctors = new ArrayList<>();
         String sql = "SELECT * FROM users u " +
                      "JOIN users_office_info uo ON uo.user_id = u.user_id  " +
-                     "WHERE uo.office_id = ?;";
+                     "WHERE uo.office_id = ? ORDER BY office_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeId);
         while(results.next()) {
             doctors.add(mapRowToOfficeInfo(results));
@@ -60,7 +60,7 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
                 "FROM office_info AS oi "+
                 "JOIN users_office_info uoi ON uoi.office_id = oi.office_id "+
                 "JOIN users u ON u.user_id = uoi.user_id "+
-                "WHERE u.user_id =?;";
+                "WHERE u.user_id =? ORDER BY office_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
         while(results.next()) {
             offices.add(mapRowToOfficeInfo(results));

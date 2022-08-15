@@ -56,7 +56,7 @@ public class OfficeInfoController {
         officeInfoDao.deleteUserOfficeInfo(officeId, userId);
     }
 
-    @RequestMapping(value="offices/{userId}", method = RequestMethod.PUT)
+    @RequestMapping(value="offices/{userId}", method = RequestMethod.POST)
     public void addNewOffice(@RequestBody OfficeInfo officeInfo, @PathVariable int userId){
         officeInfo = officeInfoDao.addNewOffice(officeInfo);
         officeInfoDao.updateUserOfficeInfo((int) officeInfo.getOfficeId(), userId);

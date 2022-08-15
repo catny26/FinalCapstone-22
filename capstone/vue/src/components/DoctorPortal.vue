@@ -125,7 +125,17 @@ export default {
             OfficeService.createOffice(this.newOffice, this.user.id)
             .then(response=>{
                 if(response.status == 201){
-                    this.newOffice = {}
+                    this.newOffice = {
+                officeId: 0,
+                officeName: '',
+                address: '',
+                phoneNumber: 0,
+                officeHoursOpen: '',
+                officeHoursClose: '',
+                costPerHour: 0,
+                officeImageUrl: '',
+                delay: false
+            }
                 }
             })
             .catch(error=>{

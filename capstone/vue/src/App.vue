@@ -10,27 +10,28 @@ import OfficeService from '@/services/OfficeService'
 //import DoctorService from '@/services/DoctorService'
 
 export default{
-  components: {
-    HealthHeader
-  },
   created(){
     if(this.$store.state.offices.length == 0){
       OfficeService.getOffices().then(response=>{
         this.$store.commit('SET_OFFICES', response.data);
       })
     }
-      if(this.$store.state.officesUserBelongsTo.length == 0){
+      if(this.$store.state.officesUserBelongsTo.length == 0 && !this.isEmpty(this.$store.state.user)){
       OfficeService.getOfficesByDoctorId(this.$store.state.user.id).then(response=>{
         this.$store.commit('SET_USER_OFFICES', response.data);
       })
     }
-  //   if(this.$store.state.doctorsInOffice.length == 0){
-  //     DoctorService.getDoctorsInOffice(this.$route.params.officeId).then(response=>{
-  //       this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
-  //     })
-  // }
 
-}
+  },
+  components: {
+    HealthHeader
+  },
+  methods:{
+    isEmpty(object){
+      return Object.keys(object).length == 0;
+    }
+  }
+
   }
 </script>
 

@@ -40,6 +40,7 @@ export default {
       return time;
     },
     setInfo(officeId){
+      this.$store.commit('UPDATE_ACTIVE_OFFICE', officeId);
       this.$store.commit('GET_OFFICE', officeId);
       DoctorService.getDoctorsInOffice(officeId).then(response=>{
         this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
