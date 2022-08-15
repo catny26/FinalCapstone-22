@@ -116,10 +116,18 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
+              if(this.user.role == 'doctor'){
+                this.$router.push({
+                path: "/login",
+                query: { registration: "success" },
+              });
+              }
+              else{
               this.$router.push({
                 path: "/login",
                 query: { registration: "success" },
               });
+              }
             }
           })
           .catch((error) => {

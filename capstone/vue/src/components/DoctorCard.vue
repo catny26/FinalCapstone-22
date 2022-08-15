@@ -6,9 +6,10 @@
         <!-- <img src="..\assets\star.png" alt="Star Rating" class="stars"> -->
       </div>
       <div class="link">
-        <router-link v-bind:to="{name: 'offices'}"><input type="button"  value="Office Information"></router-link>&nbsp;
-        <router-link v-bind:to="{name: 'reviews'}"><input type="button" value="See Reviews"></router-link>&nbsp;
-        <router-link v-bind:to="{name: 'add-review'}"><input type="button" value="Add a Review"></router-link>
+        <router-link :to="{name: 'offices'}"><input type="button"  value="Office Information"></router-link>&nbsp;
+        <router-link :to="{name: 'reviews'}"><input type="button" value="See Reviews"></router-link>&nbsp;
+        <router-link :to="{name: 'add-review'}"><input type="button" value="Add a Review"></router-link>&nbsp;
+        <router-link v-if="isAuthorized" :to="{name: 'appointment-page', params: {id: this.doctorId}}"><input type="button" value="Schedule an appointment!"></router-link>
       </div>
     </div>
 </template>
@@ -23,16 +24,19 @@ export default {
     props:["review", "doctor"],
     created() {
       this.getReview();
-      this.getDoctorInformation
-      this.getOffices
+      this.getDoctorInformation()
+      this.getOffices(this.doctorId);
     },
     data() {
       return {
-        doctorId: parseInt(this.doctorId),
+        doctorId: parseInt(this.doctor.id),
         storedReview: this.review,
       }
     },
     methods: {
+      isEmpty(object){
+        return Object.keys(object).length == 0;
+      },
         getOffices(userId) {
           OfficeService.getOfficesByDoctorId(userId).then((response) => {
             this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
@@ -48,6 +52,11 @@ export default {
           DoctorService.getDoctor(this.doctorId).then((response) => {
             this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
       });
+    }
+  },
+  computed:{
+    isAuthorized(){
+      return !this.isEmpty(this.$store.state.user);
     }
   }
 }
@@ -96,5 +105,7 @@ export default {
 .link {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 </style>

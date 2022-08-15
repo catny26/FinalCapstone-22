@@ -16,6 +16,7 @@ import OfficeDetailView from '@/views/OfficeDetailView.vue'
 import Messages from '@/views/Messages.vue'
 import ReviewCard from '@/components/ReviewCard.vue'
 import ReviewResponse from '@/views/ReviewResponse.vue'
+import Schedule from '@/views/Schedule.vue'
 
 Vue.use(Router)
 
@@ -93,7 +94,7 @@ const router = new Router({
       name: 'patient-resources',
       component: UserResources,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
         //change to true later when user needs to login to see specific portal details
       }
     },
@@ -101,6 +102,14 @@ const router = new Router({
       path: '/doctors/:id/appointments',
       name: 'appointment-page',
       component: BookingDetails,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/users/:id/schedule',
+      name: 'user-schedule',
+      component: Schedule,
       meta: {
         requiresAuth: true
       }

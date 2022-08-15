@@ -7,19 +7,19 @@
 
     <div class="links-container">
       <b-nav fill class="links"
-        ><b-nav-item class="tab" style="color:white" active v-bind:to="{ name: 'home' }"
+        ><b-nav-item class="tab home" style="color:white" active v-bind:to="{ name: 'home' }"
           >Home</b-nav-item
         >
-        <b-nav-item class="tab" active v-bind:to="{ name: 'offices' }"
+        <b-nav-item class="tab offices" active v-bind:to="{ name: 'offices' }"
           >Offices</b-nav-item
         >
-        <b-nav-item class="tab" active v-bind:to="{ name: 'providers' }"
+        <b-nav-item class="tab providers" active v-bind:to="{ name: 'providers' }"
           >Providers</b-nav-item
         >
-        <b-nav-item class="tab" active v-bind:to="{ name: 'patient-resources' }"
+        <b-nav-item class="tab resources" v-if="isAuthorized" active v-bind:to="{ name: 'patient-resources' }"
           >{{this.isDoctor?"Doctor Resources":"Patient Resources"}}</b-nav-item
         >
-        <b-nav-item class="tab" active v-bind:to="{ name: 'appointments' }"
+        <b-nav-item class="tab appointments" v-if="isAuthorized" active v-bind:to="{ name: 'appointments' }"
           >Make An Appointment</b-nav-item
         >
 
@@ -51,8 +51,11 @@ export default {
   name: "health-header",
   props: ["tabs", "fill"],
   computed:{
+    isAuthorized(){
+      return !this.isEmpty(this.$store.state.user);
+    },
     isDoctor(){
-      if(! this.isEmpty(this.$store.state.user)){
+      if(this.isAuthorized){
         if(this.$store.state.user.authorities[0].name == 'ROLE_DOCTOR'){
           return true
         }
