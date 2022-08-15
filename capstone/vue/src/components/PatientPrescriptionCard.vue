@@ -2,7 +2,7 @@
 <div class="patient-prescription-card">
 
       <div>
-        <img src="../assets/prescription.jpg" alt="Prescription Image" class="prescription-image">
+        <img src="../assets/prescription.png" alt="Prescription Image" class="prescription-image">
       </div>
 
       <router-link v-bind:to="{ path: '/portal/prescriptions' }">

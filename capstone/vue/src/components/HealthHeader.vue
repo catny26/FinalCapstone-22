@@ -9,9 +9,6 @@
         ><b-nav-item class="tab" style="color:white" active v-bind:to="{ name: 'home' }"
           >Home</b-nav-item
         >
-        <b-nav-item class="tab" active v-bind:to="{ name: 'about' }"
-          >About</b-nav-item
-        >
         <b-nav-item class="tab" active v-bind:to="{ name: 'offices' }"
           >Offices</b-nav-item
         >
