@@ -76,21 +76,21 @@ height: 100%;
 .header h1 {
   width: auto;
 }
-a:hover {
+.links-container a:hover {
   transition: 0.7s;
   color: white;
 }
-a {
+.links-container a {
   color: white;
   text-decoration: none;
 }
 
 
-a:link {
+.links-container a:link {
   color: white;
 }
 
-a:visited {
+.links-container a:visited {
   color: white;
 }
 
