@@ -98,7 +98,7 @@ export default {
   methods: {
     submitNewAppt() {
       const newAppt = {
-        patientId: 23,
+        patientId: this.$store.state.user.id,
         doctorId: this.doctorID,
         agendaId: this.agenda.agendaId,
         startTime: this.$store.state.activeStringTimeStart,

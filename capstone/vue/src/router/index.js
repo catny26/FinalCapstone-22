@@ -102,7 +102,7 @@ const router = new Router({
       name: 'appointment-page',
       component: BookingDetails,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
 
