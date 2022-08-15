@@ -14,6 +14,7 @@ import About from '@/views/About.vue'
 import Reviews from '@/views/Reviews.vue'
 import AddReview from '@/views/AddReview.vue'
 import OfficeDetailView from '@/views/OfficeDetailView.vue'
+import Messages from '@/views/Messages.vue'
 
 Vue.use(Router)
 
@@ -135,6 +136,11 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: '/notification',
+      name: 'messages',
+      component: Messages, 
     }
   ]
 })

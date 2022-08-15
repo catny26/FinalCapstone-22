@@ -118,6 +118,14 @@ export default new Vuex.Store({
     SET_NOTIFICATIONS(state, data) {
       state.notifications = data;
     },
+    SET_ACTIVE_NOTIFICATION(state, data) {
+      state.notification = data;
+    },
+    GET_NOTIFICATIONS(state, notificationId) {
+      state.notifications = state.notifications.find((notification => {
+        return notification.notificationId = notificationId
+      }))
+    },
     CLEAR_NOTIFICATION(state) {
       state.notification = null;
     },
