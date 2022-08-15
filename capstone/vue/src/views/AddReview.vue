@@ -1,10 +1,13 @@
 <template>
   <div class = "add-review">
+
+{{ newReview.reviewMessage }}
+
     <div class = "container">
     <form v-on:submit.prevent="addNewReview">
       <div class="form-element">
         <label for="rating">Star Rating: </label>
-          <select id="rating" v-model.number="newReview.amountOfStars">
+          <select id="rating" v-model="newReview.amountOfStars">
           <option value="1">1 Star</option>
           <option value="2">2 Stars</option>
           <option value="3">3 Stars</option>
@@ -12,6 +15,22 @@
           <option value="5">5 Stars</option>
         </select>
       </div>
+
+      <div>
+        <label for="review">Doctor ID: </label>
+        <textarea id="review" v-model="newReview.doctorId"/>
+      </div>
+
+      <div>
+        <label for="review">Patient ID: </label>
+        <textarea id="review" v-model="newReview.patientId"/>
+      </div>
+
+      <div>
+        <label for="review">Office ID: </label>
+        <textarea id="review" v-model="newReview.officeId"/>
+      </div>
+
       <div class="form-element">
         <label for="review">Review: </label>
         <textarea id="review" v-model="newReview.reviewMessage"/>
@@ -41,16 +60,24 @@ export default {
         id: 0,
         amountOfStars: 0,
         reviewMessage: '',
-        doctorId: 0,
-        patientId: 0,
-        officeId: 0,
+        doctorId: '',
+        patientId: '',
+        officeId: '',
         reviewResponse: ''
       }
     };
   },
   methods: {
     addNewReview() {
-      ReviewService.createReview(this.newReview).then((response) => {
+      const addedReview = {
+        amountOfStars: this.newReview.amountOfStars,
+        reviewMessage: this.newReview.reviewMessage,
+        doctorId: this.newReview.doctorId,
+        patientId: this.newReview.patientId,
+        officeId: this.newReview.officeId,
+        reviewResponse: this.newReview.reviewResponse
+      };
+      ReviewService.createReview(addedReview).then((response) => {
         this.$store.commit('SET_REVIEWS', response.data);
       })
     },

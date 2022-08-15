@@ -2,7 +2,6 @@
   <div class="providers">
     <h2>Meet Our Providers</h2>
     <doctors-list />
-
     </div>
 </template>
 
