@@ -21,13 +21,12 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     filter: 0,
-    providerChoice: 0,
-    providers: [],
-    provider: {
-      userId: 0,
+    doctors: [],
+    doctor: {
+      doctorId: 0,
       fullName: '',
       typeOfDoctor: '',
-      stars: 0
+      amountOfStars: 0
     },
     officesUserBelongsTo: [],
     doctorsInOffice: [],
@@ -47,33 +46,88 @@ export default new Vuex.Store({
     notifications: [],
     notification: {
       notificationId: 0,
-      user: '',
+      userId: '',
       message: '',
       isRead: false
     },
     about: "aboutDetails",
+    activeAgenda: {
+      agendaId: 0,
+      doctorId: 0,
+      monStart: '',
+      monEnd: '',
+      tueStart: '',
+      tueEnd: '',
+      wenStart: '',
+      wenEnd: '',
+      thurStart: '',
+      thurEnd: '',
+      friStart: '',
+      friEnd: '',
+      satStart: '',
+      satEnd: '',
+      sunStart: '',
+      sunEnd: '',
+      lunchStart: '',
+      lunchEnd: '',
+    },
+    disabledDates: [],
+    dayScheduleArray: [],
+    eveningScheduleArray: [],
+    activeDate: '',
+    activeHour: 0,
+    activeStringTimeStart: '',
+    activeStringTimeEnd: '',
+    activeStringDate: '',
+    activeConfirmation: '',
+    activeReviewId: 0,
     reviews: [],
     review: {
-        reviewId: 0,
-        providerId: 0,
-        patientId: 0,
-        stars: 0,
-        message: '',
-        response: ''
+      id: 0,
+      amountOfStars: 0,
+      reviewMessage: '',
+      doctorId: '',
+      patientId: '',
+      officeId: '',
+      reviewResponse: ''
     }
   },
   mutations: {
-    SET_NOTIFICATION(state, data) {
+    SET_DOCTORS(state, data) {
+      state.doctors = data;
+    },
+    GET_DOCTORS(state, userId){
+      state.doctors = state.doctors.find( (doctor =>{
+        return doctor.userId = userId
+      }))
+    },
+    SET_REVIEWS(state, data) {
+      state.reviews = data;
+    },
+    SET_ACTIVE_REVIEW(state, id) {
+      state.activeReviewId = id;
+    },
+    GET_REVIEW(state, id){
+      state.reviews = state.reviews.find( (review =>{
+        return review.id = id
+      }))
+    },
+    SET_NOTIFICATIONS(state, data) {
+      state.notifications = data;
+    },
+    SET_ACTIVE_NOTIFICATION(state, data) {
       state.notification = data;
+    },
+    GET_NOTIFICATIONS(state, notificationId) {
+      state.notifications = state.notifications.find((notification => {
+        return notification.notificationId = notificationId
+      }))
     },
     CLEAR_NOTIFICATION(state) {
       state.notification = null;
     },
     SET_OFFICES(state, data) {
       state.offices = data;
-    },
-    SET_PROVIDER_CHOICE(state, providerId) {
-      state.providerChoice = providerId;
     },
     UPDATE_FILTER(state, filter) {
       state.filter = filter;
@@ -107,6 +161,39 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_DISABLED_DATES(state, data) {
+      state.disabledDates = data;
+    },
+    SET_ACTIVE_DOCTOR(state, data) {
+      state.doctor = data;
+    },
+    SET_ACTIVE_AGENDA(state, data) {
+      state.activeAgenda = data;
+    },
+    SET_ACTIVE_DAY_SCHED(state, data) {
+      state.dayScheduleArray = data;
+    },
+    SET_ACTIVE_EVE_SCHED(state, data) {
+      state.eveningScheduleArray = data;
+    },
+    SET_ACTIVE_HOUR(state, data) {
+      state.activeHour = data;
+    },
+    SET_ACTIVE_DATE(state, data) {
+      state.activeDate = data;
+    },
+    SET_ACTIVE_STRING_TIME_START(state, data) {
+      state.activeStringTimeStart = data;
+    },
+    SET_ACTIVE_STRING_TIME_END(state, data) {
+      state.activeStringTimeEnd = data;
+    },
+    SET_ACTIVE_STRING_DATE(state, data) {
+      state.activeStringDate = data;
+    },
+    SET_ACTIVE_CONFIRM(state, data) {
+      state.activeConfirmation = data;
     }
   }
 })

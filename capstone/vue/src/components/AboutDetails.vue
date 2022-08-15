@@ -1,44 +1,66 @@
 <template>
-  <div class = "about-details">
-    <div>
-      <h1 class = "heading">What is TE Health?</h1>
+  <div class="about-details">
+    <section>
+      <div class="about-image">
+        <img
+          src="../assets/about.png"
+          alt="A generic image of a doctors office"
+        />
+      </div>
+    </section>
 
-      <img src="../assets/generic_office_image.jpg" alt="A generic image of a doctors office">
+    <section>
+      <div class="text">
+        <h1 class="heading">What is TE Health?</h1>
 
-      <p class = "content">TE Health is a dynamic application that connects doctors and pharmacists to their patients. By allowing doctors and patients to connect and schedule times for either online sessions, emails, or schedule appointments, people will be easily able to see when their doctors are available and how much the prescriptions will cost upon being prescribed.</p>
-      <p class = "content">Until this point, there has been no transparency in scheduling beyond going off of the receptionist time recommendations. By opening up scheduling data, making certain doctors are available for urgent calls or drug information requests, and allowing complete transparency of staff availability, patients will be more capable of scheduling times that fit their lifestyle.</p>
-    </div>
-
+        <p class="content">
+          TE Health is a dynamic application that connects doctors and
+          pharmacists to their patients. By allowing doctors and patients to
+          connect and schedule times for either online sessions, emails, or
+          schedule appointments, people will be easily able to see when their
+          doctors are available and how much the prescriptions will cost upon
+          being prescribed.
+        </p>
+        <p class="content">
+          Until this point, there has been no transparency in scheduling beyond
+          going off of the receptionist time recommendations. By opening up
+          scheduling data, making certain doctors are available for urgent calls
+          or drug information requests, and allowing complete transparency of
+          staff availability, patients will be more capable of scheduling times
+          that fit their lifestyle.
+        </p>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
-    name: "about-details"
-}
+  name: "about-details",
+};
 </script>
 
 <style>
 .about-details {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  flex-wrap: wrap;
-
-  border: 2px solid black;
   border-radius: 10px;
-  width: 500px;
-
-  margin: 10px;
+  width: 70vw;
+  margin: 50px 10px 10px 10px;
   padding: 15px;
 }
 
-.about-details img{
-  /* grid-area: "header-img"; */
-  display: block;
-  width: 100%;
-  height: 25%;
-  align-items: center;
+.about-details section {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  width: 50%;
+}
+
+.about-details section img {
+    width: 100%;
+    height: auto;
 }
 
 .about-details h1 {

@@ -4,10 +4,7 @@ import com.techelevator.model.Reviews;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,8 +21,8 @@ public class JdbcReviewDaoTests extends BaseDaoTests{
 
     @Before
     public void setup(){
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        sut = new JdbcReviewDao(jdbcTemplate);
+        sut = new JdbcReviewDao(dataSource);
+
     }
 
     @Test
@@ -89,9 +86,9 @@ public class JdbcReviewDaoTests extends BaseDaoTests{
     private void assertReviewsMatch(Reviews expected, Reviews actual){
         assertEquals(expected.getAmountOfStars(), actual.getAmountOfStars(), "Amount of Star's Don't Match");
         assertEquals(expected.getReviewMessage(), actual.getReviewMessage(), "Review Message's Don't Match");
-        assertEquals(expected.getDoctorID(), actual.getDoctorID(), "Doctor ID's Don't Match.");
-        assertEquals(expected.getPatientID(), actual.getPatientID(), "Patient ID's Don't Match.");
-        assertEquals(expected.getOfficeID(), actual.getOfficeID(), "Office ID's Don't Match.");
+        assertEquals(expected.getDoctorId(), actual.getDoctorId(), "Doctor ID's Don't Match.");
+        assertEquals(expected.getPatientId(), actual.getPatientId(), "Patient ID's Don't Match.");
+        assertEquals(expected.getOfficeId(), actual.getOfficeId(), "Office ID's Don't Match.");
         assertEquals(expected.getReviewResponse(), actual.getReviewResponse(), "Review Responses Don't Match.");
     }
 

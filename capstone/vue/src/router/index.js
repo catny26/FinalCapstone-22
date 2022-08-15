@@ -9,10 +9,13 @@ import Offices from '@/views/Offices.vue'
 import Providers from '@/views/Providers.vue'
 import UserResources from '@/views/UserResources.vue'
 import BookingDetails from '@/views/BookingDetails.vue'
-import About from '@/views/About.vue'
-import Portal from '@/views/Portal.vue'
+// import Portal from '@/views/Portal.vue'
 import Reviews from '@/views/Reviews.vue'
+import AddReview from '@/views/AddReview.vue'
 import OfficeDetailView from '@/views/OfficeDetailView.vue'
+import Messages from '@/views/Messages.vue'
+import ReviewCard from '@/components/ReviewCard.vue'
+import ReviewResponse from '@/views/ReviewResponse.vue'
 
 Vue.use(Router)
 
@@ -78,7 +81,7 @@ const router = new Router({
       }
     },
     {
-      path: '/providers',
+      path: '/doctors',
       name: 'providers',
       component: Providers,
       meta: {
@@ -90,41 +93,62 @@ const router = new Router({
       name: 'patient-resources',
       component: UserResources,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
+        //change to true later when user needs to login to see specific portal details
       }
     },
     {
-      path: '/schedule',
-      name: 'booking-details',
+      path: '/doctors/:id/appointments',
+      name: 'appointment-page',
       component: BookingDetails,
       meta: {
         requiresAuth: false
       }
     },
-    {
-      path: '/about',
-      name: 'about',
-      component: About,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: '/portal',
-      name: 'portal',
-      component: Portal,
-      meta: {
-        requiresAuth: true
-      }
 
-    },
+    // {
+    //   path: '/portal',
+    //   name: 'portal',
+    //   component: Portal,
+    //   meta: {
+    //     requiresAuth: true
+    //   }
+
+    // },
     {
-      path: '/providers/reviews',
+      path: '/reviews',
       name: 'reviews',
       component: Reviews,
       meta: {
         requiresAuth: false
+      },
+      children: [
+        {
+          path: '/doctor/:doctorId',
+          name: 'review-card',
+          component: ReviewCard,
+          props: true
+        },
+        {
+          path: '/response/:id',
+          name: 'review-response',
+          component: ReviewResponse,
+          props: true
+        }
+      ]
+    },
+    {
+      path: '/reviews/add',
+      name: 'add-review',
+      component: AddReview,
+      meta: {
+        requiresAuth: false
       }
+    },
+    {
+      path: '/notification',
+      name: 'messages',
+      component: Messages, 
     }
   ]
 })

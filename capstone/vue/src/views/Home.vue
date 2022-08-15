@@ -1,8 +1,7 @@
 <template>
-  <div class="home">
-    <br>
-    <img src="../assets/home-mock.jpg" width="600">
-    <br>
+  <div class = "about">
+    <about-details />
+
     <notifications />
   </div>
 </template>
@@ -10,11 +9,13 @@
 <script>
 import Notifications from "../components/Notifications.vue";
 import OfficeService from "../services/OfficeService.js"
+import AboutDetails from "../components/AboutDetails.vue";
 
 export default {
   name: "home",
   components: {
     Notifications,
+    AboutDetails
   },
   created(){
     if(this.$store.state.user.authorities[0].name == "ROLE_DOCTOR"){
@@ -25,3 +26,12 @@ export default {
   },
 };
 </script>
+
+<style>
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+</style>

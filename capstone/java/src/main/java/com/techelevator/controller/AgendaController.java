@@ -18,14 +18,19 @@ public class AgendaController {
         this.agendaDao = agendaDao;
     }
 
-    @GetMapping("/doctors/{id}/agenda")
-    public List<Agenda> getAgendaByDoctor(@PathVariable long id) {
-        return agendaDao.getAgendasByDoctorId(id);
+    @GetMapping("doctors/agenda/{id}")
+    public Agenda getAgendaByDoctor(@PathVariable long id) {
+        return agendaDao.getAgendaByDoctorId(id);
     }
 
     @GetMapping("/agenda/{day}")
     public List<Agenda> getAgendasByAvailability(@PathVariable String day) {
         return agendaDao.getAgendasByAvailabilityDay(day);
+    }
+
+    @GetMapping("doctors/offDays/{id}")
+    public List<Integer> getOffDays(@PathVariable long id) {
+        return agendaDao.getUnavailableDays(id);
     }
 
     @PostMapping("/doctors/{id}/agenda")

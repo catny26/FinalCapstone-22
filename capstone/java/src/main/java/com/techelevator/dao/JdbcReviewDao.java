@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class JdbcReviewDao implements ReviewDao{
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcReviewDao (JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public JdbcReviewDao (DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate((dataSource));
     }
 
     @Override
@@ -31,23 +32,20 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public Reviews getByReviewID(long reviewID) {
+    public Reviews getByReviewID(long reviewId) {
         String sql = "SELECT * FROM reviews WHERE review_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewID);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
         if(results.next()){
             return mapRowToReview(results);
         }
         return null;
-
     }
 
     @Override
-    public List<Reviews> getByDoctorID(long doctorID) {
+    public List<Reviews> getByDoctorID(long doctorId) {
         List<Reviews> output = new ArrayList<>();
-        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.review_response, r.office_id " +
-                    "FROM reviews r " +
-                    "WHERE r.doctor_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorID);
+        String sql = "SELECT * FROM reviews WHERE doctor_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
         while(results.next()){
             output.add(mapRowToReview(results));
         }
@@ -55,12 +53,10 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public List<Reviews> getByPatientID(long patientID) {
+    public List<Reviews> getByPatientID(long patientId) {
         List<Reviews> output = new ArrayList<>();
-        String sql = "SELECT r.review_id, r.amount_of_stars, r.review_message, r.doctor_id, r.patient_id, r.review_response, r.office_id " +
-                "FROM reviews r " +
-                "WHERE r.patient_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, patientID);
+        String sql = "SELECT * FROM reviews WHERE patient_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, patientId);
         while(results.next()){
             output.add(mapRowToReview(results));
         }
@@ -68,12 +64,10 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public List<Reviews> getByOfficeID(long officeID) {
+    public List<Reviews> getByOfficeID(long officeId) {
         List<Reviews> output = new ArrayList<>();
-        String sql = "SELECT review_id, amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response " +
-                    "FROM reviews " +
-                    "WHERE office_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeID);
+        String sql = "SELECT * FROM reviews WHERE office_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeId);
         while(results.next()){
             output.add(mapRowToReview(results));
         }
@@ -85,19 +79,27 @@ public class JdbcReviewDao implements ReviewDao{
         String sql = "INSERT INTO reviews (amount_of_stars, review_message, doctor_id, patient_id, office_id, review_response)" +
                     " VALUES (?,?,?,?,?,?)" +
                     " RETURNING review_id;";
-        long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorID(), reviews.getPatientID(), reviews.getOfficeID(), reviews.getReviewResponse());
+        long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorId(), reviews.getPatientId(), reviews.getOfficeId(), reviews.getReviewResponse());
+        reviews.setId(id);
         return reviews;
     }
 
+    @Override
+    public void updateReview(long reviewId, Reviews review){
+        String sql = "UPDATE reviews " +
+                     "SET review_response = ? " +
+                     "WHERE review_id = ?;";
+        jdbcTemplate.update(sql, reviewId, review.getReviewResponse());
+    }
 
     private Reviews mapRowToReview(SqlRowSet results) {
         Reviews review = new Reviews();
         review.setId(results.getLong("review_id"));
         review.setAmountOfStars(results.getInt("amount_of_stars"));
         review.setReviewMessage(results.getString("review_message"));
-        review.setDoctorID(results.getLong("doctor_id"));
-        review.setPatientID(results.getLong("patient_id"));
-        review.setOfficeID(results.getLong("office_id"));
+        review.setDoctorId(results.getLong("doctor_id"));
+        review.setPatientId(results.getLong("patient_id"));
+        review.setOfficeId(results.getLong("office_id"));
         review.setReviewResponse(results.getString("review_response"));
         return review;
     }

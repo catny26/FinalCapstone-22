@@ -11,5 +11,9 @@ export default{
 
     getDoctorsInOffice(officeId){
         return http.get(`/doctors/office/${officeId}`);
+    },
+    
+    getDoctor(doctorId) {
+        return http.get(`users/${doctorId}`);
     }
 }

@@ -5,18 +5,18 @@ public class Reviews {
     private long id;
     private int amountOfStars;
     private String reviewMessage;
-    private long doctorID;
-    private long patientID;
-    private long officeID;
+    private long doctorId;
+    private long patientId;
+    private long officeId;
     private String reviewResponse;
 
-    public Reviews(long id,int amountOfStars, String reviewMessage, long doctorID, long patientID, long officeID, String reviewResponse) {
+    public Reviews(long id, int amountOfStars, String reviewMessage, long doctorId, long patientId, long officeId, String reviewResponse) {
         this.id = id;
         this.amountOfStars = amountOfStars;
         this.reviewMessage = reviewMessage;
-        this.doctorID = doctorID;
-        this.patientID = patientID;
-        this.officeID = officeID;
+        this.doctorId = doctorId;
+        this.patientId = patientId;
+        this.officeId = officeId;
         this.reviewResponse = reviewResponse;
     }
 
@@ -48,28 +48,28 @@ public class Reviews {
         this.reviewMessage = reviewMessage;
     }
 
-    public long getDoctorID() {
-        return doctorID;
+    public long getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctorID(long doctorID) {
-        this.doctorID = doctorID;
+    public void setDoctorId(long doctorId) {
+        this.doctorId = doctorId;
     }
 
-    public long getPatientID() {
-        return patientID;
+    public long getPatientId() {
+        return patientId;
     }
 
-    public void setPatientID(long patientID) {
-        this.patientID = patientID;
+    public void setPatientId(long patientId) {
+        this.patientId = patientId;
     }
 
-    public long getOfficeID() {
-        return officeID;
+    public long getOfficeId() {
+        return officeId;
     }
 
-    public void setOfficeID(long officeID) {
-        this.officeID = officeID;
+    public void setOfficeId(long officeId) {
+        this.officeId = officeId;
     }
 
     public String getReviewResponse() {

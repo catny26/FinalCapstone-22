@@ -8,30 +8,30 @@
 </template>
 
 <script>
-import PatientPortal from '@/components/PatientPortal'
-import DoctorPortal from '@/components/DoctorPortal'
-export default {
-    name: "patient-portal",
-    components: {
-        PatientPortal,
-        DoctorPortal
-    },
-    computed:{
-      isDoctor(){
-        if(!this.isEmpty(this.$store.state.user)){
-          if(this.$store.state.user.authorities[0].name == 'ROLE_DOCTOR'){
-            return true;
-          }
-        }
-        return false;
-      }
-    },
-    methods:{
-      isEmpty(object){
-        return Object.keys(object).length == 0;
-      }
-    }
-}
+// import PatientPortal from '@/components/PatientPortal'
+// import DoctorPortal from '@/components/DoctorPortal'
+// export default {
+//     name: "patient-portal",
+//     components: {
+//         PatientPortal,
+//         DoctorPortal
+//     },
+//     computed:{
+//       isDoctor(){
+//         if(!this.isEmpty(this.$store.state.user)){
+//           if(this.$store.state.user.authorities[0].name == 'ROLE_DOCTOR'){
+//             return true;
+//           }
+//         }
+//         return false;
+//       }
+//     },
+//     methods:{
+//       isEmpty(object){
+//         return Object.keys(object).length == 0;
+//       }
+//     }
+// }
 </script>
 
 <style>
