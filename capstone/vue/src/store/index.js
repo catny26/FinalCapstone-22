@@ -21,7 +21,6 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     filter: 0,
-    doctorChoice: 0,
     doctors: [],
     doctor: {
       doctorId: 0,
@@ -86,18 +85,15 @@ export default new Vuex.Store({
       id: 0,
       amountOfStars: 0,
       reviewMessage: '',
-      doctorId: 0,
-      patientId: 0,
-      officeId: 0,
+      doctorId: '',
+      patientId: '',
+      officeId: '',
       reviewResponse: ''
     }
   },
   mutations: {
     SET_DOCTORS(state, data) {
       state.doctors = data;
-    },
-    SET_DOCTOR_CHOICE(state, data) {
-      state.doctorChoice = data;
     },
     GET_DOCTORS(state, userId){
       state.doctors = state.doctors.find( (doctor =>{
@@ -110,7 +106,7 @@ export default new Vuex.Store({
     SET_ACTIVE_REVIEW(state, id) {
       state.activeReviewId = id;
     },
-    GET_REVIEWS(state, id){
+    GET_REVIEW(state, id){
       state.reviews = state.reviews.find( (review =>{
         return review.id = id
       }))

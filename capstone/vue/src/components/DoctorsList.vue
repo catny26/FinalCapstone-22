@@ -9,8 +9,9 @@
 </template>
 
 <script>
-import doctorService from "@/services/DoctorService.js"
+import DoctorService from "@/services/DoctorService.js"
 import DoctorCard from "@/components/DoctorCard.vue"
+
 export default {
     name: "doctors-list",
     components: {
@@ -22,12 +23,12 @@ export default {
     },
     methods: {
       getDoctors() {
-        doctorService.getDoctors().then((response) => {
+        DoctorService.getDoctors().then((response) => {
           this.$store.commit("SET_DOCTORS", response.data);
         })
       },
       getDoctorsByOfficeId(officeId) {
-        doctorService.getDoctorsByOfficeId(officeId).then((response) => {
+        DoctorService.getDoctorsByOfficeId(officeId).then((response) => {
           this.$store.commit("SET_DOCTORS_IN_OFFICE", response.data);
         })
       }

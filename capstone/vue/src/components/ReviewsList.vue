@@ -8,8 +8,10 @@
 </template>
 
 <script>
-import reviewService from '@/services/ReviewService.js';
+import ReviewService from '@/services/ReviewService.js';
+import DoctorService from '@/services/DoctorService.js';
 import ReviewCard from '@/components/ReviewCard.vue';
+
 export default {
   name: "reviews-list",
   components: {
@@ -18,16 +20,22 @@ export default {
   created() {
     this.getReviews();
     this.getReview(this.id);
+    this.getDoctorInformation(this.doctorId);
   },
   methods: {
     getReviews(){
-      reviewService.getReviews().then((response) => {
-      this.$store.commit("SET_REVIEWS", response.data);
+      ReviewService.getReviews().then((response) => {
+        this.$store.commit("SET_REVIEWS", response.data);
       })
     },
     getReview(id) {
-      reviewService.getReview(id).then((response) => {
+      ReviewService.getReview(id).then((response) => {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
+      })
+    },
+    getDoctorInformation() {
+      DoctorService.getDoctor(this.doctorId).then((response) => {
+        this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
       })
     }
   }
