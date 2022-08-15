@@ -1,91 +1,88 @@
 <template>
-  <div id="register" >
+  <div id="register" class="form-group">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <div>
-      <label for="username" class="sr-only">Username</label>
+      <div class="form-group">
+        <label for="username" class="sr-only">Username</label>
       </div>
-      <div>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-       </div>
-       <div>
-         <label for="full_name" class="sr-only">Full Name</label>
-       </div>
-       <div>
-         <input
-         type="text"
-         id="full_name"
-         class="form-control"
-         placeholder="Full Name"
-         v-model="user.fullName"
-         required
-         >
-       </div>
-      <div>
-      <label for="password" class="sr-only">Password</label>
-       </div>
-      <div>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-       </div>
-      <div>
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
-       </div>
-      <div>
+      <div class="form-group">
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          placeholder="Username"
+          v-model="user.username"
+          required
+          autofocus
+        />
+      </div>
+      <div class="form-group">
+        <label for="full_name" class="sr-only">Full Name</label>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          id="full_name"
+          class="form-control"
+          placeholder="Full Name"
+          v-model="user.fullName"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password" class="sr-only">Password</label>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Password"
+          v-model="user.password"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          placeholder="Confirm Password"
+          v-model="user.confirmPassword"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <div class="roleselect">
+            <b-form-radio
+              v-model="user.role"
+              :aria-describedby="ariaDescribedby"
+              name="some-radios"
+              id="userrole"
+              value="user"
+              >I am a patient</b-form-radio
+            >
+            <b-form-radio
+              v-model="user.role"
+              :aria-describedby="ariaDescribedby"
+              name="some-radios"
+              id="doctorrole"
+              value="doctor"
+              >I am a doctor</b-form-radio
+            >
 
-      <form>
-      <input
-        type="radio"
-        id="userrole"
-        class="form-control"
-        value="user"
-        v-model="user.role"
-      />
-<label for="doctorrole">I am a patient</label>
-      </form><form>
- <input
-        type="radio"
-        id="doctorrole"
-        class="form-control"
-        value="doctor"
-        v-model="user.role"
-        
-        
-      />
-<label for="doctorrole">I am a doctor</label>
-</form>
- </div>
-      <div>
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-       </div>
-      <div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+          Create Account
+        </button>
       </div>
     </form>
   </div>
@@ -130,11 +127,11 @@ export default {
             this.registrationErrors = true;
             if (response.status === 400) {
               this.registrationErrorMsg = "Bad Request: Validation Errors";
-              console.log('username ' + this.user.username)
-              console.log('password ' + this.user.password)
-              console.log('confirmPassword ' + this.user.confirmPassword)
-              console.log('fullName ' + this.user.fullName)
-              console.log('role ' + this.user.role)
+              console.log("username " + this.user.username);
+              console.log("password " + this.user.password);
+              console.log("confirmPassword " + this.user.confirmPassword);
+              console.log("fullName " + this.user.fullName);
+              console.log("role " + this.user.role);
             }
           });
       }
@@ -157,5 +154,19 @@ export default {
 
 .form-register {
   margin: auto;
+}
+
+
+.radio-buttons {
+  margin: 0px;
+  padding: 0px;
+}
+#userrole {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+#doctorrole {
+  margin-right: 8px;
 }
 </style>
