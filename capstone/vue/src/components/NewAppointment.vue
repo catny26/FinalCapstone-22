@@ -1,5 +1,7 @@
 <template>
+<div class="container">
   <div class="main">
+    
     <h1 class="appointment-header">
       {{ this.$store.state.doctor.fullName }}'s Availability:
     </h1>
@@ -22,7 +24,7 @@
         <h5>Please select a date and time:</h5>
       </div>
       <b-button
-        variant="success"
+        variant="primary"
         class="buttons"
         v-for="n in this.$store.state.dayScheduleArray"
         v-bind:key="n"
@@ -30,7 +32,7 @@
         >{{ n }}:00</b-button
       >
       <b-button
-        variant="success"
+        variant="primary"
         class="buttons"
         v-for="n in this.$store.state.eveningScheduleArray"
         v-bind:key="n"
@@ -53,7 +55,7 @@
           }}
         </p>
         <div>
-          <b-button v-on:click="submitNewAppt" variant="outline-success"
+          <b-button v-on:click="submitNewAppt" variant="outline-primary"
             >Success</b-button
           >
         </div>
@@ -61,12 +63,14 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import AgendaService from "@/services/AgendaService";
 import AppointmentService from "@/services/AppointmentService";
 import DoctorService from "@/services/DoctorService";
+import MessageService from "@/services/MessageService"
 
 export default {
   created() {
@@ -107,7 +111,13 @@ export default {
         status: "Pending",
         reason: this.reason,
       };
+      const pendingApptMessage = {
+        userId: this.doctorID,
+        message: "Patient" + this.$store.state.user.fullName + " is waiting for appointment confirmation.",
+        read: false
+      }
       AppointmentService.createAppointment(newAppt);
+      MessageService.sendMessage(pendingApptMessage)
       this.$router.push({ name: "home" });
     },
     getAgenda() {
@@ -247,6 +257,11 @@ body {
   padding: 1em 2em 2em;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
 .main {
   background: #f2f2f2;
   border: 1px solid #ddd;
@@ -259,7 +274,10 @@ body {
     "calendar time-slots"
     "content content";
   grid-template-columns: 1fr 1fr;
+   align-items: center;
+  justify-content: center;
 }
+
 
 .appointment-header {
   grid-area: header;
