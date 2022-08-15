@@ -12,7 +12,7 @@
     <h4>{{ review.reviewMessage }}</h4>
     <p><i>Provider's Response: </i>{{ review.reviewResponse }}</p>
     <!-- <router-link class="link" v-bind:to="{name: 'review-response'}"><input type="button" value="Respond to Review" v-if="retrieveReviewById"></router-link>&nbsp; -->
-    <router-link class="link" v-bind:to="{name: 'doctors'}"><input type="button" value="Back to Providers List"></router-link>
+    <router-link class="link" v-bind:to="{name: 'providers'}"><input type="button" value="Back to Providers List"></router-link>
   </div>
 </template>
 

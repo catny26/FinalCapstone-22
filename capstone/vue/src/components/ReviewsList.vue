@@ -4,8 +4,6 @@
       v-for="review in this.$store.state.reviews" v-bind:key="review.id"
       v-bind:review="review"
     />
-
-    {{this.$route.params.id}}
   </div>
 </template>
 

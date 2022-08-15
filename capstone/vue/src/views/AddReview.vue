@@ -78,7 +78,6 @@
       <div class="buttons">
         <input type = "submit" value="Submit">&nbsp;
         <input type="button" value="Cancel" v-on:click.prevent="resetForm">&nbsp;
-        <router-link v-bind:to="{name: 'reviews'}"><input type="button" value = "Reviews"></router-link>&nbsp;
         <router-link v-bind:to="{name: 'providers'}"><input type="button" value = "Return to Providers"></router-link>
       </div>
     </form>
