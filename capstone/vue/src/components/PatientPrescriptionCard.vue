@@ -1,5 +1,5 @@
 <template>
-<div class="patient-prescription-card">
+<div>
 
       <div>
         <img src="../assets/prescription.png" alt="Prescription Image" class="prescription-image">

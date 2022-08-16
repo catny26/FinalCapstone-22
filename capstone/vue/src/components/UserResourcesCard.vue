@@ -1,7 +1,7 @@
 <template>
   <div class = "resources-card">
     <h3>User Resources</h3>
-
+<div class="container">
     <div class="patient-messages-card">
       <patient-messages-card
         :v-show="showMessages"
@@ -38,7 +38,7 @@
         <button class="prescriptions">See My Prescriptions</button>
       </router-link> -->
     </div>
-
+</div>
     <div class="portal-card">
       <doctor-portal v-if="isDoctor" />
       <patient-portal v-else />
@@ -91,38 +91,59 @@ export default {
   
 }
 .portal-card{
-  border: 2px solid black;
-  border-radius: 10px;
   width: 500px;
 
   margin: 10px;
   padding: 15px;
 }
+
+.container {
+  display: grid;
+  grid-template-areas: "space space card1 card2 card3 space space";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+}
+
 .patient-messages-card {
-
-  border: 2px solid black;
+  grid-area: "card1";
   border-radius: 10px;
   width: 500px;
-
   margin: 10px;
   padding: 15px;
 }
+.patient-messages-card img {
+   width: auto;
+  height: 100%;
+  padding: 15px;
+}
+
 .patient-appointment-card {
-
-  border: 2px solid black;
+  grid-area: "card2";
   border-radius: 10px;
   width: 500px;
 
   margin: 10px;
   padding: 15px;
 }
-.patient-prescription-card {
 
-  border: 2px solid black;
+.patient-appointment-card img {
+  width: auto;
+  height: 100%;
+  padding: 15px;
+}
+
+.patient-prescription-card {
+  grid-area: "card3";
   border-radius: 10px;
   width: 500px;
-
   margin: 10px;
+  padding: 15px;
+}
+
+.patient-prescription-card img {
+   width: auto;
+  height: 100%;
   padding: 15px;
 }
 </style>

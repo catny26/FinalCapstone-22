@@ -33,9 +33,9 @@ public class AgendaController {
         return agendaDao.getUnavailableDays(id);
     }
 
-    @PostMapping("/doctors/{id}/agenda")
+    @PostMapping("/doctors/agenda/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Agenda postAgenda(@PathVariable long id, @RequestBody Agenda newAgenda){
+    public Agenda postAgenda(@RequestBody Agenda newAgenda){
         return agendaDao.createAgenda(newAgenda);
     }
 

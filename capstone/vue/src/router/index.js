@@ -17,6 +17,8 @@ import Messages from '@/views/Messages.vue'
 // import ReviewCard from '@/components/ReviewCard.vue'
 // import ReviewResponse from '@/views/ReviewResponse.vue'
 import Schedule from '@/views/Schedule.vue'
+import UpdateSchedule from "../views/UpdateScheduleView.vue"
+
 
 Vue.use(Router)
 
@@ -159,7 +161,12 @@ const router = new Router({
       path: '/notification',
       name: 'messages',
       component: Messages, 
-    }
+    },
+    {
+      path: '/schedule/:id',
+      name: 'schedule',
+      component: UpdateSchedule
+      }
   ]
 })
 

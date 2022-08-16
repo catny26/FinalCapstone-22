@@ -1,5 +1,5 @@
 <template>
-  <div class="patient-appointment-card">
+  <div>
 
       <div>
         <img src="../assets/appointment.png" alt="Appointments Image" class="appointments-image">
