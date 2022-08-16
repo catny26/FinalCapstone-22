@@ -6,10 +6,15 @@
 
     <!-- <h3 v-bind:to="getMessages"></h3> -->
     <ul>
-      <h3 v-bind:to="getMessages"></h3>
+      <li
+      v-for="notification in this.$store.state.notifications"
+      :key="notification.id">
+      {{ notification.message }}
+      </li>
+      <!-- <h3 v-bind:to="getMessages"></h3>
       <li>"Your appointment is tomorrow at 11AM."</li>
         <li>"Your appointment is currently pending."</li>
-        <li>"Your appointment was cancelled successfully."</li>
+        <li>"Your appointment was cancelled successfully."</li> -->
     </ul>
       {{ this.$store.state.notification }}
       <!-- <router-link v-bind:to="{ name: 'messages' }">
@@ -43,7 +48,7 @@ export default {
   methods: {
     getMessages() {
       messageService.getMessages(this.$store.state.user.id).then((response) => {
-        this.$store.commit('SET_ACTIVE_NOTIFICATION', response.data)
+        this.$store.commit('SET_NOTIFICATIONS', response.data)
       })
     }
   },

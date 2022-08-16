@@ -30,9 +30,9 @@ public class NotificationController {
         return notificationDao.findAll();
     }
 
-    @RequestMapping(value = "/user/{id}/notification", method = RequestMethod.GET)
-    public List<Notification> getNotificationsByUser(@PathVariable long id) {
-        return notificationDao.getAllNotificationsByUser(id);
+    @RequestMapping(value = "/notification/user/{userId}", method = RequestMethod.GET)
+    public List<Notification> getNotificationsByUser(@PathVariable long userId) {
+        return notificationDao.getAllNotificationsByUser(userId);
     }
 
     @RequestMapping(value = "/user/{id}/notification/unread", method = RequestMethod.GET)
