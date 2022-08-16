@@ -15,5 +15,9 @@ export default{
     
     getDoctor(doctorId) {
         return http.get(`/users/${doctorId}`);
+    },
+    
+    getPatientInfo(patientID) {
+        return http.get(`/users/${patientID}`)
     }
 }

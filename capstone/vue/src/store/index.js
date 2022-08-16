@@ -21,6 +21,12 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     filter: 0,
+    patient: {
+      id: 0,
+      username: '',
+      typeOfDoctor: '',
+      fullName: ''
+    },
     doctors: [],
     doctor: {
       id: 0,
@@ -89,6 +95,18 @@ export default new Vuex.Store({
       patientId: '',
       officeId: '',
       reviewResponse: ''
+    },
+    appts: [],
+    appointment: {
+      id: 0,
+      patientId: 0,
+      doctorId: 0,
+      agendaId: 0,
+      startTime: '',
+      endTime: '',
+      date: '',
+      status: '',
+      reason: '',
     }
   },
   mutations: {
@@ -193,6 +211,12 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_CONFIRM(state, data) {
       state.activeConfirmation = data;
+    },
+    SET_ACTIVE_APPTS(state, data) {
+      state.appts = data;
+    },
+    SET_ACTIVE_PATIENT(state, data) {
+      state.patient = data;
     }
   }
 })

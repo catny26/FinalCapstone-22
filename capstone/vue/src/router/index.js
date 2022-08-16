@@ -18,6 +18,8 @@ import Messages from '@/views/Messages.vue'
 // import ReviewResponse from '@/views/ReviewResponse.vue'
 import Schedule from '@/views/Schedule.vue'
 import UpdateSchedule from "../views/UpdateScheduleView.vue"
+import AppointmentListView from "@/views/AppointmentListView.vue"
+
 
 
 Vue.use(Router)
@@ -165,7 +167,18 @@ const router = new Router({
     {
       path: '/schedule/:id',
       name: 'schedule',
-      component: UpdateSchedule
+      component: UpdateSchedule,
+      meta: {
+        requiresAuth: true
+      }
+      },
+      {
+        path: '/user/:id/appointments',
+        name: 'appointments',
+        component: AppointmentListView,
+        meta: {
+          requiresAuth: true
+        }
       }
   ]
 })

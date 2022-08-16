@@ -37,12 +37,14 @@ export default{
 
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap');
+
 #index {
   margin: 0px !important;
   padding: 0px !important;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Archivo Narrow', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

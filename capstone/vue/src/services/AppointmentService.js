@@ -21,7 +21,13 @@ export default {
     else{
       return http.get(`patients/${id}/appointments`)
     }
-  }
+  },
+  getAppointmentsByPatient(patientID) {
+    return http.get(`/patients/${patientID}/appointments`)
+  },
 
+  getAppointmentsByDoctor(doctorID) {
+    return http.get(`/doctors/${doctorID}/appointments`)
+  },
 
 }
