@@ -51,12 +51,12 @@ export default {
 </script>
 
 <style>
-.container {
+/* .container {
 
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-}
+} */
 li{
   list-style: none;
   padding: 10px 30px;
