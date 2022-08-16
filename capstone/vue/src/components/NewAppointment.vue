@@ -56,7 +56,7 @@
         </p>
         <div>
           <b-button v-on:click="submitNewAppt" variant="outline-primary"
-            >Success</b-button
+            >Request appointment</b-button
           >
         </div>
         <br /><br />
