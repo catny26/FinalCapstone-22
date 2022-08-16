@@ -7,9 +7,9 @@
     <!-- <h3 v-bind:to="getMessages"></h3> -->
     <ul>
       <h3 v-bind:to="getMessages"></h3>
-      <li>"Your appointment is tomorrow at 11AM"</li>
-        <li>"Your appointment is currently pending and will need approval from your physician"</li>
-        <li>"Your appointment was cancelled successfully"</li>
+      <li>"Your appointment is tomorrow at 11AM."</li>
+        <li>"Your appointment is currently pending."</li>
+        <li>"Your appointment was cancelled successfully."</li>
     </ul>
       {{ this.$store.state.notification }}
       <!-- <router-link v-bind:to="{ name: 'messages' }">
@@ -64,7 +64,7 @@ li{
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 20px;
-  
+
 }
 ul{
   color: darkblue;
