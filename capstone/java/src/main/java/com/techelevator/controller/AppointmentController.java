@@ -23,7 +23,7 @@ public class AppointmentController {
         return appointmentDao.getAppointmentsByDoctor(id);
     }
 
-    @GetMapping("/patients/{id}/appointments")
+    @GetMapping("/patients/appointments/{id}")
     public List<Appointment> getAppointmentsByUser(@PathVariable long id) {
         return appointmentDao.getAppointmentsByPatient(id);
     }
