@@ -113,7 +113,7 @@ export default {
       };
       const pendingApptMessage = {
         userId: this.doctorID,
-        message: "Patient" + this.$store.state.user.fullName + " is waiting for appointment confirmation.",
+        message: "Patient" + this.$store.state.user.fullName + " your appointment is awaiting approval.",
         read: false
       }
       AppointmentService.createAppointment(newAppt).then ((response) => {

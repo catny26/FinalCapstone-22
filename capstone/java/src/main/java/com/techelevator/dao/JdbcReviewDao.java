@@ -80,7 +80,7 @@ public class JdbcReviewDao implements ReviewDao{
                     " VALUES (?,?,?,?,?,?)" +
                     " RETURNING review_id;";
         long id = jdbcTemplate.queryForObject(sql, Long.class, reviews.getAmountOfStars(), reviews.getReviewMessage(), reviews.getDoctorId(), reviews.getPatientId(), reviews.getOfficeId(), reviews.getReviewResponse());
-        reviews.setId(id);
+        reviews.setReviewId(id);
         return reviews;
     }
 
@@ -94,7 +94,7 @@ public class JdbcReviewDao implements ReviewDao{
 
     private Reviews mapRowToReview(SqlRowSet results) {
         Reviews review = new Reviews();
-        review.setId(results.getLong("review_id"));
+        review.setReviewId(results.getLong("review_id"));
         review.setAmountOfStars(results.getInt("amount_of_stars"));
         review.setReviewMessage(results.getString("review_message"));
         review.setDoctorId(results.getLong("doctor_id"));
