@@ -12,10 +12,10 @@
       <div>
         <img src="../assets/message.png" alt="Messages Image" class="messages-image">
       </div>
-      <button class="messages" @click="showMessages = !showMessages;">See My Messages</button>
-      <!-- <router-link v-bind:to="{ name: 'messages' }">
+      <!-- <button class="messages" @click="showMessages = !showMessages;">See My Messages</button> -->
+      <router-link v-bind:to="{ path:'notification' }">
         <button class="messages">See My Messages</button>
-      </router-link> -->
+      </router-link>
     </div>
 
     <div class="patient-appointment-card">
