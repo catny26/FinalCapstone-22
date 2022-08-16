@@ -19,11 +19,13 @@ public class AppointmentController {
     }
 
     @GetMapping("/doctors/{id}/appointments")
+    @CrossOrigin
     public List<Appointment> getAppointmentsByDoctor(@PathVariable long id) {
         return appointmentDao.getAppointmentsByDoctor(id);
     }
 
-    @GetMapping("/patients/appointments/{id}")
+    @GetMapping("/patients/{id}/appointments")
+    @CrossOrigin
     public List<Appointment> getAppointmentsByUser(@PathVariable long id) {
         return appointmentDao.getAppointmentsByPatient(id);
     }
