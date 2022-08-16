@@ -88,7 +88,7 @@ export default new Vuex.Store({
     activeReview: 0,
     reviews: [],
     review: {
-      id: 0,
+      reviewId: 0,
       amountOfStars: 0,
       reviewMessage: '',
       doctorId: '',
@@ -124,9 +124,12 @@ export default new Vuex.Store({
     SET_ACTIVE_REVIEW(state, data) {
       state.activeReview = data;
     },
-    GET_REVIEW(state, id){
+    SET_ACTIVE_DOCTOR_REVIEW(state, data) {
+      state.activeDoctorReview = data;
+    },
+    GET_REVIEW(state, reviewId){
       state.reviews = state.reviews.find( (review =>{
-        return review.id = id
+        return review.reviewId = reviewId
       }))
     },
     SET_NOTIFICATIONS(state, data) {

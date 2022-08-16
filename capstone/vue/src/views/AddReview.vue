@@ -71,10 +71,10 @@
         <label for="review">Review: </label>
         <textarea id="review" v-model="newReview.reviewMessage"/>
       </div>
-      <div class="form-element">
+      <!-- <div class="form-element">
         <label for="response">Response: </label>
         <textarea id="response" v-model="newReview.reviewResponse" />
-      </div>
+      </div> -->
       <div class="buttons">
         <input type = "submit" value="Submit">&nbsp;
         <input type="button" value="Cancel" v-on:click.prevent="resetForm">&nbsp;
@@ -131,7 +131,6 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-
 form {
   width: 400px;
   margin: 20px;
@@ -150,6 +149,9 @@ form {
 }
 .form-element select {
   height: 30px;
+}
+.form-element select option:hover {
+  background-color: grey;
 }
 .buttons {
   display: flex;

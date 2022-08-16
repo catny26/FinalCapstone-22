@@ -14,12 +14,10 @@ import Reviews from '@/views/Reviews.vue'
 import AddReview from '@/views/AddReview.vue'
 import OfficeDetailView from '@/views/OfficeDetailView.vue'
 import Messages from '@/views/Messages.vue'
-// import ReviewCard from '@/components/ReviewCard.vue'
-// import ReviewResponse from '@/views/ReviewResponse.vue'
+import ReviewResponse from '@/views/ReviewResponse.vue'
 import Schedule from '@/views/Schedule.vue'
 import UpdateSchedule from "../views/UpdateScheduleView.vue"
 import AppointmentListView from "@/views/AppointmentListView.vue"
-
 
 
 Vue.use(Router)
@@ -135,21 +133,7 @@ const router = new Router({
       component: Reviews,
       meta: {
           requiresAuth: false
-      },
-        // children: [
-        //   {
-        //     path: '/doctor/:doctorId',
-        //     name: 'review-card',
-        //     component: ReviewCard,
-        //     props: true
-        //   },
-        //   {
-        //     path: '/response/:id',
-        //     name: 'review-response',
-        //     component: ReviewResponse,
-        //     props: true
-        //   }
-        // ]
+      }
     },
     {
       path: '/reviews/add',
@@ -158,6 +142,15 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: '/reviews/response/:id',
+      name: 'review-response',
+      component: ReviewResponse,
+      meta: {
+        requiresAuth: false
+        // change to true when running user tests
+        }
     },
     {
       path: '/notification',

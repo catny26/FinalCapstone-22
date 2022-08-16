@@ -9,9 +9,8 @@ export default{
         return http.get('/reviews');
     },
 
-    getReview(id) { 
-        console.log("in getReview id = " + id)
-        return http.get(`/reviews/${id}`);
+    getReview(reviewId) { 
+        return http.get(`/reviews/${reviewId}`);
     },
 
     getReviewsByDoctorId(id){
@@ -26,8 +25,8 @@ export default{
         return http.post('/reviews/add', review);
     },
 
-    updateReview(id, review){
-        return http.put(`/reviews/update/${id}`, review)
+    updateReview(reviewId, review){
+        return http.put(`/reviews/update/${reviewId}`, review)
     },
 
     respondToReview(id, review){
