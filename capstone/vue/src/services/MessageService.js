@@ -6,6 +6,9 @@ const http = axios.create({
 
 export default {
     getMessages(userId) {
-        return http.get(`/notification/${userId}`);
-      }
+        return http.get(`/notification/user/${userId}`);
+      },
+    sendMessage(notification) {
+        return http.post('/notification/create', notification);
+      },
 }

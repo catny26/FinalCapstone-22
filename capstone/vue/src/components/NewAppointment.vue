@@ -118,6 +118,12 @@ export default {
       }
       AppointmentService.createAppointment(newAppt).then ((response) => {
         if (response.status === 201) {
+          //todo: chk msg response
+          //sending msg to doctor
+          MessageService.sendMessage(pendingApptMessage)  
+          //sending msg to patient
+          pendingApptMessage.userId = this.$store.state.user.id
+          MessageService.sendMessage(pendingApptMessage)
           alert ("Appointment is Pending. Waiting for Doctor Approval.");
         }
       })
