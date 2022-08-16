@@ -116,7 +116,11 @@ export default {
         message: "Patient" + this.$store.state.user.fullName + " is waiting for appointment confirmation.",
         read: false
       }
-      AppointmentService.createAppointment(newAppt);
+      AppointmentService.createAppointment(newAppt).then ((response) => {
+        if (response.status === 201) {
+          alert ("Appointment is Pending. Waiting for Doctor Approval.");
+        }
+      })
       MessageService.sendMessage(pendingApptMessage)
       this.$router.push({ name: "home" });
     },
