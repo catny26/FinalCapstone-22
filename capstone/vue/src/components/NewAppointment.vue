@@ -125,11 +125,11 @@ export default {
           pendingApptMessage.userId = this.$store.state.user.id
           MessageService.sendMessage(pendingApptMessage)
           alert ("Appointment is Pending. Waiting for Doctor Approval.");
+
         }
       })
       MessageService.sendMessage(pendingApptMessage)
-      this.$router.push({ name: "home" });
-    },
+this.$router.push(`/user/${this.$store.state.user.id}/appointments/`)    },
     getAgenda() {
       AgendaService.getAgenda(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_AGENDA", response.data);
