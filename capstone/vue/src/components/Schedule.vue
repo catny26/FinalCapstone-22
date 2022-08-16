@@ -126,10 +126,21 @@ export default {
             return output;
         },
         getAppointments(){
-            AppointmentService.getAppointments(this.$store.state.user.id, this.isDoctor)
-            .then(response=>{
-                this.appointments = response.data;
-            })
+            if(this.isDoctor){
+                AppointmentService.getAppointmentsByDoctor(this.$store.state.user.id).then(response=>{
+                    this.appointments = response.data;
+                })
+            }
+            else {
+                AppointmentService.getAppointmentsByPatient(this.$store.state.user.id).then(response=>{
+                    this.appointments = response.data;
+                })
+            }
+
+            // AppointmentService.getAppointments(this.$store.state.user.id, this.isDoctor)
+            // .then(response=>{
+            //     this.appointments = response.data;
+            // })
         },
         isEmpty(object){
             return Object.keys(object).length == 0

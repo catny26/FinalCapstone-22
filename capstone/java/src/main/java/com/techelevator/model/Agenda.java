@@ -7,83 +7,38 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Agenda {
 
     private long agendaId;
     private long doctorId;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime monStart;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime monEnd;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime tueStart;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime tueEnd;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime wenStart;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime wenEnd;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime thurStart;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime thurEnd;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime friStart;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime friEnd;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime satStart;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime satEnd;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime sunStart;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime sunEnd;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime lunchStart;
-    @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonSerialize(using = LocalTimeSerializer.class)
-    private LocalTime lunchEnd;
+    private Integer[] mon;
+    private Integer[] tue;
+    private Integer[] wen;
+    private Integer[] thur;
+    private Integer[] fri;
+    private Integer[] sat;
+    private Integer[] sun;
 
-    public Agenda(long agendaId, long doctorId, LocalTime monStart, LocalTime monEnd, LocalTime tueStart, LocalTime tueEnd, LocalTime wenStart, LocalTime wenEnd, LocalTime thurStart, LocalTime thurEnd, LocalTime friStart, LocalTime friEnd, LocalTime satStart, LocalTime satEnd, LocalTime sunStart, LocalTime sunEnd, LocalTime lunchStart, LocalTime lunchEnd) {
+    public Agenda(){}
+
+    public Agenda(long agendaId, long doctorId, Integer[] mon, Integer[] tue, Integer[] wen, Integer[] thur, Integer[] fri, Integer[] sat, Integer[] sun) {
         this.agendaId = agendaId;
         this.doctorId = doctorId;
-        this.monStart = monStart;
-        this.monEnd = monEnd;
-        this.tueStart = tueStart;
-        this.tueEnd = tueEnd;
-        this.wenStart = wenStart;
-        this.wenEnd = wenEnd;
-        this.thurStart = thurStart;
-        this.thurEnd = thurEnd;
-        this.friStart = friStart;
-        this.friEnd = friEnd;
-        this.satStart = satStart;
-        this.satEnd = satEnd;
-        this.sunStart = sunStart;
-        this.sunEnd = sunEnd;
-        this.lunchStart = lunchStart;
-        this.lunchEnd = lunchEnd;
+        this.mon = mon;
+        this.tue = tue;
+        this.wen = wen;
+        this.thur = thur;
+        this.fri = fri;
+        this.sat = sat;
+        this.sun = sun;
     }
 
-    public Agenda() {
+    public Agenda(long agendaId, long doctorId) {
+        this.agendaId = agendaId;
+        this.doctorId = doctorId;
     }
 
     public long getAgendaId() {
@@ -102,132 +57,60 @@ public class Agenda {
         this.doctorId = doctorId;
     }
 
-    public LocalTime getMonStart() {
-        return monStart;
+    public Integer[] getMon() {
+        return mon;
     }
 
-    public void setMonStart(LocalTime monStart) {
-        this.monStart = monStart;
+    public void setMon(Integer[] mon) {
+        this.mon = mon;
     }
 
-    public LocalTime getMonEnd() {
-        return monEnd;
+    public Integer[] getTue() {
+        return tue;
     }
 
-    public void setMonEnd(LocalTime monEnd) {
-        this.monEnd = monEnd;
+    public void setTue(Integer[] tue) {
+        this.tue = tue;
     }
 
-    public LocalTime getTueStart() {
-        return tueStart;
+    public Integer[] getWen() {
+        return wen;
     }
 
-    public void setTueStart(LocalTime tueStart) {
-        this.tueStart = tueStart;
+    public void setWen(Integer[] wen) {
+        this.wen = wen;
     }
 
-    public LocalTime getTueEnd() {
-        return tueEnd;
+    public Integer[] getThur() {
+        return thur;
     }
 
-    public void setTueEnd(LocalTime tueEnd) {
-        this.tueEnd = tueEnd;
+    public void setThur(Integer[] thur) {
+        this.thur = thur;
     }
 
-    public LocalTime getWenStart() {
-        return wenStart;
+    public Integer[] getFri() {
+        return fri;
     }
 
-    public void setWenStart(LocalTime wenStart) {
-        this.wenStart = wenStart;
+    public void setFri(Integer[] fri) {
+        this.fri = fri;
     }
 
-    public LocalTime getWenEnd() {
-        return wenEnd;
+    public Integer[] getSat() {
+        return sat;
     }
 
-    public void setWenEnd(LocalTime wenEnd) {
-        this.wenEnd = wenEnd;
+    public void setSat(Integer[] sat) {
+        this.sat = sat;
     }
 
-    public LocalTime getThurStart() {
-        return thurStart;
+    public Integer[] getSun() {
+        return sun;
     }
 
-    public void setThurStart(LocalTime thurStart) {
-        this.thurStart = thurStart;
-    }
-
-    public LocalTime getThurEnd() {
-        return thurEnd;
-    }
-
-    public void setThurEnd(LocalTime thurEnd) {
-        this.thurEnd = thurEnd;
-    }
-
-    public LocalTime getFriStart() {
-        return friStart;
-    }
-
-    public void setFriStart(LocalTime friStart) {
-        this.friStart = friStart;
-    }
-
-    public LocalTime getFriEnd() {
-        return friEnd;
-    }
-
-    public void setFriEnd(LocalTime friEnd) {
-        this.friEnd = friEnd;
-    }
-
-    public LocalTime getSatStart() {
-        return satStart;
-    }
-
-    public void setSatStart(LocalTime satStart) {
-        this.satStart = satStart;
-    }
-
-    public LocalTime getSatEnd() {
-        return satEnd;
-    }
-
-    public void setSatEnd(LocalTime satEnd) {
-        this.satEnd = satEnd;
-    }
-
-    public LocalTime getSunStart() {
-        return sunStart;
-    }
-
-    public void setSunStart(LocalTime sunStart) {
-        this.sunStart = sunStart;
-    }
-
-    public LocalTime getSunEnd() {
-        return sunEnd;
-    }
-
-    public void setSunEnd(LocalTime sunEnd) {
-        this.sunEnd = sunEnd;
-    }
-
-    public LocalTime getLunchStart() {
-        return lunchStart;
-    }
-
-    public void setLunchStart(LocalTime lunchStart) {
-        this.lunchStart = lunchStart;
-    }
-
-    public LocalTime getLunchEnd() {
-        return lunchEnd;
-    }
-
-    public void setLunchEnd(LocalTime lunchEnd) {
-        this.lunchEnd = lunchEnd;
+    public void setSun(Integer[] sun) {
+        this.sun = sun;
     }
 
     @Override
@@ -235,27 +118,19 @@ public class Agenda {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Agenda agenda = (Agenda) o;
-        return agendaId == agenda.agendaId && doctorId == agenda.doctorId && Objects.equals(monStart, agenda.monStart) && Objects.equals(monEnd, agenda.monEnd) && Objects.equals(tueStart, agenda.tueStart) && Objects.equals(tueEnd, agenda.tueEnd) && Objects.equals(wenStart, agenda.wenStart) && Objects.equals(wenEnd, agenda.wenEnd) && Objects.equals(thurStart, agenda.thurStart) && Objects.equals(thurEnd, agenda.thurEnd) && Objects.equals(friStart, agenda.friStart) && Objects.equals(friEnd, agenda.friEnd) && Objects.equals(satStart, agenda.satStart) && Objects.equals(satEnd, agenda.satEnd) && Objects.equals(sunStart, agenda.sunStart) && Objects.equals(sunEnd, agenda.sunEnd) && Objects.equals(lunchStart, agenda.lunchStart) && Objects.equals(lunchEnd, agenda.lunchEnd);
+        return agendaId == agenda.agendaId && doctorId == agenda.doctorId && Arrays.equals(mon, agenda.mon) && Arrays.equals(tue, agenda.tue) && Arrays.equals(wen, agenda.wen) && Arrays.equals(thur, agenda.thur) && Arrays.equals(fri, agenda.fri) && Arrays.equals(sat, agenda.sat) && Arrays.equals(sun, agenda.sun);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(agendaId, doctorId, monStart, monEnd, tueStart, tueEnd, wenStart, wenEnd, thurStart, thurEnd, friStart, friEnd, satStart, satEnd, sunStart, sunEnd, lunchStart, lunchEnd);
-    }
-
-    @Override
-    public String toString() {
-        return "Agenda{" +
-                "agendaId=" + agendaId +
-                ", doctorId=" + doctorId +
-                ", monday =" + monStart + " - " + monEnd +
-                ", tuesday =" + tueStart + " - " + tueEnd +
-                ", wendsday =" + wenStart + " - " + wenEnd +
-                ", thursday =" + thurStart + " - " + thurEnd +
-                ", friday =" + friStart + " - " + friEnd +
-                ", saturday =" + satStart + " - " + satEnd +
-                ", sunday =" + sunStart + " - " + sunEnd +
-                ", lunch =" + lunchStart + " - " + lunchEnd +
-                '}';
+        int result = Objects.hash(agendaId, doctorId);
+        result = 31 * result + Arrays.hashCode(mon);
+        result = 31 * result + Arrays.hashCode(tue);
+        result = 31 * result + Arrays.hashCode(wen);
+        result = 31 * result + Arrays.hashCode(thur);
+        result = 31 * result + Arrays.hashCode(fri);
+        result = 31 * result + Arrays.hashCode(sat);
+        result = 31 * result + Arrays.hashCode(sun);
+        return result;
     }
 }

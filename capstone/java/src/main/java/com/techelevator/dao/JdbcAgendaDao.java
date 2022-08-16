@@ -16,11 +16,40 @@ public class JdbcAgendaDao implements AgendaDao{
 
     public JdbcAgendaDao(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
 
+    private Agenda mapRowSetToAgenda(SqlRowSet sqlRowSet){
+        Agenda output = new Agenda();
+        output.setAgendaId(sqlRowSet.getLong("agenda_id"));
+        output.setDoctorId(sqlRowSet.getLong("doctor_id"));
+
+        if(sqlRowSet.getObject("mon", Integer[].class) != null){
+            output.setMon(sqlRowSet.getObject("mon", Integer[].class));
+        }
+        if(sqlRowSet.getObject("tue", Integer[].class) != null){
+            output.setTue(sqlRowSet.getObject("tue", Integer[].class));
+        }
+        if(sqlRowSet.getObject("wen", Integer[].class) != null){
+            output.setWen(sqlRowSet.getObject("wen", Integer[].class));
+        }
+        if(sqlRowSet.getObject("thur", Integer[].class) != null){
+            output.setThur(sqlRowSet.getObject("thur", Integer[].class));
+        }
+        if(sqlRowSet.getObject("fri", Integer[].class) != null){
+            output.setFri(sqlRowSet.getObject("fri", Integer[].class));
+        }
+        if(sqlRowSet.getObject("sat", Integer[].class) != null){
+            output.setSat(sqlRowSet.getObject("sat", Integer[].class));
+        }
+        if(sqlRowSet.getObject("sun", Integer[].class) != null){
+            output.setSun(sqlRowSet.getObject("sun", Integer[].class));
+        }
+
+        return output;
+    }
+
     @Override
     public List<Agenda> findAll() {
         List<Agenda> output = new ArrayList<>();
-        String sql = "SELECT agenda_id, doctor_id, mon_start, mon_end, tue_start, tue_end, wen_start, wen_end, thur_start, thur_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end, lunch_start, lunch_end"+
-                " FROM agenda;";
+        String sql = "SELECT agenda_id, doctor_id, mon, tue, wen, thur, fri, sat, sun FROM agenda;";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
         while(sqlRowSet.next()){
             output.add(mapRowSetToAgenda(sqlRowSet));
@@ -31,9 +60,7 @@ public class JdbcAgendaDao implements AgendaDao{
     @Override
     public Agenda getAgendaByDoctorId(long doctorId) {
         Agenda output = new Agenda();
-        String sql = "SELECT agenda_id, doctor_id, mon_start, mon_end, tue_start, tue_end, wen_start, wen_end, thur_start, thur_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end, lunch_start, lunch_end"+
-                " FROM agenda"+
-                " WHERE doctor_id = ?;";
+        String sql = "SELECT agenda_id, doctor_id, mon, tue, wen, thur, fri, sat, sun FROM agenda WHERE doctor_id = ?;";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, doctorId);
         if(sqlRowSet.next()){
             output = mapRowSetToAgenda(sqlRowSet);
@@ -44,29 +71,28 @@ public class JdbcAgendaDao implements AgendaDao{
     @Override
     public List<Agenda> getAgendasByAvailabilityDay(String day) {
         List<Agenda> output = new ArrayList<>();
-        String sql = "SELECT agenda_id, doctor_id, mon_start, mon_end, tue_start, tue_end, wen_start, wen_end, thur_start, thur_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end, lunch_start, lunch_end"+
-                " FROM agenda";
+        String sql = "SELECT agenda_id, doctor_id, mon, tue, wen, thur, fri, sat, sun FROM agenda ";
         switch(day.toLowerCase()){
-            case "monday":
-               sql += " WHERE mon_start IS NOT NULL AND mon_end IS NOT NULL;";
-               break;
-            case "tues":
-                sql += " WHERE tue_start IS NOT NULL AND tue_end IS NOT NULL;";
+            case "mon":
+                sql += "WHERE mon IS NOT NULL;";
                 break;
-            case "wednesday":
-                sql += " WHERE wen_start IS NOT NULL AND wen_end IS NOT NULL;";
+            case "tue":
+                sql += "WHERE tue IS NOT NULL;";
                 break;
-            case "thursday":
-                sql += " WHERE thur_start IS NOT NULL AND thur_end IS NOT NULL;";
+            case "wen":
+                sql += "WHERE wen IS NOT NULL;";
                 break;
-            case "friday":
-                sql += " WHERE fri_start IS NOT NULL AND fri_end IS NOT NULL;";
+            case "thur":
+                sql += "WHERE thur IS NOT NULL;";
                 break;
-            case "saturday":
-                sql += " WHERE sat_start IS NOT NULL AND sat_end IS NOT NULL;";
+            case "fri":
+                sql += "WHERE fri IS NOT NULL;";
                 break;
-            case "sunday":
-                sql += " WHERE sun_start IS NOT NULL AND sun_end IS NOT NULL;";
+            case "sat":
+                sql += "WHERE sat IS NOT NULL;";
+                break;
+            case "sun":
+                sql += "WHERE sun IS NOT NULL;";
                 break;
         }
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
@@ -78,47 +104,44 @@ public class JdbcAgendaDao implements AgendaDao{
 
     @Override
     public List<Integer> getUnavailableDays(long doctorId) {
-        List<Agenda> output = new ArrayList<>();
-        String sql = "SELECT agenda_id, doctor_id, mon_start, mon_end, tue_start, tue_end, wen_start, wen_end, thur_start, thur_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end, lunch_start, lunch_end"+
-                " FROM agenda"+
-                " WHERE doctor_id = ?;";
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, doctorId);
-        while(sqlRowSet.next()){
-            output.add(mapRowSetToAgenda(sqlRowSet));
-        }
-        Agenda newAgenda = output.get(0);
-        List<Integer> unavailableDays = new ArrayList<>();
-        if (newAgenda.getMonStart() == null) {
-            unavailableDays.add(2);
-        }
-        if (newAgenda.getTueStart() == null) {
-            unavailableDays.add(3);
-        }
-        if (newAgenda.getWenStart() == null) {
-            unavailableDays.add(4);
-        }
-        if (newAgenda.getThurStart() == null) {
-            unavailableDays.add(5);
-        }
-        if (newAgenda.getFriStart() == null) {
-            unavailableDays.add(6);
-        }
-        if (newAgenda.getSatStart() == null) {
-            unavailableDays.add(7);
-        }
-        if (newAgenda.getSunStart() == null) {
-            unavailableDays.add(1);
+        //Monday = 1, Sunday = 7
+        List<Integer> output = new ArrayList<>();
+        Agenda agenda = new Agenda();
+        String sql = "SELECT agenda_id, doctor_id, mon, tue, wen, thur, fri, sat, sun FROM agenda WHERE doctor_id = ?;";
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
+        if(sqlRowSet.next()){
+            agenda = mapRowSetToAgenda(sqlRowSet);
         }
 
-        return unavailableDays;
+        if(agenda.getMon() == null){
+            output.add(1);
+        }
+        if(agenda.getTue() == null){
+            output.add(2);
+        }
+        if(agenda.getWen() == null){
+            output.add(3);
+        }
+        if(agenda.getThur() == null){
+            output.add(4);
+        }
+        if(agenda.getFri() == null){
+            output.add(5);
+        }
+        if(agenda.getSat() == null){
+            output.add(6);
+        }
+        if(agenda.getSun() == null){
+            output.add(7);
+        }
+
+        return output;
     }
 
     @Override
     public Agenda getAgendaById(long agendaId) {
         Agenda output = new Agenda();
-        String sql = "SELECT agenda_id, doctor_id, mon_start, mon_end, tue_start, tue_end, wen_start, wen_end, thur_start, thur_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end, lunch_start, lunch_end"+
-                " FROM agenda"+
-                " WHERE agenda_id = ?;";
+        String sql = "SELECT agenda_id, doctor_id, mon, tue, wen, thur, fri, sat, sun FROM agenda WHERE agenda_id = ?;";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, agendaId);
         if(sqlRowSet.next()){
             output = mapRowSetToAgenda(sqlRowSet);
@@ -128,88 +151,22 @@ public class JdbcAgendaDao implements AgendaDao{
 
     @Override
     public Agenda createAgenda(Agenda agenda) {
-        String sql = "INSERT INTO agenda (doctor_id, mon_start, mon_end, tue_start, tue_end, wen_start, wen_end, thur_start, thur_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end, lunch_start, lunch_end)" +
-                    " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"+
-                    " RETURNING agenda_id;";
-        long id = jdbcTemplate.queryForObject(sql, Long.class, agenda.getDoctorId(), agenda.getMonStart(), agenda.getMonEnd(), agenda.getTueStart(), agenda.getTueEnd(), agenda.getWenStart(), agenda.getWenEnd(), agenda.getThurStart(), agenda.getThurEnd(), agenda.getFriStart(), agenda.getFriEnd(), agenda.getSatStart(), agenda.getSatEnd(), agenda.getSunStart(), agenda.getSunEnd(), agenda.getLunchStart(), agenda.getLunchEnd());
-        return getAgendaById(id);
+        String sql = "INSERT INTO agenda (doctor_id, mon, tue, wen, thur, fri, sat, sun) VALUES (?,?,?,?,?,?,?,?) RETURNING agenda_id;";
+        long agendaId = jdbcTemplate.update(sql, agenda.getDoctorId(), agenda.getMon(), agenda.getTue(), agenda.getWen(), agenda.getThur(), agenda.getFri(), agenda.getSat(), agenda.getSun());
+        agenda.setAgendaId(agendaId);
+        return agenda;
     }
 
     @Override
     public boolean updateAgenda(Agenda agenda) {
-        String sql = "UPDATE agenda"+
-                " SET doctor_id = ?, mon_start = ?, mon_end = ?, tue_start = ?, tue_end = ?, wen_start = ?, wen_end = ?, thur_start = ?, thur_end = ?, fri_start = ?, fri_end = ?, sat_start = ?, sat_end = ?, sun_start = ?, sun_end = ?, lunch_start = ?, lunch_end = ?"+
-                " WHERE agenda_id =?;";
-        return jdbcTemplate.update(sql, agenda.getDoctorId(), agenda.getMonStart(), agenda.getMonEnd(), agenda.getTueStart(), agenda.getTueEnd(), agenda.getWenStart(), agenda.getWenEnd(), agenda.getThurStart(), agenda.getThurEnd(), agenda.getFriStart(), agenda.getFriEnd(), agenda.getSatStart(), agenda.getSatEnd(), agenda.getSunStart(), agenda.getSunEnd(), agenda.getLunchStart(), agenda.getLunchEnd(), agenda.getAgendaId()) == 1;
+        String sql = "UPDATE agenda SET doctor_id = ?, mon = ?, tue = ?, wen = ?, thur = ?, fri = ?, sat = ?, sun = ? WHERE agenda_id = ?;";
+        return (jdbcTemplate.update(sql, agenda.getDoctorId(), agenda.getMon(), agenda.getTue(), agenda.getWen(), agenda.getThur(), agenda.getFri(), agenda.getSat(), agenda.getSun(), agenda.getAgendaId())) == 1;
+
     }
 
     @Override
     public boolean deleteAgenda(long agendaId) {
-        String sql = "DELETE FROM agenda" +
-                " WHERE agenda_id = ?;";
-        return jdbcTemplate.update(sql, agendaId) == 1;
-    }
-
-    private Agenda mapRowSetToAgenda(SqlRowSet sqlRowSet){
-        Agenda output = new Agenda();
-        output.setAgendaId(sqlRowSet.getLong("agenda_id"));
-        output.setDoctorId(sqlRowSet.getLong("doctor_id"));
-
-        if(sqlRowSet.getTime("mon_start")!= null) {
-            output.setMonStart((sqlRowSet.getTime("mon_start").toLocalTime()));
-        }
-        if(sqlRowSet.getTime("mon_end")!= null) {
-            output.setMonEnd((sqlRowSet.getTime("mon_end").toLocalTime()));
-        }
-
-        if(sqlRowSet.getTime("tue_start")!= null) {
-            output.setTueStart((sqlRowSet.getTime("tue_start").toLocalTime()));
-        }
-        if(sqlRowSet.getTime("tue_end")!= null) {
-            output.setTueEnd((sqlRowSet.getTime("tue_end").toLocalTime()));
-        }
-
-        if(sqlRowSet.getTime("wen_start")!= null) {
-            output.setWenStart((sqlRowSet.getTime("wen_start").toLocalTime()));
-        }
-        if(sqlRowSet.getTime("wen_end")!= null) {
-            output.setWenEnd((sqlRowSet.getTime("wen_end").toLocalTime()));
-        }
-
-        if(sqlRowSet.getTime("thur_start")!= null) {
-            output.setThurStart((sqlRowSet.getTime("thur_start").toLocalTime()));
-        }
-        if(sqlRowSet.getTime("thur_end")!= null) {
-            output.setThurEnd((sqlRowSet.getTime("thur_end").toLocalTime()));
-        }
-
-        if(sqlRowSet.getTime("fri_start")!= null) {
-            output.setFriStart((sqlRowSet.getTime("fri_start").toLocalTime()));
-        }
-        if(sqlRowSet.getTime("fri_end")!= null) {
-            output.setFriEnd((sqlRowSet.getTime("fri_end").toLocalTime()));
-        }
-
-        if(sqlRowSet.getTime("sat_start")!= null) {
-            output.setSatStart((sqlRowSet.getTime("sat_start").toLocalTime()));
-        }
-        if(sqlRowSet.getTime("sat_end")!= null) {
-            output.setSatEnd((sqlRowSet.getTime("sat_end").toLocalTime()));
-        }
-
-        if(sqlRowSet.getTime("sun_start")!= null) {
-            output.setSunStart((sqlRowSet.getTime("sun_start").toLocalTime()));
-        }
-        if(sqlRowSet.getTime("sun_end")!= null) {
-            output.setSunEnd((sqlRowSet.getTime("sun_end").toLocalTime()));
-        }
-
-        if(sqlRowSet.getTime("lunch_start")!= null) {
-            output.setLunchStart((sqlRowSet.getTime("lunch_start").toLocalTime()));
-        }
-        if(sqlRowSet.getTime("lunch_end")!= null) {
-            output.setLunchEnd((sqlRowSet.getTime("lunch_end").toLocalTime()));
-        }
-        return output;
+        String sql = "DELETE FROM agenda WHERE agenda_id = ?";
+        return (jdbcTemplate.update(sql, agendaId) == 1);
     }
 }
