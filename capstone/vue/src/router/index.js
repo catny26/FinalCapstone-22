@@ -144,7 +144,7 @@ const router = new Router({
       }
     },
     {
-      path: '/reviews/response/:id',
+      path: '/reviews/:id',
       name: 'review-response',
       component: ReviewResponse,
       meta: {

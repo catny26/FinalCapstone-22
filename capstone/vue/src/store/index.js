@@ -115,9 +115,6 @@ export default new Vuex.Store({
     SET_ACTIVE_REVIEW(state, data) {
       state.activeReview = data;
     },
-    SET_ACTIVE_DOCTOR_REVIEW(state, data) {
-      state.activeDoctorReview = data;
-    },
     GET_REVIEW(state, reviewId){
       state.reviews = state.reviews.find( (review =>{
         return review.reviewId = reviewId

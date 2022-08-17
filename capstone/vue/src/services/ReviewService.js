@@ -30,6 +30,6 @@ export default{
     },
 
     respondToReview(id, review){
-        return http.put(`/reviews/response/${id}`, review)
+        return http.put(`/reviews/${id}`, review)
     }
 }

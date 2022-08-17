@@ -10,17 +10,8 @@
       />
     </div>
     <h4>{{ review.reviewMessage }}</h4>
-    <!-- <p>Provider's Response: {{ review.reviewResponse }}</p> -->
 
-      <!-- <div class="form-element">
-        <form v-on:submit.prevent="addResponse">
-        <label for="response">Response: </label>
-        <textarea id="response" v-model="{{review.reviewResponse}}" />
-        <input type="submit" value="Submit">
-        </form>
-      </div> -->
-
-    <!-- <router-link class="link" v-bind:to="{name: 'review-response', params: {id: this.doctorId}}"><input type="button" value="Respond to Review"></router-link>&nbsp; -->
+    <router-link v-bind:to="{name: 'review-response', params: {id: this.$route.params.id}}"><input type="button" value="Respond to Review"></router-link>&nbsp;
   </div>
 </template>
 
@@ -32,11 +23,12 @@ export default {
   props: ["review", "doctor"],
   created() {
     this.retrieveReview();
+    // this.retrieveReviewById();
     // this.addResponse();
   },
   // data() {
   //   return {
-  //     storedReview: this.review
+      
   //   }
   // },
   methods: {
@@ -62,7 +54,7 @@ export default {
 
   border: 1px solid lightgrey;
   border-radius: 10px;
-  width: 700px;
+  width: 500px;
 
   margin: 10px;
   padding: 15px;

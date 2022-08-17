@@ -1,6 +1,7 @@
 <template>
   <div class="review-response">
         <form v-on:submit.prevent="updateCurrentReview">
+          <!-- <review-card /> -->
             <div>
                 <label for="response">Enter a Response: </label>
                 <textarea id="response" v-model="updatedReview.reviewResponse" />
@@ -21,6 +22,9 @@ import ReviewService from '@/services/ReviewService.js'
 export default {
     name: 'review-response',
     props: ["review", "doctor"],
+    // components: {
+    //   ReviewCard
+    // },
 data() {
     return {
       updatedReview: {
@@ -36,16 +40,16 @@ data() {
   },
   methods: {
     updateCurrentReview() {
-      const updatedReview = {
-        reviewId: this.reviewResponse.reviewId,
-        amountOfStars: this.reviewResponse.amountOfStars,
-        reviewMessage: this.reviewResponse.reviewMessage,
-        doctorId: this.reviewResponse.doctorId,
-        patientId: this.reviewResponse.patientId,
-        officeId: this.reviewResponse.officeId,
-        reviewResponse: this.reviewResponse.reviewResponse
-      };
-      ReviewService.respondToReview(updatedReview).then((response) => {
+      // const updatedReview = {
+      //   reviewId: this.reviewResponse.reviewId,
+      //   amountOfStars: this.reviewResponse.amountOfStars,
+      //   reviewMessage: this.reviewResponse.reviewMessage,
+      //   doctorId: this.reviewResponse.doctorId,
+      //   patientId: this.reviewResponse.patientId,
+      //   officeId: this.reviewResponse.officeId,
+      //   reviewResponse: this.reviewResponse.reviewResponse
+      // };
+      ReviewService.respondToReview(this.id).then((response) => {
         this.$store.commit('SET_REVIEWS', response.data);
       });
       this.updatedReview = {};

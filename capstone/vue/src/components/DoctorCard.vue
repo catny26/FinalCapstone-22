@@ -3,7 +3,6 @@
       <div class="heading">
         <img src="..\assets\original1.png" alt="Doctor Icon" class = "doctor-icon">
         <h4>{{doctor.fullName}}, {{doctor.typeOfDoctor}}</h4>
-        <!-- <img src="..\assets\star.png" alt="Star Rating" class="stars"> -->
       </div>
       <div class="actions">
         <router-link :to="{name: 'offices', params: {id: this.$route.params.officeId}}"><input type="button"  value="Office Information"></router-link>
@@ -68,7 +67,7 @@ export default {
   flex-direction: column;
   border: 1px solid lightgrey;
   border-radius: 10px;
-  /* width: 500px; */
+  width: 800px;
 
   margin: 10px;
   padding: 15px;
