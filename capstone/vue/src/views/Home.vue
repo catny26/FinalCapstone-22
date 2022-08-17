@@ -2,19 +2,17 @@
   <div class = "about">
     <about-details />
 
-    <notifications />
+    <!-- <notifications /> -->
   </div>
 </template>
 
 <script>
-import Notifications from "../components/Notifications.vue";
 import OfficeService from "../services/OfficeService.js"
 import AboutDetails from "../components/AboutDetails.vue";
 
 export default {
   name: "home",
   components: {
-    Notifications,
     AboutDetails
   },
   created(){

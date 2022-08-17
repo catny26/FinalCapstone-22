@@ -29,15 +29,15 @@
       </router-link> -->
     </div>
 
-    <div class="patient-prescription-card">
-      <patient-prescription-card></patient-prescription-card>
+    <!-- <div class="patient-prescription-card">
+      <patient-prescription-card></patient-prescription-card> -->
       <!-- <div>
         <img src="../assets/prescription.png" alt="Prescriptions Image" class="prescriptions-image">
       </div>
       <router-link v-bind:to="{ path: '/portal/prescriptions' }">
         <button class="prescriptions">See My Prescriptions</button>
       </router-link> -->
-    </div>
+    <!-- </div> -->
 </div>
     <div class="portal-card">
       <doctor-portal v-if="isDoctor" />
@@ -48,14 +48,13 @@
 </template>
 
 <script>
-import PatientPrescriptionCard from './PatientPrescriptionCard.vue'
 import PatientAppointmentCard from './PatientAppointmentCard.vue'
 import PatientMessagesCard from './PatientMessagesCard.vue'
 import DoctorPortal from './DoctorPortal.vue'
 import PatientPortal from './PatientPortal.vue';
 
 export default {
-  components: { DoctorPortal, PatientPortal, PatientPrescriptionCard, PatientAppointmentCard, PatientMessagesCard },
+  components: { DoctorPortal, PatientPortal, PatientAppointmentCard, PatientMessagesCard },
   computed:{
     isDoctor(){
         if(!this.isEmpty(this.$store.state.user)){
