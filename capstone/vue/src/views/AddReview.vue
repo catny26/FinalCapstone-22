@@ -14,55 +14,44 @@
       </div>
 
       <div class="form-element">
-        <label for="review">Doctor ID: </label>
+        <label for="review">Doctor Name: </label>
         <select id="review" v-model="newReview.doctorId">
-          <option value="23">test</option>
-          <option value="4">test doctor</option>
-          <option value="5">Paulien Vlad</option>
-          <option value="6">Nanuk Eva</option>
-          <option value="7">Noni Clark</option>
-          <option value="8">Cathy Ngo</option>
-          <option value="9">Jenn Lee</option>
-          <option value="10">Sam Muskovitz</option>
-          <option value="11">Juhani Muhamad</option>
-          <option value="12">Rhode Beata</option>
-          <option value="13">Daniela Gusta</option>
-          <option value="14">Giorgos Sachiko</option>
-          <option value="15">Ivo Uther</option>
-          <option value="16">Tom Beerbower</option>
-          <option value="17">Myron Law-Doom</option>
-          <option value="18">Gervaise Antton</option>
-          <option value="19">Gwenneth Dotty</option>
-          <option value="20">Agnija Eliana</option>
-          <option value="21">Krystyna Eugen</option>
-          <option value="22">Catherine Karen</option>
+          <option value="3">Cathy Ngo</option>
+          <option value="4">Noni Crook</option>
+          <option value="5">Sam Muskovitz</option>
+          <option value="6">Tom Beerbower</option>
+          <option value="7">Myron Law-Doom</option>
+          <option value="8">Amber Brantley</option>
+          <option value="9">Joelle Clayton</option>
+          <option value="10">Tara Cherwony</option>
+          <option value="11">Shawn Badley</option>
+          <option value="12">Jenn Lee</option>
         </select>
       </div>
 
       <div class="form-element">
-        <label for="review">Patient ID: </label>
+        <label for="review">Patient Name: </label>
         <select id="rating" v-model="newReview.patientId">
-          <option value="1">user</option>
-          <option value="3">test patient</option>
-          <option value="24">Bojidar Veronika</option>
-          <option value="25">Oberon Valentina</option>
-          <option value="26">Tanguy Dorotea</option>
-          <option value="27">Starr Kisecawchuck</option>
-          <option value="28">Aleksander Tjeerd</option>
-          <option value="29">Sietske Magdalena</option>
-          <option value="30">Brandon Butler</option>
-          <option value="31">Zotikos Monica</option>
-          <option value="32">Halina Steel-Crash</option>
-          <option value="33">Orna Chisomo</option>
+          <option value="13">Abbie Robers</option>
+          <option value="14">Bobi Gilroy</option>
+          <option value="15">Christina Ngo</option>
+          <option value="16">James Schwartz</option>
+          <option value="17">Jamoni Harris</option>
+          <option value="18">John Noble</option>
+          <option value="19">Joshua Finkeldey</option>
+          <option value="20">Matt Nowell</option>
+          <option value="21">Michael Kong-Quee</option>
+          <option value="22">Mike Still</option>
+          <option value="23">Sarah Bond</option>
         </select>
       </div >
 
       <div class="form-element">
-        <label for="review">Office ID: </label>
+        <label for="review">Office: </label>
         <select id="review" v-model="newReview.officeId">
-          <option value="1">Cardiology Consultants of Phila</option>
+          <option value="1">Cardiology Consultants of Philadelphia</option>
           <option value="2">Philadelphia Family Medicine</option>
-          <option value="3">Ninth Street Internal Medicine</option>
+          <option value="3">Thomas Jefferson University Hospital</option>
           <option value="4">Philadelphia Dentistry</option>
         </select>
       </div>

@@ -62,7 +62,7 @@ export default {
 
   border: 1px solid lightgrey;
   border-radius: 10px;
-  width: 500px;
+  width: 700px;
 
   margin: 10px;
   padding: 15px;
