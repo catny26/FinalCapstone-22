@@ -51,7 +51,7 @@ public class NotificationController {
         return notificationDao.createNotification(newNotification);
     }
 
-    @RequestMapping(value = "/notification/{id}/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/notification/update/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public Notification updateNotification(@PathVariable long id, @RequestBody Notification updatedNotification) {
         updatedNotification.setNotificationId(id);
