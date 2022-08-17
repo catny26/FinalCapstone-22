@@ -3,20 +3,33 @@
     <h2>Here are all your messages:</h2>
 
     <div class="container">
+     {{ this.$store.state.notification }}
 
     <!-- <h3 v-bind:to="getMessages"></h3> -->
-    <ul>
+    <ul v-if="user.isDoctor">
       <li
       v-for="notification in this.$store.state.notifications"
-      :key="notification.id">
+      :key="notification.notificationId">
       {{ notification.message }}
+      {{ notification.notificationId }}
+
+      <div class="button-container" v-if="!enableAdd">
+        <button class="mark-read" v-on:click.prevent="updateMessage(notification, true)" v-if="!notification.isRead">Mark Read</button>
+        <button class="mark-unread" v-on:click.prevent="updateMessage(notification, false)" v-if="notification.isRead">Mark Unread</button>
+        <button class="confirm-appointment" 
+        v-for="appointment in this.$store.state.appointments" 
+        :key="appointment.appointmentId"
+        v-on:click.prevent="confirmApptmt()" id="doctorrole" value="doctor">Confirm Appointment</button>
+      
+      </div>
+
       </li>
       <!-- <h3 v-bind:to="getMessages"></h3>
       <li>"Your appointment is tomorrow at 11AM."</li>
         <li>"Your appointment is currently pending."</li>
         <li>"Your appointment was cancelled successfully."</li> -->
     </ul>
-      {{ this.$store.state.notification }}
+      <!-- {{ this.$store.state.notification }} -->
       <!-- <router-link v-bind:to="{ name: 'messages' }">
         <button class="messages">See All Messages</button>
       </router-link> -->
@@ -30,7 +43,13 @@
 import messageService from '@/services/MessageService.js'
 export default {
   name: "patient-messages-card",
-  props: ["notification"],
+  props: {
+    notification: Object,
+    enableAdd: {
+            type: Boolean,
+            default: false
+      },       
+  },
   data() {
     return {
       newNotification: {
@@ -52,6 +71,28 @@ export default {
       })
     }
   },
+  updateMessage(notification, isRead) {
+      notification.isRead = isRead
+      console.log("notification = " + notification.isRead)
+      messageService.updateMessage(notification.notificationId, notification).then((response) => {
+        if (response.status === 200) {
+          this.$store.commit('SET_ACTIVE_NOTIFICATION', response.data);
+          
+        }
+      })
+    },
+    isDoctor(){
+      if(this.isAuthorized){
+        if(this.$store.state.user.authorities[0].name == 'ROLE_DOCTOR'){
+          return true
+        }
+      }
+      return false
+    },
+    confirmApptmt(){
+      console.log("in confirmed appointment")
+    }
+
 }
 </script>
 
