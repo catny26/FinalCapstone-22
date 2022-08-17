@@ -14,20 +14,20 @@ export default {
     return http.get(`/doctors/offDays/${doctorID}`)
   },
 
-  getAppointments(id, isDoctor){
-    if(isDoctor){
-      return http.get(`doctors/${id}/appointments`)
-    }
-    else{
-      return http.get(`patients/${id}/appointments`)
-    }
-  },
+  // getAppointments(id, isDoctor){
+  //   if(isDoctor){
+  //     return http.get(`doctors/${id}/appointments`)
+  //   }
+  //   else{
+  //     return http.get(`patients/${id}/appointments`)
+  //   }
+  // },
   getAppointmentsByPatient(patientID) {
-    return http.get(`/patients/appointments/${patientID}`)
+    return http.get(`/patients/${patientID}/appointments`)
   },
 
   getAppointmentsByDoctor(doctorID) {
-    return http.get(`/doctors/appointments/${doctorID}`)
+    return http.get(`/doctors/${doctorID}/appointments/`)
   },
 
   createMessage(userId) {

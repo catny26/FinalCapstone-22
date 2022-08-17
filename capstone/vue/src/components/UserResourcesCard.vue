@@ -98,11 +98,13 @@ export default {
 }
 
 .container {
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  /* display: grid;
   grid-template-areas: "space space card1 card2 card3 space space";
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
-  align-items: center;
+  align-items: center; */
 }
 
 .patient-messages-card {

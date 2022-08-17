@@ -2,6 +2,8 @@
   <div class="container">
     <div class="main">
       <h1 class="appointment-header">
+        {{ newAgenda }}
+        <br /><br />
         {{ this.$store.state.doctor.fullName }}'s Availability:
       </h1>
 
@@ -119,6 +121,66 @@ export default {
     };
   },
   methods: {
+    createUpdatedAppointment(dayCode) {
+      switch (dayCode) {
+        case 2: //mon
+          this.newAgenda.tue = this.storedAgenda.tue;
+          this.newAgenda.wen = this.storedAgenda.wen;
+          this.newAgenda.thur = this.storedAgenda.thur;
+          this.newAgenda.fri = this.storedAgenda.fri;
+          this.newAgenda.sat = this.storedAgenda.sat;
+          this.newAgenda.sun = this.storedAgenda.sun;
+          break;
+        case 3: //tue
+          this.newAgenda.mon = this.storedAgenda.mon;
+          this.newAgenda.wen = this.storedAgenda.wen;
+          this.newAgenda.thur = this.storedAgenda.thur;
+          this.newAgenda.fri = this.storedAgenda.fri;
+          this.newAgenda.sat = this.storedAgenda.sat;
+          this.newAgenda.sun = this.storedAgenda.sun;
+          break;
+        case 4: //wen
+          this.newAgenda.mon = this.storedAgenda.mon;
+          this.newAgenda.tue = this.storedAgenda.tue;
+          this.newAgenda.thur = this.storedAgenda.thur;
+          this.newAgenda.fri = this.storedAgenda.fri;
+          this.newAgenda.sat = this.storedAgenda.sat;
+          this.newAgenda.sun = this.storedAgenda.sun;
+          break;
+        case 5: //thur
+          this.newAgenda.mon = this.storedAgenda.mon;
+          this.newAgenda.tue = this.storedAgenda.tue;
+          this.newAgenda.wen = this.storedAgenda.wen;
+          this.newAgenda.fri = this.storedAgenda.fri;
+          this.newAgenda.sat = this.storedAgenda.sat;
+          this.newAgenda.sun = this.storedAgenda.sun;
+          break;
+        case 6: //fri
+          this.newAgenda.mon = this.storedAgenda.mon;
+          this.newAgenda.tue = this.storedAgenda.tue;
+          this.newAgenda.wen = this.storedAgenda.wen;
+          this.newAgenda.thur = this.storedAgenda.thur;
+          this.newAgenda.sat = this.storedAgenda.sat;
+          this.newAgenda.sun = this.storedAgenda.sun;
+          break;
+        case 7: //sat
+          this.newAgenda.mon = this.storedAgenda.mon;
+          this.newAgenda.tue = this.storedAgenda.tue;
+          this.newAgenda.wen = this.storedAgenda.wen;
+          this.newAgenda.thur = this.storedAgenda.thur;
+          this.newAgenda.fri = this.storedAgenda.fri;
+          this.newAgenda.sun = this.storedAgenda.sun;
+          break;
+        case 1: //sun
+          this.newAgenda.mon = this.storedAgenda.mon;
+          this.newAgenda.tue = this.storedAgenda.tue;
+          this.newAgenda.wen = this.storedAgenda.wen;
+          this.newAgenda.thur = this.storedAgenda.thur;
+          this.newAgenda.fri = this.storedAgenda.fri;
+          this.newAgenda.sat = this.storedAgenda.sat;
+          break;
+      }
+    },
     submitNewAppt() {
       const newAppt = {
         patientId: this.$store.state.user.id,
@@ -139,17 +201,6 @@ export default {
         read: false,
       };
 
-      // const newAged = {
-      //   agendaId: this.agenda.agendaId,
-      //   doctorId: this.doctorID,
-      //   mon: '',
-      //   tue: '',
-      //   wen: '',
-      //   thur: '',
-      //   fri: '',
-      //   sat: '',
-      //   sun: ''
-      // }
 
       AppointmentService.createAppointment(newAppt).then((response) => {
         if (response.status === 201) {
@@ -158,17 +209,21 @@ export default {
           MessageService.sendMessage(pendingApptMessage);
           //sending msg to patient
           pendingApptMessage.userId = this.$store.state.user.id;
+
           MessageService.sendMessage(pendingApptMessage);
 
-          AgendaService.updateAgenda(this.newAgenda);
           alert("Appointment is Pending. Waiting for Doctor Approval.");
         }
       });
+                AgendaService.updateAgenda(this.newAgenda);
+
       MessageService.sendMessage(pendingApptMessage);
       this.$router.push(`/user/${this.$store.state.user.id}/appointments/`);
     },
     updateSchedule() {
       const day = this.date.getDay() + 1;
+      console.log(day);
+      console.log(typeof day);
       this.newAgenda.agendaId = this.agenda.agendaId;
       this.newAgenda.doctorId = this.doctorID;
 
@@ -178,38 +233,39 @@ export default {
             return value != this.$store.state.activeHour;
           });
           break;
-           case 3:
-           this.newAgenda.mon = this.storedAgenda.tue.filter((value) => {
+        case 3:
+          this.newAgenda.tue = this.storedAgenda.tue.filter((value) => {
             return value != this.$store.state.activeHour;
           });
-            break;
-          case 4:
-          this.newAgenda.mon = this.storedAgenda.wen.filter((value) => {
+          break;
+        case 4:
+          this.newAgenda.wen = this.storedAgenda.wen.filter((value) => {
             return value != this.$store.state.activeHour;
           });
-            break;
-          case 5:
-         this.newAgenda.mon = this.storedAgenda.thur.filter((value) => {
+          break;
+        case 5:
+          console.log("case 5");
+          this.newAgenda.thur = this.storedAgenda.thur.filter((value) => {
             return value != this.$store.state.activeHour;
           });
-            break;
-          case 6:
-        this.newAgenda.mon = this.storedAgenda.fri.filter((value) => {
+          break;
+        case 6:
+          this.newAgenda.fri = this.storedAgenda.fri.filter((value) => {
             return value != this.$store.state.activeHour;
           });
-            break;
-          case 7:
-          this.newAgenda.mon = this.storedAgenda.sat.filter((value) => {
+          break;
+        case 7:
+          this.newAgenda.sat = this.storedAgenda.sat.filter((value) => {
             return value != this.$store.state.activeHour;
           });
-            break;
-          case 1:
-           this.newAgenda.mon = this.storedAgenda.sun.filter((value) => {
+          break;
+        case 1:
+          this.newAgenda.sun = this.storedAgenda.sun.filter((value) => {
             return value != this.$store.state.activeHour;
           });
-            break;
-        
+          break;
       }
+      this.createUpdatedAppointment(day);
     },
     getAgenda() {
       AgendaService.getAgenda(parseInt(this.$route.params.id)).then(
