@@ -40,6 +40,11 @@ public class NotificationController {
         return notificationDao.getAllUnreadNotificationsByUser(id);
     }
 
+    @GetMapping("/notification/{appointmentId}")
+    public List<Notification> getNotificationByAppointment(@PathVariable long appointmentId) {
+        return notificationDao.getAllNotificationsByAppointment(appointmentId);
+    }
+
     @RequestMapping(value = "/notification/{id}", method = RequestMethod.GET)
     public Notification getNotification(@PathVariable long id) {
         return notificationDao.getNotification(id);

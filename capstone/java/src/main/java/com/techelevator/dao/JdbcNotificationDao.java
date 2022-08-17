@@ -19,8 +19,7 @@ public class JdbcNotificationDao implements NotificationDao{
     @Override
     public List<Notification> findAll() {
         List<Notification> output = new ArrayList<>();
-        String sql = "SELECT notification_id, user_id, message, is_read" +
-                " FROM notifications;";
+        String sql = "SELECT * FROM notifications;";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
         while(sqlRowSet.next()){
             output.add(mapRowSetToNotification(sqlRowSet));
@@ -31,7 +30,7 @@ public class JdbcNotificationDao implements NotificationDao{
     @Override
     public List<Notification> getAllNotificationsByUser(long userId) {
         List<Notification> output = new ArrayList<>();
-        String sql = "SELECT notification_id, user_id, message, is_read" +
+        String sql = "SELECT *" +
                 " FROM notifications"+
                 " WHERE user_id = ?;";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, userId);
@@ -42,9 +41,22 @@ public class JdbcNotificationDao implements NotificationDao{
     }
 
     @Override
+    public List<Notification> getAllNotificationsByAppointment(long appointmentId) {
+        List<Notification> output = new ArrayList<>();
+        String sql = "SELECT *" +
+                " FROM notifications"+
+                " WHERE appointment_id = ?;";
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, appointmentId);
+        while(sqlRowSet.next()){
+            output.add(mapRowSetToNotification(sqlRowSet));
+        }
+        return output;
+    }
+
+    @Override
     public List<Notification> getAllUnreadNotificationsByUser(long userId) {
         List<Notification> output = new ArrayList<>();
-        String sql = "SELECT notification_id, user_id, message, is_read" +
+        String sql = "SELECT *" +
                 " FROM notifications"+
                 " WHERE (user_id = ? AND is_read = false);";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, userId);
@@ -57,7 +69,7 @@ public class JdbcNotificationDao implements NotificationDao{
     @Override
     public Notification getNotification(long notificationId) {
         Notification output = null;
-        String sql = "SELECT notification_id, user_id, message, is_read" +
+        String sql = "SELECT *" +
                 " FROM notifications"+
                 " WHERE notification_id = ?";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, notificationId);
@@ -69,10 +81,10 @@ public class JdbcNotificationDao implements NotificationDao{
 
     @Override
     public Notification createNotification(Notification notification) {
-        String sql = "INSERT INTO notifications (user_id, message, is_read)" +
+        String sql = "INSERT INTO notifications (user_id, appointment_id, message, is_read)" +
                 " VALUES (?,?,?)"+
                 " RETURNING notification_id;";
-        long id = jdbcTemplate.queryForObject(sql, Long.class, notification.getUserId(), notification.getMessage(), notification.isRead());
+        long id = jdbcTemplate.queryForObject(sql, Long.class, notification.getUserId(), notification.getAppointmentId(), notification.getMessage(), notification.isRead());
         notification.setNotificationId(id);
         return notification;
     }
@@ -80,9 +92,9 @@ public class JdbcNotificationDao implements NotificationDao{
     @Override
     public boolean updateNotification(Notification notification) {
         String sql = "UPDATE notifications" +
-                " SET user_id = ?, message = ?, is_read = ?" +
+                " SET user_id = ?, appointment_id = ?, message = ?, is_read = ?" +
                 " WHERE notification_id = ?;";
-        return jdbcTemplate.update(sql, notification.getUserId(), notification.getMessage(), notification.isRead(), notification.getNotificationId()) == 1;
+        return jdbcTemplate.update(sql, notification.getUserId(), notification.getAppointmentId(), notification.getMessage(), notification.isRead(), notification.getNotificationId()) == 1;
     }
 
     @Override
@@ -96,6 +108,7 @@ public class JdbcNotificationDao implements NotificationDao{
         Notification output = new Notification();
         output.setNotificationId(sqlRowSet.getLong("notification_id"));
         output.setUserId(sqlRowSet.getLong("user_id"));
+        output.setUserId(sqlRowSet.getLong("appointment_id"));
         output.setMessage(sqlRowSet.getString("message"));
         output.setRead(sqlRowSet.getBoolean("is_read"));
         return output;

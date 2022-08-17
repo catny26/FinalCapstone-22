@@ -12,6 +12,8 @@ public interface NotificationDao {
 
     List<Notification> getAllUnreadNotificationsByUser(long userId);
 
+    List<Notification> getAllNotificationsByAppointment(long appointmentId);
+
     Notification getNotification(long notificationId);
 
     Notification createNotification(Notification notification);
