@@ -1,13 +1,13 @@
 <template>
   <div class="review-response">
-        <form v-on:submit.prevent="updateReview">
+        <form v-on:submit.prevent="updateCurrentReview">
             <div>
-                <label for="response">Enter Response: </label>
+                <label for="response">Enter a Response: </label>
                 <textarea id="response" v-model="updatedReview.reviewResponse" />
             </div>
-            <div class="buttons">
-                <input type = "submit" value="Submit">&nbsp;
-                <input type="button" value="Cancel" v-on:click.prevent="resetForm">&nbsp;
+            <div class="actions">
+                <input type = "submit" value="Submit">
+                <input type="button" value="Cancel" v-on:click.prevent="resetForm">
                 <router-link v-bind:to="{name: 'providers'}"><input type="button" value = "Return to Providers"></router-link>
             </div>
         </form>
@@ -58,5 +58,35 @@ data() {
 </script>
 
 <style>
-
+.review-response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form {
+  width: 400px;
+  margin: 20px;
+  align-items: center;
+}
+.form-element label {
+  width: 100px;
+  vertical-align: top;
+}
+.form-element input, select, textarea {
+  width: 400px;
+  font-size: 1rem;
+}
+.form-element textarea {
+  height: 100px;
+}
+.form-element select {
+  height: 30px;
+}
+.form-element select option:hover {
+  background-color: grey;
+}
+.actions {
+  display: flex;
+  flex-direction: row;
+}
 </style>

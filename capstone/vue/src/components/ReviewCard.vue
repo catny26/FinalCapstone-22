@@ -10,39 +10,33 @@
       />
     </div>
     <h4>{{ review.reviewMessage }}</h4>
-    <p><i>Provider's Response: </i>{{ review.reviewResponse }}</p>
-    <router-link class="link" v-bind:to="{name: 'review-response', params: {id: this.$route.id}}"><input type="button" value="Respond to Review"></router-link>&nbsp;
-    <router-link class="link" v-bind:to="{name: 'providers'}"><input type="button" value="Back to Providers List"></router-link>
+    <p>Provider's Response: {{ review.reviewResponse }}</p>
+
+
+    <!-- <router-link class="link" v-bind:to="{name: 'review-response', params: {id: this.doctorId}}"><input type="button" value="Respond to Review"></router-link>&nbsp; -->
   </div>
 </template>
 
 <script>
 import ReviewService from '@/services/ReviewService.js'
-import DoctorService from '@/services/DoctorService.js'
 
 export default {
   name: "review-card",
   props: ["review", "doctor"],
   created() {
     this.retrieveReview();
-    this.getDoctorInformation();
   },
-  data() {
-    return {
-      storedReview: this.review
-    }
-  },
+  // data() {
+  //   return {
+  //     storedReview: this.review
+  //   }
+  // },
   methods: {
     retrieveReview(){
       ReviewService.getReviewsByDoctorId(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
       })
     },
-    getDoctorInformation() {
-      DoctorService.getDoctor(this.doctorId).then((response) => {
-        this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
-      })
-    }
   }
 }
 </script>
@@ -53,7 +47,7 @@ export default {
   flex-direction: column;
   align-items: center;
 
-  border: 2px solid black;
+  border: 1px solid lightgrey;
   border-radius: 10px;
   width: 500px;
 
@@ -68,12 +62,12 @@ export default {
   font-size: 2vw;
   margin: 5px;
   padding: 5px;
-  text-align: left;
+  text-align: center;
 }
 .review-card p {
   font-size: 1vw;
   margin: 5px;
   padding: 5px;
-  text-align: left;
+  text-align: center;
 }
 </style>

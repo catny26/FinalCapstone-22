@@ -2,7 +2,7 @@
   <div class="providers">
     <h2>Meet Our Providers</h2>
     <doctors-list />
-    </div>
+  </div>
 </template>
 
 <script>
@@ -16,5 +16,11 @@ export default {
 </script>
 
 <style>
-
+.providers {
+  margin: 10px;
+  padding: 15px;
+}
+.providers h2 {
+  color: grey;
+}
 </style>

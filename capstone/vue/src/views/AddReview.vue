@@ -75,9 +75,9 @@
         <label for="response">Response: </label>
         <textarea id="response" v-model="newReview.reviewResponse" />
       </div> -->
-      <div class="buttons">
-        <input type = "submit" value="Submit">&nbsp;
-        <input type="button" value="Cancel" v-on:click.prevent="resetForm">&nbsp;
+      <div class="actions">
+        <input type = "submit" value="Submit">
+        <input type="button" value="Cancel" v-on:click.prevent="resetForm">
         <router-link v-bind:to="{name: 'providers'}"><input type="button" value = "Return to Providers"></router-link>
       </div>
     </form>
@@ -139,10 +139,12 @@ form {
 .form-element label {
   width: 100px;
   vertical-align: top;
+  color: grey;
 }
 .form-element input, select, textarea {
   width: 400px;
   font-size: 1rem;
+  border-color: lightgrey;
 }
 .form-element textarea {
   height: 100px;
@@ -151,9 +153,9 @@ form {
   height: 30px;
 }
 .form-element select option:hover {
-  background-color: grey;
+  color: grey;
 }
-.buttons {
+.actions {
   display: flex;
   flex-direction: row;
 }
