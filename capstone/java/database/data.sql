@@ -80,10 +80,10 @@ INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (7, 21, 5, '15:00', '16:00', '2022-08-09', 'Cancelled', 'Jaw pain');
 
 
-INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (3, 18, 1, 'Patient is waiting for appointment confirmation.', false);
-INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (3, 20, 2, 'Patient is waiting for appointment confirmation.', true);
-INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (3, 23, 3, 'The doctor has confirmed your appointment.', true);
-INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (7, 21, 4, 'Appointment cancelled successfully.', true);
-INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (7, 21, 5, 'Patient has cancelled appointment.', false);
+INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (3, 18, 2, 'Patient is waiting for appointment confirmation.', false);
+INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (3, 20, 3, 'Patient is waiting for appointment confirmation.', true);
+INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (3, 23, 4, 'The doctor has confirmed your appointment.', true);
+INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (7, 21, 7, 'Appointment cancelled successfully.', true);
+INSERT INTO notifications (doctor_id, patient_id, appointment_id, message, is_read) VALUES (7, 21, 7, 'Patient has cancelled appointment.', false);
 
 COMMIT TRANSACTION;

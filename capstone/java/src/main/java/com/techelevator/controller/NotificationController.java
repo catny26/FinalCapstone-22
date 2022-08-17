@@ -41,7 +41,7 @@ public class NotificationController {
     }
 
     @GetMapping("/notification/{appointmentId}")
-    public List<Notification> getNotificationByAppointment(@PathVariable long appointmentId) {
+    public List<Notification> getAllNotificationsByAppointment(@PathVariable long appointmentId) {
         return notificationDao.getAllNotificationsByAppointment(appointmentId);
     }
 

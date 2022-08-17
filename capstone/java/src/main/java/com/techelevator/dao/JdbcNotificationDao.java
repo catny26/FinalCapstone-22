@@ -82,7 +82,7 @@ public class JdbcNotificationDao implements NotificationDao{
     @Override
     public Notification createNotification(Notification notification) {
         String sql = "INSERT INTO notifications (user_id, appointment_id, message, is_read)" +
-                " VALUES (?,?,?)"+
+                " VALUES (?,?,?,?)"+
                 " RETURNING notification_id;";
         long id = jdbcTemplate.queryForObject(sql, Long.class, notification.getUserId(), notification.getAppointmentId(), notification.getMessage(), notification.isRead());
         notification.setNotificationId(id);

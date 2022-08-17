@@ -59,4 +59,5 @@ public class Notification {
     public void setRead(boolean read) {
         isRead = read;
     }
+
 }
