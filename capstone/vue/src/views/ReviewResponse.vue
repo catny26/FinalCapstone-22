@@ -15,8 +15,6 @@
 </template>
 
 <script>
-//import ReviewService from '@/services/ReviewService.js'
-// import ReviewCard from '@/components/ReviewCard.vue'
 
 export default {
     name: 'review-response',

@@ -24,14 +24,7 @@ export default {
   props: ["review", "doctor"],
   created() {
     this.retrieveReview();
-    // this.retrieveReviewById();
-    // this.addResponse();
   },
-  // data() {
-  //   return {
-      
-  //   }
-  // },
   methods: {
     setActiveReview(){
       this.$store.commit('SET_ACTIVE_REVIEW', this.review);
@@ -41,11 +34,6 @@ export default {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
       })
     }
-    // addResponse() {
-    //   ReviewService.respondToReview(this.id, this.review).then((response) => {
-    //     this.$store.commit('SET_ACTIVE_REVIEW', response.data);
-    //   })
-    // }
   }
 }
 </script>
