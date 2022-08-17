@@ -14,14 +14,14 @@ export default {
     return http.get(`/doctors/offDays/${doctorID}`)
   },
 
-  getAppointments(id, isDoctor){
-    if(isDoctor){
-      return http.get(`doctors/${id}/appointments`)
-    }
-    else{
-      return http.get(`patients/${id}/appointments`)
-    }
-  },
+  // getAppointments(id, isDoctor){
+  //   if(isDoctor){
+  //     return http.get(`doctors/${id}/appointments`)
+  //   }
+  //   else{
+  //     return http.get(`patients/${id}/appointments`)
+  //   }
+  // },
   getAppointmentsByPatient(patientID) {
     return http.get(`/patients/${patientID}/appointments`)
   },
