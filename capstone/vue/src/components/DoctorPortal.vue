@@ -47,6 +47,7 @@
           <input type="text" name="office-image" id="office-image" v-model="newOffice.officeImageUrl">
         </div>
         <input type="submit" value="Add New Office">
+        <input type="button" value="check thingy" @click="formatCost(newOffice.costPerHour)">
       </form>
       <availability />
   </div>
@@ -83,6 +84,9 @@ export default {
 
     },
     methods:{
+        formatCost(cost){
+            return cost
+        },
         refreshData(){
             this.user = this.$store.state.user;
 
@@ -125,6 +129,8 @@ export default {
             })
         },
         addOffice(){
+            //this.newOffice.costPerHour = this.formatCost(this.newOffice.costPerHour)
+            this.newOffice.costPerHour = parseInt(this.newOffice.costPerHour);
             OfficeService.createOffice(this.newOffice, this.user.id)
             .then(response=>{
                 if(response.status == 201){

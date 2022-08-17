@@ -107,7 +107,7 @@ public class JdbcOfficeInfoDao implements OfficeInfoDao {
         office.setPhoneNumber(rowSet.getLong("phone_number"));
         office.setOfficeHoursOpen(rowSet.getTime("office_hours_open").toLocalTime());
         office.setOfficeHoursClose(rowSet.getTime("office_hours_close").toLocalTime());
-        office.setCostPerHour(rowSet.getBigDecimal("cost_per_hour"));
+        office.setCostPerHour(rowSet.getInt("cost_per_hour"));
         office.setOfficeImageUrl(rowSet.getString("office_image_url"));
         office.setDelay(rowSet.getBoolean("delay"));
 

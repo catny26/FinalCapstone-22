@@ -12,11 +12,11 @@ public class OfficeInfo {
     private long phoneNumber;
     private LocalTime officeHoursOpen;
     private LocalTime officeHoursClose;
-    private BigDecimal costPerHour;
+    private int costPerHour;
     private String officeImageUrl;
     private boolean delay;
 
-    public OfficeInfo(long officeId, String officeName, String address, long phoneNumber, LocalTime officeHoursOpen, LocalTime officeHoursClose, BigDecimal costPerHour, boolean delay) {
+    public OfficeInfo(long officeId, String officeName, String address, long phoneNumber, LocalTime officeHoursOpen, LocalTime officeHoursClose, int costPerHour, boolean delay) {
         this.officeId = officeId;
         this.officeName = officeName;
         this.address = address;
@@ -80,11 +80,11 @@ public class OfficeInfo {
         this.officeHoursClose = officeHoursClose;
     }
 
-    public BigDecimal getCostPerHour() {
+    public int getCostPerHour() {
         return costPerHour;
     }
 
-    public void setCostPerHour(BigDecimal costPerHour) {
+    public void setCostPerHour(int costPerHour) {
         this.costPerHour = costPerHour;
     }
 
