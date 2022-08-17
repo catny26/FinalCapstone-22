@@ -13,6 +13,6 @@ export default {
       },
     updateMessage(notificationId, notification) {
         console.log("updating message isRead = " + notification.isRead)
-        return http.put(`/notification/update/${notificationId}`, notification);
+        return http.put(`/notification/${notificationId}/update/`, notification);
       }
 }

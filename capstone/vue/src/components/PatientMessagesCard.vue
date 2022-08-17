@@ -6,7 +6,7 @@
      {{ this.$store.state.notification }}
 
     <!-- <h3 v-bind:to="getMessages"></h3> -->
-    <ul v-if="user.isDoctor">
+    <ul>
       <li
       v-for="notification in this.$store.state.notifications"
       :key="notification.notificationId">
@@ -14,13 +14,13 @@
       {{ notification.notificationId }}
 
       <div class="button-container" v-if="!enableAdd">
-        <button class="mark-read" v-on:click.prevent="updateMessage(notification, true)" v-if="!notification.isRead">Mark Read</button>
-        <button class="mark-unread" v-on:click.prevent="updateMessage(notification, false)" v-if="notification.isRead">Mark Unread</button>
+        <button class="mark-read" v-on:click.prevent="updateMessage(notification, !notification.read)">{{notification.read? 'Mark Unread':'Mark Read'}}</button>
+        <!-- <button class="mark-unread" v-on:click.prevent="updateMessage(notification, false)" v-if="notification.isRead">Mark Unread</button>
         <button class="confirm-appointment" 
         v-for="appointment in this.$store.state.appointments" 
         :key="appointment.appointmentId"
-        v-on:click.prevent="confirmApptmt()" id="doctorrole" value="doctor">Confirm Appointment</button>
-      
+        v-on:click.prevent="confirmApptmt()" id="doctorrole" value="doctor">Confirm Appointment</button> -->
+      <!-- v-if="user.isDoctor" -->
       </div>
 
       </li>
@@ -72,8 +72,8 @@ export default {
     }
   },
   updateMessage(notification, isRead) {
-      notification.isRead = isRead
-      console.log("notification = " + notification.isRead)
+      notification.read = isRead
+      console.log("notification = " + notification.read)
       messageService.updateMessage(notification.notificationId, notification).then((response) => {
         if (response.status === 200) {
           this.$store.commit('SET_ACTIVE_NOTIFICATION', response.data);
