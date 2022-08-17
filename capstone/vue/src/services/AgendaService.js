@@ -7,7 +7,7 @@ const http = axios.create({
 export default {
 
   getAgenda(doctorID) {
-    return http.get(`/doctors/agenda/${doctorID}`)
+    return http.get(`/doctors/${doctorID}/agenda`)
   },
 
   getDaysOff(doctorID) {

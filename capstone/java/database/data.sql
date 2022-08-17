@@ -72,7 +72,7 @@ INSERT INTO agenda (doctor_id, mon, tue, wen, thur, fri, sat, sun) VALUES (11, a
 INSERT INTO agenda (doctor_id, mon, tue, wen, thur, fri, sat, sun) VALUES (12, array[8,9,10,11,13,14,15,16,17], array[8,9,10,11,13,14,15,16,17], null, array[8,9,10,11,13,14,15,16,17], array[8,9,10,11,13,14,15,16,17], array[8,9,10,11,13,14,15,16,17], null);
 
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3, 23, 1, '09:00', '10:00', '2022-08-23', 'Confirmed', 'Referred by PCP for chest pain');
-INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3, 20, 1, '10:00', '11:00', '2022-08-24', 'Confirmed', 'Chest pain');
+INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3, 20, 1, '10:00', '11:00', '2022-08-24', 'Pending', 'Chest pain');
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (3, 18, 1, '09:00', '10:00', '2022-08-25', 'Pending', 'Annual check-up');
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (4, 22, 2, '14:00', '15:00', '2022-08-22', 'Confirmed', 'Annual checkup');
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (5, 22, 3, '10:00', '11:30', '2022-08-22', 'Confirmed', 'Bloodwork');
@@ -80,10 +80,10 @@ INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time
 INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time, appointment_date, status, reason) VALUES (7, 21, 5, '15:00', '16:00', '2022-08-09', 'Cancelled', 'Jaw pain');
 
 
-INSERT INTO notifications (user_id, message, is_read) VALUES (3, 'Patient is waiting for appointment confirmation.', false);
-INSERT INTO notifications (user_id, message, is_read) VALUES (3, 'Patient is waiting for appointment confirmation.', true);
-INSERT INTO notifications (user_id, message, is_read) VALUES (23, 'The doctor has confirmed your appointment.', true);
-INSERT INTO notifications (user_id, message, is_read) VALUES (21, 'Appointment cancelled successfully.', true);
-INSERT INTO notifications (user_id, message, is_read) VALUES (7, 'Patient has cancelled appointment.', false);
+INSERT INTO notifications (doctor_id, patient_id, message, is_read) VALUES (3, 18, 'Patient is waiting for appointment confirmation.', false);
+INSERT INTO notifications (doctor_id, patient_id, message, is_read) VALUES (3, 20, 'Patient is waiting for appointment confirmation.', true);
+INSERT INTO notifications (doctor_id, patient_id, message, is_read) VALUES (3, 23, 'The doctor has confirmed your appointment.', true);
+INSERT INTO notifications (doctor_id, patient_id, message, is_read) VALUES (7, 21, 'Appointment cancelled successfully.', true);
+INSERT INTO notifications (doctor_id, patient_id, message, is_read) VALUES (7, 21, 'Patient has cancelled appointment.', false);
 
 COMMIT TRANSACTION;

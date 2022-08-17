@@ -3,6 +3,7 @@
   <div class="main">
     
     <h1 class="appointment-header">
+      {{selectedDaySchedule}}
       {{ this.$store.state.doctor.fullName }}'s Availability:
     </h1>
 
@@ -88,10 +89,7 @@ export default {
       date: null,
       selectedDaySchedule: {
         day: "",
-        dayStart: "",
-        lunchStart: "",
-        lunchEnd: "",
-        dayEnd: "",
+       hours: []
       },
       selectedHour: 0,
       stringDate: "",
@@ -130,14 +128,15 @@ export default {
       })
       MessageService.sendMessage(pendingApptMessage)
 this.$router.push(`/user/${this.$store.state.user.id}/appointments/`)    },
+
     getAgenda() {
-      AgendaService.getAgenda(this.$route.params.id).then((response) => {
+      AgendaService.getAgenda(parseInt(this.$route.params.id)).then((response) => {
         this.$store.commit("SET_ACTIVE_AGENDA", response.data);
         this.storedAgenda = response.data;
       });
     },
     findDisabledDates() {
-      AgendaService.getDaysOff(this.drID).then((response) => {
+      AgendaService.getDaysOff(parseInt(this.drID)).then((response) => {
         this.$store.commit("SET_DISABLED_DATES", response.data);
       });
     },
@@ -148,66 +147,41 @@ this.$router.push(`/user/${this.$store.state.user.id}/appointments/`)    },
         this.selectedDaySchedule.day = day;
         switch (day) {
           case 2:
-            this.selectedDaySchedule.dayStart = this.storedAgenda.monStart;
-            this.selectedDaySchedule.lunchStart = this.storedAgenda.lunchStart;
-            this.selectedDaySchedule.lunchEnd = this.storedAgenda.lunchEnd;
-            this.selectedDaySchedule.dayEnd = this.storedAgenda.monEnd;
+            this.selectedDaySchedule.hours = this.storedAgenda.mon;
             break;
           case 3:
-            this.selectedDaySchedule.dayStart = this.storedAgenda.tueStart;
-            this.selectedDaySchedule.lunchStart = this.storedAgenda.lunchStart;
-            this.selectedDaySchedule.lunchEnd = this.storedAgenda.lunchEnd;
-            this.selectedDaySchedule.dayEnd = this.storedAgenda.tueEnd;
+            this.selectedDaySchedule.hours = this.storedAgenda.tue;
             break;
           case 4:
-            this.selectedDaySchedule.dayStart = this.storedAgenda.wenStart;
-            this.selectedDaySchedule.lunchStart = this.storedAgenda.lunchStart;
-            this.selectedDaySchedule.lunchEnd = this.storedAgenda.lunchEnd;
-            this.selectedDaySchedule.dayEnd = this.storedAgenda.wenEnd;
+            this.selectedDaySchedule.hours = this.storedAgenda.wen;
             break;
           case 5:
-            this.selectedDaySchedule.dayStart = this.storedAgenda.thurStart;
-            this.selectedDaySchedule.lunchStart = this.storedAgenda.lunchStart;
-            this.selectedDaySchedule.lunchEnd = this.storedAgenda.lunchEnd;
-            this.selectedDaySchedule.dayEnd = this.storedAgenda.thurEnd;
+            this.selectedDaySchedule.hours = this.storedAgenda.thur;
             break;
           case 6:
-            this.selectedDaySchedule.dayStart = this.storedAgenda.friStart;
-            this.selectedDaySchedule.lunchStart = this.storedAgenda.lunchStart;
-            this.selectedDaySchedule.lunchEnd = this.storedAgenda.lunchEnd;
-            this.selectedDaySchedule.dayEnd = this.storedAgenda.friEnd;
+            this.selectedDaySchedule.hours = this.storedAgenda.fri;
             break;
           case 7:
-            this.selectedDaySchedule.dayStart = this.storedAgenda.satStart;
-            this.selectedDaySchedule.lunchStart = this.storedAgenda.lunchStart;
-            this.selectedDaySchedule.lunchEnd = this.storedAgenda.lunchEnd;
-            this.selectedDaySchedule.dayEnd = this.storedAgenda.satEnd;
+            this.selectedDaySchedule.hours = this.storedAgenda.sat;
             break;
           case 1:
-            this.selectedDaySchedule.dayStart = this.storedAgenda.sunStart;
-            this.selectedDaySchedule.lunchStart = this.storedAgenda.lunchStart;
-            this.selectedDaySchedule.lunchEnd = this.storedAgenda.lunchEnd;
-            this.selectedDaySchedule.dayEnd = this.storedAgenda.sunEnd;
+            this.selectedDaySchedule.hours = this.storedAgenda.sun;
             break;
         }
         var firstArray = [];
-        for (
-          var i = parseInt(this.selectedDaySchedule.dayStart);
-          i < parseInt(this.selectedDaySchedule.lunchStart);
-          i++
-        ) {
-          firstArray.push(i);
-        }
+
+        this.selectedDaySchedule.hours.forEach((hour)=> {
+          firstArray.push(hour)
+        })
+        // for (
+        //   var i = parseInt(this.selectedDaySchedule.dayStart);
+        //   i < parseInt(this.selectedDaySchedule.lunchStart);
+        //   i++
+        // ) {
+        //   firstArray.push(i);
+        // }
         this.$store.commit("SET_ACTIVE_DAY_SCHED", firstArray);
-        var secondArray = [];
-        for (
-          var j = parseInt(this.selectedDaySchedule.lunchEnd);
-          j < parseInt(this.selectedDaySchedule.dayEnd);
-          j++
-        ) {
-          secondArray.push(j);
-        }
-        this.$store.commit("SET_ACTIVE_EVE_SCHED", secondArray);
+        
         this.stringDate = this.date;
 
         var year = this.date.getFullYear();
