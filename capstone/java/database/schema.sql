@@ -20,10 +20,9 @@ CREATE TABLE notifications (
     message varchar (500) NOT NULL,
     is_read boolean NOT NULL,
     CONSTRAINT PK_notification PRIMARY KEY (notification_id),
-    CONSTRAINT PK_appointment PRIMARY KEY (appointment_id),
     CONSTRAINT FK_notification_doctor FOREIGN KEY (doctor_id) REFERENCES users (user_id),
     CONSTRAINT FK_notification_patient FOREIGN KEY (patient_id) REFERENCES users (user_id),
-
+    CONSTRAINT FK_appointment_id FOREIGN KEY (appointment_id) REFERENCES appointments (appointment_id)
 
 );
 
