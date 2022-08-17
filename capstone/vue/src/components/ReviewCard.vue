@@ -11,7 +11,7 @@
     </div>
     <h4>{{ review.reviewMessage }}</h4>
 
-    <router-link v-bind:to="{name: 'review-response', params: {id: this.$route.params.id}}"><input type="button" value="Respond to Review"></router-link>&nbsp;
+    <router-link v-bind:to="{name: 'review-response', params: {id: this.review.reviewId}}"><input type="button" value="Respond to Review" @click="setActiveReview"></router-link>&nbsp;
   </div>
 </template>
 
@@ -32,6 +32,9 @@ export default {
   //   }
   // },
   methods: {
+    setActiveReview(){
+      this.$store.commit('SET_ACTIVE_REVIEW', this.review);
+    },
     retrieveReview(){
       ReviewService.getReviewsByDoctorId(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);

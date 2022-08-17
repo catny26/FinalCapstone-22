@@ -7,6 +7,7 @@
 <script>
 import HealthHeader from "@/components/HealthHeader.vue"
 import OfficeService from '@/services/OfficeService'
+import ReviewService from '@/services/ReviewService'
 //import DoctorService from '@/services/DoctorService'
 
 export default{
@@ -22,6 +23,11 @@ export default{
       })
     }
 
+    if(this.$store.state.reviews.length == 0){
+      ReviewService.getReviews().then(response=>{
+        this.$store.commit('SET_REVIEWS', response.data);
+      })
+    }
   },
   components: {
     HealthHeader
