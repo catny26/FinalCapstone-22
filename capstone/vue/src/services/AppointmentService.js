@@ -30,4 +30,16 @@ export default {
     return http.get(`/doctors/appointments/${doctorID}`)
   },
 
+  createMessage(userId) {
+    let success
+    if (userId.appointment) {
+      success = "true"
+      return http.post('/notification', userId, {params: { success }})
+    }
+  },
+
+  updateAppointment(id) {
+    return http.put(`/appointment/${id}`, id);
+  }
+
 }

@@ -11,4 +11,8 @@ export default {
     sendMessage(notification) {
         return http.post('/notification/create', notification);
       },
+    updateMessage(notificationId, notification) {
+        console.log("updating message isRead = " + notification.isRead)
+        return http.put(`/notification/update/${notificationId}`, notification);
+      }
 }
