@@ -60,9 +60,9 @@ public class ReviewsController {
 //        return reviewDao.getByPatientID(Long.parseLong(principal.getName()));
 //    }
     //allow doctors (only) to reply to reviews
-    @RequestMapping(value = "/reviews/response/{reviewId}", method = RequestMethod.PUT)
-    public void respondToReviews(@PathVariable long reviewId, @RequestBody Reviews reviews) {
-        reviewDao.updateReview(reviewId, reviews);
+    @RequestMapping(value = "/reviews/response/{doctorId}", method = RequestMethod.PUT)
+    public void respondToReviews(@PathVariable long doctorId, @RequestBody Reviews reviews) {
+        reviewDao.updateReview(doctorId, reviews);
     }
 
 //    @RequestMapping(path = "whoami")
