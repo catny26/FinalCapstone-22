@@ -10,6 +10,7 @@
       />
     </div>
     <h4>{{ review.reviewMessage }}</h4>
+    <p v-if="this.review.reviewResponse != ''">Response: {{review.reviewResponse}}</p>
 
     <router-link v-bind:to="{name: 'review-response', params: {id: this.review.reviewId}}"><input type="button" value="Respond to Review" @click="setActiveReview"></router-link>&nbsp;
   </div>
@@ -23,14 +24,7 @@ export default {
   props: ["review", "doctor"],
   created() {
     this.retrieveReview();
-    // this.retrieveReviewById();
-    // this.addResponse();
   },
-  // data() {
-  //   return {
-      
-  //   }
-  // },
   methods: {
     setActiveReview(){
       this.$store.commit('SET_ACTIVE_REVIEW', this.review);
@@ -40,11 +34,6 @@ export default {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
       })
     }
-    // addResponse() {
-    //   ReviewService.respondToReview(this.id, this.review).then((response) => {
-    //     this.$store.commit('SET_ACTIVE_REVIEW', response.data);
-    //   })
-    // }
   }
 }
 </script>

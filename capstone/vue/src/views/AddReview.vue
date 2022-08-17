@@ -60,10 +60,6 @@
         <label for="review">Review: </label>
         <textarea id="review" v-model="newReview.reviewMessage"/>
       </div>
-      <!-- <div class="form-element">
-        <label for="response">Response: </label>
-        <textarea id="response" v-model="newReview.reviewResponse" />
-      </div> -->
       <div class="actions">
         <input type = "submit" value="Submit">
         <input type="button" value="Cancel" v-on:click.prevent="resetForm">

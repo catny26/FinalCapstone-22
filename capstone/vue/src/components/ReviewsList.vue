@@ -9,7 +9,6 @@
 
 <script>
 import ReviewService from '@/services/ReviewService.js';
-// import DoctorService from '@/services/DoctorService.js';
 import ReviewCard from '@/components/ReviewCard.vue';
 
 export default {

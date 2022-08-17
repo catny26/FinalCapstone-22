@@ -1,7 +1,6 @@
 <template>
   <div class="review-response">
         <form v-on:submit.prevent="updateCurrentReview">
-          <!-- <review-card /> -->
             <div>
                 <label for="response">Enter a Response: </label>
                 <textarea id="response" v-model="updatedReview.reviewResponse" />
@@ -16,15 +15,10 @@
 </template>
 
 <script>
-//import ReviewService from '@/services/ReviewService.js'
-// import ReviewCard from '@/components/ReviewCard.vue'
 
 export default {
     name: 'review-response',
     props: ["doctor"],
-    // components: {
-    //   ReviewCard
-    // },
 data() {
     return {
       updatedReview: {
@@ -38,18 +32,6 @@ data() {
       }
     };
   },
-  // created(){
-  //   if(this.$store.state.review.reviewId != 0){
-  //     this.review = this.$store.state.review
-  //   } else {
-  //     this.reviews = this.$store.state.reviews
-  //     this.reviews.forEach(review=>{
-  //       if(review.reviewId == this.$route.params.id){
-  //         this.review = review;
-  //       }
-  //     })
-  //   }
-  // },
   methods: {
     getReview(){
       let output = null;
@@ -65,19 +47,6 @@ data() {
       this.updatedReview = output;
     },
     updateCurrentReview() {
-      // const updatedReview = {
-      //   reviewId: this.reviewResponse.reviewId,
-      //   amountOfStars: this.reviewResponse.amountOfStars,
-      //   reviewMessage: this.reviewResponse.reviewMessage,
-      //   doctorId: this.reviewResponse.doctorId,
-      //   patientId: this.reviewResponse.patientId,
-      //   officeId: this.reviewResponse.officeId,
-      //   reviewResponse: this.reviewResponse.reviewResponse
-      // };
-      // ReviewService.respondToReview(this.$route.params.id).then((response) => {
-      //   this.$store.commit('SET_REVIEWS', response.data);
-      // });
-      // this.updatedReview = {};
       console.log('updated')
     },
     resetForm() {
