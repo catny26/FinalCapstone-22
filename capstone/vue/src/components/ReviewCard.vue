@@ -10,6 +10,7 @@
       />
     </div>
     <h4>{{ review.reviewMessage }}</h4>
+    <p v-if="this.review.reviewResponse != ''">Response: {{review.reviewResponse}}</p>
 
     <router-link v-bind:to="{name: 'review-response', params: {id: this.review.reviewId}}"><input type="button" value="Respond to Review" @click="setActiveReview"></router-link>&nbsp;
   </div>
