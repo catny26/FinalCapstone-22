@@ -105,10 +105,6 @@ order: 1;
   order: 2;
 }
 
-.links-container a:hover {
-  transition: 0.7s;
-  color: white;
-}
 .links-container a {
   color: white;
   text-decoration: none;
@@ -116,7 +112,7 @@ order: 1;
 
 
 .links-container a:link {
-  color: white;
+  color: whitet
 }
 
 .links-container a:visited {

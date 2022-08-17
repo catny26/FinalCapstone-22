@@ -5,7 +5,7 @@
       <table>
         <tr>
           <td>Meeting with</td>
-          <td>{{this.$store.state.doctor.fullName}}</td>
+          <td>{{doctorName}}</td>
         </tr>
         <tr>
           <td>Date</td>
@@ -36,13 +36,14 @@ export default {
     return {
       pID: this.patientID,
       appointment: this.appt,
-      
+      doctorName: '',
     };
   },
   methods: {
     getDoctorInfo() {
         DoctorService.getDoctor(this.appointment.doctorId).then((response) => {
         this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
+        this.doctorName = this.$store.state.doctor.fullName;
         })
     },
   },

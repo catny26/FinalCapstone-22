@@ -14,5 +14,8 @@ export default {
     return http.get(`/doctors/offDays/${doctorID}`)
   },
 
+  updateAgenda(agenda) {
+    return http.put(`/updateagenda`, agenda)
+  }
 
 }
