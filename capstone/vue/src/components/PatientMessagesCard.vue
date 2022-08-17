@@ -6,7 +6,7 @@
      {{ this.$store.state.notification }}
 
     <!-- <h3 v-bind:to="getMessages"></h3> -->
-    <ul>
+    <ul v-if="user.isDoctor">
       <li
       v-for="notification in this.$store.state.notifications"
       :key="notification.notificationId">
@@ -16,7 +16,11 @@
       <div class="button-container" v-if="!enableAdd">
         <button class="mark-read" v-on:click.prevent="updateMessage(notification, true)" v-if="!notification.isRead">Mark Read</button>
         <button class="mark-unread" v-on:click.prevent="updateMessage(notification, false)" v-if="notification.isRead">Mark Unread</button>
-        <button class="confirm-appointment" v-on:click.prevent="confirmApptmt()" v-if="isDoctor" id="doctorrole" value="doctor">Confirm Appointment</button>
+        <button class="confirm-appointment" 
+        v-for="appointment in this.$store.state.appointments" 
+        :key="appointment.appointmentId"
+        v-on:click.prevent="confirmApptmt()" id="doctorrole" value="doctor">Confirm Appointment</button>
+      
       </div>
 
       </li>
