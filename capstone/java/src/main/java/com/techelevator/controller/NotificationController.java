@@ -35,7 +35,7 @@ public class NotificationController {
         return notificationDao.getAllNotificationsByUser(userId);
     }
 
-    @RequestMapping(value = "/user/{id}/notification/unread", method = RequestMethod.GET)
+    @RequestMapping(value = "/notification/unread/{userId}", method = RequestMethod.GET)
     public List<Notification> getUnreadNotificationsByUser(@PathVariable long id) {
         return notificationDao.getAllUnreadNotificationsByUser(id);
     }
@@ -56,7 +56,7 @@ public class NotificationController {
         return notificationDao.createNotification(newNotification);
     }
 
-    @RequestMapping(value = "/notification/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/notification/{id}/update", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public Notification updateNotification(@PathVariable long id, @RequestBody Notification updatedNotification) {
         updatedNotification.setNotificationId(id);
