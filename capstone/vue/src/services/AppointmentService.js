@@ -23,11 +23,11 @@ export default {
     }
   },
   getAppointmentsByPatient(patientID) {
-    return http.get(`/patients/appointments/${patientID}`)
+    return http.get(`/patients/${patientID}/appointments`)
   },
 
   getAppointmentsByDoctor(doctorID) {
-    return http.get(`/doctors/appointments/${doctorID}`)
+    return http.get(`/doctors/${doctorID}/appointments/`)
   },
 
   createMessage(userId) {
