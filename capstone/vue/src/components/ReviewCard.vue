@@ -10,46 +10,46 @@
       />
     </div>
     <h4>{{ review.reviewMessage }}</h4>
-    <p><i>Provider's Response: </i>{{ review.reviewResponse }}</p>
-    <!-- <router-link class="link" v-bind:to="{name: 'review-response'}"><input type="button" value="Respond to Review" v-if="retrieveReviewById"></router-link>&nbsp; -->
-    <router-link class="link" v-bind:to="{name: 'providers'}"><input type="button" value="Back to Providers List"></router-link>
+    <!-- <p>Provider's Response: {{ review.reviewResponse }}</p> -->
+
+      <!-- <div class="form-element">
+        <form v-on:submit.prevent="addResponse">
+        <label for="response">Response: </label>
+        <textarea id="response" v-model="{{review.reviewResponse}}" />
+        <input type="submit" value="Submit">
+        </form>
+      </div> -->
+
+    <!-- <router-link class="link" v-bind:to="{name: 'review-response', params: {id: this.doctorId}}"><input type="button" value="Respond to Review"></router-link>&nbsp; -->
   </div>
 </template>
 
 <script>
 import ReviewService from '@/services/ReviewService.js'
-import DoctorService from '@/services/DoctorService.js'
 
 export default {
   name: "review-card",
   props: ["review", "doctor"],
   created() {
     this.retrieveReview();
-    this.getDoctorInformation();
-    // this.retrieveReviewById();
+    // this.addResponse();
   },
-  data() {
-    return {
-      storedReview: this.review
-    }
-  },
+  // data() {
+  //   return {
+  //     storedReview: this.review
+  //   }
+  // },
   methods: {
     retrieveReview(){
       ReviewService.getReviewsByDoctorId(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
       })
-    // },
-    // retrieveReviewById(){
-    //   ReviewService.getReview(this.$route.params.id).then((response) => {
-    //     this.$store.commit("SET_ACTIVE_REVIEW", response.data);
-    //     this.storedReview = response.data;
-    //   })
-    },
-    getDoctorInformation() {
-      DoctorService.getDoctor(this.doctorId).then((response) => {
-        this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
-      })
     }
+    // addResponse() {
+    //   ReviewService.respondToReview(this.id, this.review).then((response) => {
+    //     this.$store.commit('SET_ACTIVE_REVIEW', response.data);
+    //   })
+    // }
   }
 }
 </script>
@@ -58,12 +58,11 @@ export default {
 .review-card {
   display: flex;
   flex-direction: column;
-  /* grid-template-columns: auto; */
-  align-items: left;
+  align-items: center;
 
-  border: 2px solid black;
+  border: 1px solid lightgrey;
   border-radius: 10px;
-  width: 500px;
+  width: 700px;
 
   margin: 10px;
   padding: 15px;
@@ -76,12 +75,12 @@ export default {
   font-size: 2vw;
   margin: 5px;
   padding: 5px;
-  text-align: left;
+  text-align: center;
 }
 .review-card p {
   font-size: 1vw;
   margin: 5px;
   padding: 5px;
-  text-align: left;
+  text-align: center;
 }
 </style>

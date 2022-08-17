@@ -12,14 +12,6 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
-CREATE TABLE notifications (
-    notification_id SERIAL NOT NULL,
-    user_id bigint NOT NULL,
-    message varchar (500) NOT NULL,
-    is_read boolean NOT NULL,
-    CONSTRAINT PK_notification PRIMARY KEY (notification_id),
-    CONSTRAINT FK_notification_user FOREIGN KEY (user_id) REFERENCES users (user_id)
-);
 
 CREATE TABLE office_info (
     office_id SERIAL,
@@ -85,6 +77,18 @@ CREATE TABLE appointments (
     CONSTRAINT FK_appointment_doctor FOREIGN KEY (doctor_id) REFERENCES users (user_id),
     CONSTRAINT FK_appointment_patient FOREIGN KEY (patient_id) REFERENCES users (user_id),
     CONSTRAINT FK_appointment_agenda FOREIGN KEY (agenda_id) REFERENCES agenda (agenda_id)
+);
+
+CREATE TABLE notifications (
+    notification_id SERIAL NOT NULL,
+    user_id bigint NOT NULL,
+    appointment_id bigint NOT NULL,
+    message varchar (500) NOT NULL,
+    is_read boolean NOT NULL,
+    CONSTRAINT PK_notification PRIMARY KEY (notification_id),
+    CONSTRAINT FK_notification_user FOREIGN KEY (user_id) REFERENCES users (user_id),
+    CONSTRAINT FK_appointment_id FOREIGN KEY (appointment_id) REFERENCES appointments (appointment_id)
+
 );
 
 COMMIT TRANSACTION;

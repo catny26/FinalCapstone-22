@@ -5,26 +5,36 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
+import org.springframework.lang.Nullable;
 
+import java.sql.Array;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Agenda {
 
     private long agendaId;
     private long doctorId;
-    private Integer[] mon;
-    private Integer[] tue;
-    private Integer[] wen;
-    private Integer[] thur;
-    private Integer[] fri;
-    private Integer[] sat;
-    private Integer[] sun;
+    @Nullable
+    private List<Integer> mon;
+    @Nullable
+    private List<Integer> tue;
+    @Nullable
+    private List<Integer> wen;
+    @Nullable
+    private List<Integer> thur;
+    @Nullable
+    private List<Integer> fri;
+    @Nullable
+    private List<Integer> sat;
+    @Nullable
+    private List<Integer> sun;
 
     public Agenda(){}
 
-    public Agenda(long agendaId, long doctorId, Integer[] mon, Integer[] tue, Integer[] wen, Integer[] thur, Integer[] fri, Integer[] sat, Integer[] sun) {
+    public Agenda(long agendaId, long doctorId, List<Integer> mon, List<Integer> tue, List<Integer> wen, List<Integer> thur, List<Integer> fri, List<Integer> sat, List<Integer> sun) {
         this.agendaId = agendaId;
         this.doctorId = doctorId;
         this.mon = mon;
@@ -36,10 +46,6 @@ public class Agenda {
         this.sun = sun;
     }
 
-    public Agenda(long agendaId, long doctorId) {
-        this.agendaId = agendaId;
-        this.doctorId = doctorId;
-    }
 
     public long getAgendaId() {
         return agendaId;
@@ -56,81 +62,80 @@ public class Agenda {
     public void setDoctorId(long doctorId) {
         this.doctorId = doctorId;
     }
-
-    public Integer[] getMon() {
+    public List<Integer> getMon() {
         return mon;
     }
 
-    public void setMon(Integer[] mon) {
+    public void setMon(List<Integer> mon) {
         this.mon = mon;
     }
 
-    public Integer[] getTue() {
+    public List<Integer> getTue() {
         return tue;
     }
 
-    public void setTue(Integer[] tue) {
+    public void setTue(List<Integer> tue) {
         this.tue = tue;
     }
 
-    public Integer[] getWen() {
+    public List<Integer> getWen() {
         return wen;
     }
 
-    public void setWen(Integer[] wen) {
+    public void setWen(List<Integer> wen) {
         this.wen = wen;
     }
 
-    public Integer[] getThur() {
+    public List<Integer> getThur() {
         return thur;
     }
 
-    public void setThur(Integer[] thur) {
+    public void setThur(List<Integer> thur) {
         this.thur = thur;
     }
 
-    public Integer[] getFri() {
+    public List<Integer> getFri() {
         return fri;
     }
 
-    public void setFri(Integer[] fri) {
+    public void setFri(List<Integer> fri) {
         this.fri = fri;
     }
 
-    public Integer[] getSat() {
+    public List<Integer> getSat() {
         return sat;
     }
 
-    public void setSat(Integer[] sat) {
+    public void setSat(List<Integer> sat) {
         this.sat = sat;
     }
 
-    public Integer[] getSun() {
+    public List<Integer> getSun() {
         return sun;
     }
 
-    public void setSun(Integer[] sun) {
+    public void setSun(List<Integer> sun) {
         this.sun = sun;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Agenda agenda = (Agenda) o;
-        return agendaId == agenda.agendaId && doctorId == agenda.doctorId && Arrays.equals(mon, agenda.mon) && Arrays.equals(tue, agenda.tue) && Arrays.equals(wen, agenda.wen) && Arrays.equals(thur, agenda.thur) && Arrays.equals(fri, agenda.fri) && Arrays.equals(sat, agenda.sat) && Arrays.equals(sun, agenda.sun);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(agendaId, doctorId);
-        result = 31 * result + Arrays.hashCode(mon);
-        result = 31 * result + Arrays.hashCode(tue);
-        result = 31 * result + Arrays.hashCode(wen);
-        result = 31 * result + Arrays.hashCode(thur);
-        result = 31 * result + Arrays.hashCode(fri);
-        result = 31 * result + Arrays.hashCode(sat);
-        result = 31 * result + Arrays.hashCode(sun);
-        return result;
-    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Agenda agenda = (Agenda) o;
+//        return agendaId == agenda.agendaId && doctorId == agenda.doctorId && Arrays.equals(mon, agenda.mon) && Arrays.equals(tue, agenda.tue) && Arrays.equals(wen, agenda.wen) && Arrays.equals(thur, agenda.thur) && Arrays.equals(fri, agenda.fri) && Arrays.equals(sat, agenda.sat) && Arrays.equals(sun, agenda.sun);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = Objects.hash(agendaId, doctorId);
+//        result = 31 * result + Arrays.hashCode(mon);
+//        result = 31 * result + Arrays.hashCode(tue);
+//        result = 31 * result + Arrays.hashCode(wen);
+//        result = 31 * result + Arrays.hashCode(thur);
+//        result = 31 * result + Arrays.hashCode(fri);
+//        result = 31 * result + Arrays.hashCode(sat);
+//        result = 31 * result + Arrays.hashCode(sun);
+//        return result;
+//    }
 }

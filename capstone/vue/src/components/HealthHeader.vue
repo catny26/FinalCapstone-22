@@ -65,9 +65,9 @@ export default {
     welcomeText(){
       if(!this.isEmpty(this.$store.state.user)){
         if(this.isDoctor){
-          return `Welcome Dr. ${this.$store.state.user.fullName}`
+          return `Welcome Dr. ${this.$store.state.user.fullName}!`
         }
-        return `Welcome ${this.$store.state.user.fullName}`
+        return `Welcome ${this.$store.state.user.fullName}!`
       }
       return null
     }

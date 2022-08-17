@@ -1,14 +1,14 @@
 <template>
     <div class = "doctor-card">
       <div class="heading">
-        <img src="..\assets\dr-mock.jpg" alt="Doctor Photo" class = "doctor-photo">
+        <img src="..\assets\original1.png" alt="Doctor Icon" class = "doctor-icon">
         <h4>{{doctor.fullName}}, {{doctor.typeOfDoctor}}</h4>
         <!-- <img src="..\assets\star.png" alt="Star Rating" class="stars"> -->
       </div>
-      <div class="link">
-        <router-link :to="{name: 'offices'}"><input type="button"  value="Office Information"></router-link>&nbsp;
-        <router-link :to="{name: 'reviews', params: {id: this.doctorId}}"><input type="button" value="See Reviews"></router-link>&nbsp;
-        <router-link :to="{name: 'add-review'}"><input type="button" value="Add a Review"></router-link>&nbsp;
+      <div class="actions">
+        <router-link :to="{name: 'offices', params: {id: this.$route.params.officeId}}"><input type="button"  value="Office Information"></router-link>
+        <router-link :to="{name: 'reviews', params: {id: this.doctorId}}"><input type="button" value="See Reviews"></router-link>
+        <router-link :to="{name: 'add-review'}"><input type="button" value="Add a Review"></router-link>
         <router-link v-if="isAuthorized" :to="{name: 'appointment-page', params: {id: this.doctorId}}"><input type="button" value="Schedule an appointment!"></router-link>
       </div>
     </div>
@@ -64,17 +64,17 @@ export default {
 
 <style>
 .doctor-card {
-  display: grid;
-
-  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
   border-radius: 10px;
-  width: 500px;
+  /* width: 500px; */
 
   margin: 10px;
   padding: 15px;
 }
 
-.doctor-photo {
+.doctor-icon {
   display: block;
   width: 80px;
   height: 80px;
@@ -102,10 +102,10 @@ export default {
   margin: 5px;
   padding: 5px;
 }
-.link {
+.actions {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1em;
 }
 </style>

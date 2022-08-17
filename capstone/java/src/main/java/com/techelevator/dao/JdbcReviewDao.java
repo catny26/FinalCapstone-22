@@ -85,11 +85,11 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public void updateReview(long reviewId, Reviews review){
+    public void updateReview(long doctorId, Reviews review){
         String sql = "UPDATE reviews " +
                      "SET review_response = ? " +
-                     "WHERE review_id = ?;";
-        jdbcTemplate.update(sql, reviewId, review.getReviewResponse());
+                     "WHERE doctor_id = ?;";
+        jdbcTemplate.update(sql, doctorId, review.getReviewResponse());
     }
 
     private Reviews mapRowToReview(SqlRowSet results) {

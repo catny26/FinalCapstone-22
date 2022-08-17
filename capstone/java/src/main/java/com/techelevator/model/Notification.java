@@ -6,14 +6,16 @@ public class Notification {
 
     private long notificationId;
     private long userId;
+    private long appointmentId;
     private String message;
     private boolean isRead;
 
     public Notification(){};
 
-    public Notification(long notificationId, long userId, String message, boolean isRead) {
+    public Notification(long notificationId, long userId, long appointmentId, String message, boolean isRead) {
         this.notificationId = notificationId;
         this.userId = userId;
+        this.appointmentId = appointmentId;
         this.message = message;
         this.isRead = isRead;
     }
@@ -34,6 +36,14 @@ public class Notification {
         this.userId = userId;
     }
 
+    public long getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(long appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -50,26 +60,4 @@ public class Notification {
         isRead = read;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Notification that = (Notification) o;
-        return notificationId == that.notificationId && userId == that.userId && isRead == that.isRead && Objects.equals(message, that.message);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(notificationId, userId, message, isRead);
-    }
-
-    @Override
-    public String toString() {
-        return "Notification{" +
-                "notificationId=" + notificationId +
-                ", userId=" + userId +
-                ", message='" + message + '\'' +
-                ", isRead=" + isRead +
-                '}';
-    }
 }

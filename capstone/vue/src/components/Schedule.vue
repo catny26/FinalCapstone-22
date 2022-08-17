@@ -12,7 +12,7 @@
         :attributes="formattedAppointments"
       ></v-date-picker>
       <div v-if="selectedDate != undefined">
-          <h2>Appointments on {{this.selectedDate}}</h2>
+          <h2>Appointments on {{formatDate(this.selectedDate)}}</h2>
           <div class="appointment-cad" v-for="appointment in selectedAppointments" :key="appointment.id">
               <p>An appointment with Doctor {{findDoctorById(appointment.doctorId).fullName}}, at {{formatTime(appointment.startTime.substr(0,2))}} - {{formatTime(appointment.endTime.substr(0,2))}}, for {{appointment.reason}} is {{appointment.status}}</p> 
           </div>
@@ -144,6 +144,10 @@ export default {
         },
         isEmpty(object){
             return Object.keys(object).length == 0
+        },
+        formatDate(date){
+            let dateArray = date.split('-')
+            return `${dateArray[1]}/${dateArray[2]}/${dateArray[0]}`
         }
     },
     computed:{
