@@ -82,7 +82,7 @@ INSERT INTO appointments (doctor_id, patient_id, agenda_id, start_time, end_time
 
 INSERT INTO notifications (user_id, appointment_id, message, is_read) VALUES (3, 2, 'Patient is waiting for appointment confirmation.', false);
 INSERT INTO notifications (user_id, appointment_id, message, is_read) VALUES (3, 3, 'Patient is waiting for appointment confirmation.', true);
-INSERT INTO notifications (user_id,, appointment_id, message, is_read) VALUES (3, 4, 'The doctor has confirmed your appointment.', true);
+INSERT INTO notifications (user_id, appointment_id, message, is_read) VALUES (3, 4, 'The doctor has confirmed your appointment.', true);
 INSERT INTO notifications (user_id, appointment_id, message, is_read) VALUES (7, 7, 'Appointment cancelled successfully.', true);
 INSERT INTO notifications (user_id, appointment_id, message, is_read) VALUES (7, 7, 'Patient has cancelled appointment.', false);
 
