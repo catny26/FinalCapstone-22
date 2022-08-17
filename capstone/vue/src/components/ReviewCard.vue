@@ -10,8 +10,15 @@
       />
     </div>
     <h4>{{ review.reviewMessage }}</h4>
-    <p>Provider's Response: {{ review.reviewResponse }}</p>
+    <!-- <p>Provider's Response: {{ review.reviewResponse }}</p> -->
 
+      <!-- <div class="form-element">
+        <form v-on:submit.prevent="addResponse">
+        <label for="response">Response: </label>
+        <textarea id="response" v-model="{{review.reviewResponse}}" />
+        <input type="submit" value="Submit">
+        </form>
+      </div> -->
 
     <!-- <router-link class="link" v-bind:to="{name: 'review-response', params: {id: this.doctorId}}"><input type="button" value="Respond to Review"></router-link>&nbsp; -->
   </div>
@@ -25,6 +32,7 @@ export default {
   props: ["review", "doctor"],
   created() {
     this.retrieveReview();
+    // this.addResponse();
   },
   // data() {
   //   return {
@@ -36,7 +44,12 @@ export default {
       ReviewService.getReviewsByDoctorId(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_REVIEW", response.data);
       })
-    },
+    }
+    // addResponse() {
+    //   ReviewService.respondToReview(this.id, this.review).then((response) => {
+    //     this.$store.commit('SET_ACTIVE_REVIEW', response.data);
+    //   })
+    // }
   }
 }
 </script>

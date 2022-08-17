@@ -6,7 +6,7 @@
         <!-- <img src="..\assets\star.png" alt="Star Rating" class="stars"> -->
       </div>
       <div class="actions">
-        <router-link :to="{name: 'offices'}"><input type="button"  value="Office Information"></router-link>
+        <router-link :to="{name: 'offices', params: {id: this.$route.params.officeId}}"><input type="button"  value="Office Information"></router-link>
         <router-link :to="{name: 'reviews', params: {id: this.doctorId}}"><input type="button" value="See Reviews"></router-link>
         <router-link :to="{name: 'add-review'}"><input type="button" value="Add a Review"></router-link>
         <router-link v-if="isAuthorized" :to="{name: 'appointment-page', params: {id: this.doctorId}}"><input type="button" value="Schedule an appointment!"></router-link>
