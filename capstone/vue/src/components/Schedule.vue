@@ -11,8 +11,8 @@
         :model-config="modelConfig"
         :attributes="formattedAppointments"
       ></v-date-picker>
-      <div v-if="selectedDate != undefined">
-          <h2>Appointments on {{formatDate(this.selectedDate)}}</h2>
+      <div v-if="selectedDate != undefined && selectedDate != ''">
+          <h2 >Appointments on {{formatDate(this.selectedDate)}}</h2>
           <div class="appointment-cad" v-for="appointment in selectedAppointments" :key="appointment.id">
               <p>An appointment with Doctor {{findDoctorById(appointment.doctorId).fullName}}, at {{formatTime(appointment.startTime.substr(0,2))}} - {{formatTime(appointment.endTime.substr(0,2))}}, for {{appointment.reason}} is {{appointment.status}}</p> 
           </div>
@@ -126,6 +126,8 @@ export default {
             return output;
         },
         getAppointments(){
+            console.log(this.$store.state.user.id)
+            console.log(this.isDoctor)
             if(this.isDoctor){
                 AppointmentService.getAppointmentsByDoctor(this.$store.state.user.id).then(response=>{
                     this.appointments = response.data;
@@ -174,20 +176,23 @@ export default {
                 appointmentDate.setDate(day[2])
                 events.push({
                     key: appointment.id,
-                    highlight: true,
+                    dot: true,
                     dates: appointmentDate
                 })
             })
             return events
         },
         isDoctor(){
-      if(this.isAuthorized){
-        if(this.$store.state.user.authorities[0].name == 'ROLE_DOCTOR'){
-          return true
-        }
+        if(this.isAuthorized){
+            if(this.$store.state.user.authorities[0].name == 'ROLE_DOCTOR'){
+                return true
+            }
     }
         return false
-    }
+    },
+    isAuthorized(){
+        return ! this.isEmpty(this.$store.state.user.authorities)
+    },
     }
 }
 </script>
