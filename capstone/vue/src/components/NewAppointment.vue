@@ -115,16 +115,16 @@ export default {
         sun: "",
       },
       appointment: {
-      id: 0,
-      patientId: 0,
-      doctorId: 0,
-      agendaId: 0,
-      startTime: '',
-      endTime: '',
-      date: '',
-      status: '',
-      reason: '',
-    }
+        id: 0,
+        patientId: 0,
+        doctorId: 0,
+        agendaId: 0,
+        startTime: "",
+        endTime: "",
+        date: "",
+        status: "",
+        reason: "",
+      },
     };
   },
   methods: {
@@ -210,15 +210,26 @@ export default {
         read: false,
       };
 
+      const newApptMessageToPatient = {
+        userId: this.doctorID,
+        appointmentId: 0,
+        message:
+          "Your appointment with " +
+          this.$store.state.doctor.fullName +
+          " has been scheduled.",
+        read: false,
+      };
       AppointmentService.createAppointment(newAppt).then((response) => {
         if (response.status === 201) {
           //todo: chk msg response
           //sending msg to doctor
-          this.$store.commit('SET_ACTIVE_APPT', response.data);
-      pendingApptMessage.appointmentId = this.$store.state.appointment.id;
-      MessageService.sendMessage(pendingApptMessage);
-      AgendaService.updateAgenda(this.newAgenda);
-
+          this.$store.commit("SET_ACTIVE_APPT", response.data);
+          pendingApptMessage.appointmentId = this.$store.state.appointment.id;
+          newApptMessageToPatient.appointmentId =
+            this.$store.state.appointment.id;
+          MessageService.sendMessage(pendingApptMessage);
+          MessageService.sendMessage(newApptMessageToPatient);
+          AgendaService.updateAgenda(this.newAgenda);
           alert(
             "Thank you for scheduling an appointment with Dr. " +
               this.$store.state.doctor.fullName +
@@ -226,7 +237,6 @@ export default {
           );
         }
       });
-
 
       this.$router.push(`/user/${this.$store.state.user.id}/appointments/`);
     },
