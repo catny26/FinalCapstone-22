@@ -66,9 +66,9 @@ export default {
   display: flex;
   flex-direction: column;
   border: 1px solid lightgrey;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 700px;
-
+  background-color: whitesmoke;
   margin: 10px;
   padding: 15px;
 }

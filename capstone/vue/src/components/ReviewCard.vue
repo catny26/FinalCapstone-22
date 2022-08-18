@@ -42,11 +42,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   border: 1px solid lightgrey;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 500px;
-
+  background-color: whitesmoke;
   margin: 10px;
   padding: 15px;
 }
