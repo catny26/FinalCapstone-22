@@ -2,8 +2,8 @@
   <div id="office-detail">
       <h2 class="title">{{office.officeName}}</h2>
       <input type="button" :value="office.delay? 'opperating on a delay' : 'no Delay'" @click="toggleDelay" :class="{delay: office.delay}" :disabled="!worksHere">
-      <img v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
-      <img v-else src="../assets/generic_office_image.jpg" alt="A generic image of a doctors office">
+      <img id="office-image-detail" v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
+      <img v-else src="#" alt="A generic image of a doctors office">
 
       <p class="address">{{office.address}}</p>
       <p class="hours">Open Hours: {{formattedOfficeHours}}</p>
@@ -185,8 +185,13 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  height: 75%;
+  width: 100%;
+  height: auto;
+}
+
+#office-image-detail {
+  width: 80%;
+  height: auto;
 }
 
 .office-card h4 {

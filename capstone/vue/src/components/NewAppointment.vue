@@ -209,7 +209,7 @@ export default {
         message:
           "Patient " +
           this.$store.state.user.fullName +
-          " has scheduled an appointment.",
+          " appointment has been scheduled.",
         read: false,
       };
 
@@ -234,14 +234,15 @@ export default {
 
           pendingApptMessage.userId = this.$store.state.user.id
           MessageService.sendMessage(pendingApptMessage)
-          
+
           MessageService.sendMessage(newApptMessageToPatient);
           AgendaService.updateAgenda(this.newAgenda);
-          alert(
-            "Thank you for scheduling an appointment with Dr. " +
-              this.$store.state.doctor.fullName +
-              "!"
+
+             alert(
+            "Thank you for scheduling an appointment!"
           );
+       
+         
         }
       });
 
@@ -249,8 +250,7 @@ export default {
     },
     updateSchedule() {
       const day = this.date.getDay() + 1;
-      console.log(day);
-      console.log(typeof day);
+
       this.newAgenda.agendaId = this.agenda.agendaId;
       this.newAgenda.doctorId = this.doctorID;
 
@@ -387,7 +387,7 @@ export default {
       this.showConfirm = true;
     },
     getDoctorInformation() {
-      DoctorService.getDoctor(this.doctorID).then((response) => {
+      DoctorService.getDoctor(this.$route.params.id).then((response) => {
         this.$store.commit("SET_ACTIVE_DOCTOR", response.data);
       });
     },
