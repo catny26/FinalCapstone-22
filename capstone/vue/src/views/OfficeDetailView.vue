@@ -1,5 +1,7 @@
 <template>
+  <div class="office-detail-view">
   <office-detail :doctors="this.$store.state.doctorsInOffice"/>
+  </div>
 </template>
 
 <script>
@@ -12,5 +14,10 @@ export default {
 </script>
 
 <style>
-
+.office-detail-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
 </style>

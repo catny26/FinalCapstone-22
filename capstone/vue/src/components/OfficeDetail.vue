@@ -3,20 +3,22 @@
       <h4 class="title">{{office.officeName}}</h4>
       <img class="office-image-detail" v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
       <img v-else src="#" alt="A generic image of a doctors office">
-      <br>
+      
       <p class="address">{{office.address}}</p>
       <p class="hours">Open Hours: {{formattedOfficeHours}}</p>
       <p class="phone-number">{{formattedPhoneNumber}}</p>
       <p class="cost-per-hour">${{office.costPerHour}} per hour</p>
 
-      <div>
+      <!-- <div>
         <h3>Our Doctors</h3>
-        <doctor-card v-for="doctor in this.$store.state.doctors" :key="doctor.id" :doctor="doctor" />
-      </div>
+        <doctor-card v-for="doctor in doctors" :key="doctor.id" :doctor="doctor" />
+      </div> -->
 
+      <div class="actions">
       <router-link :to="{name: 'offices'}"><input type="button" value="Back"></router-link>&nbsp;
       <input type="button" value="Edit Office Info" @click="editOfficeInfo = !editOfficeInfo" v-if="worksHere" >&nbsp;
       <input type="button" :value="office.delay? 'operating on a delay' : 'No Delay'" @click="toggleDelay" :class="{delay: office.delay}" :disabled="!worksHere">
+      </div>
 
       <form v-if="editOfficeInfo" action="#" @submit.prevent="updateOfficeInfo">
         <div class="form-field">
@@ -55,7 +57,7 @@
 </template>
 
 <script>
-import DoctorCard from '@/components/DoctorCard'
+// import DoctorCard from '@/components/DoctorCard'
 import OfficeService from '@/services/OfficeService'
 import DoctorService from '@/services/DoctorService'
 
@@ -75,7 +77,7 @@ export default {
         this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
       })
   },
-  components:{DoctorCard},
+  // components:{DoctorCard},
     data(){
         return {
             offices: [],
@@ -204,11 +206,6 @@ export default {
   text-align: center;
 }
 
-.office-detail input {
-  width: 120px;
-  text-align: center;
-  align-items: center;
-}
 
 /* .delay{
   background-color: red;

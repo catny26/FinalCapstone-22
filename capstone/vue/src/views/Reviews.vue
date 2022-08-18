@@ -1,6 +1,6 @@
 <template>
   <div class = "reviews">
-    <h2>Reviews From Our Patients</h2>
+    <!-- <h2>Reviews From Our Patients</h2> -->
     <reviews-list />
     <router-link class="link" v-bind:to="{name: 'providers'}"><input type="button" value="Back to Providers List"></router-link>
   </div>
@@ -21,7 +21,7 @@ export default {
   margin: 10px;
   padding: 15px;
 }
-.reviews h2 {
+/* .reviews h2 {
   color: black;
-}
+} */
 </style>
