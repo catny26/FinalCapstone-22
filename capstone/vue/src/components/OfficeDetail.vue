@@ -217,4 +217,5 @@ export default {
 .delay{
   background-color: red;
 }
+
 </style>
