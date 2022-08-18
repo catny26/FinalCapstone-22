@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
@@ -51,6 +51,7 @@ export default new Vuex.Store({
     notifications: [],
     notification: {
       notificationId: 0,
+      appointmentId: 0,
       userId: '',
       message: '',
       isRead: false
@@ -104,8 +105,8 @@ export default new Vuex.Store({
     SET_DOCTORS(state, data) {
       state.doctors = data;
     },
-    GET_DOCTORS(state, userId){
-      state.doctors = state.doctors.find( (doctor =>{
+    GET_DOCTORS(state, userId) {
+      state.doctors = state.doctors.find((doctor => {
         return doctor.userId = userId
       }))
     },
@@ -115,8 +116,8 @@ export default new Vuex.Store({
     SET_ACTIVE_REVIEW(state, data) {
       state.activeReview = data;
     },
-    GET_REVIEW(state, reviewId){
-      state.reviews = state.reviews.find( (review =>{
+    GET_REVIEW(state, reviewId) {
+      state.reviews = state.reviews.find((review => {
         return review.reviewId = reviewId
       }))
     },
@@ -140,18 +141,18 @@ export default new Vuex.Store({
     UPDATE_FILTER(state, filter) {
       state.filter = filter;
     },
-    SET_USER_OFFICES(state, data){
+    SET_USER_OFFICES(state, data) {
       state.officesUserBelongsTo = data;
     },
-    GET_OFFICE(state, officeId){
-      state.office = state.offices.find( (office =>{
+    GET_OFFICE(state, officeId) {
+      state.office = state.offices.find((office => {
         return office.officeId = officeId
       }))
     },
-    UPDATE_ACTIVE_OFFICE(state, officeId){
+    UPDATE_ACTIVE_OFFICE(state, officeId) {
       state.activeOfficeId = officeId;
     },
-    SET_DOCTORS_IN_OFFICE(state, data){
+    SET_DOCTORS_IN_OFFICE(state, data) {
       state.doctorsInOffice = data;
     },
     SET_AUTH_TOKEN(state, token) {
@@ -161,7 +162,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -208,6 +209,9 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_PATIENT(state, data) {
       state.patient = data;
+    },
+    SET_ACTIVE_APPT(state, data) {
+      state.appointment = data;
     }
   }
 })

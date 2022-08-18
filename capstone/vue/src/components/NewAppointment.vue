@@ -59,10 +59,7 @@
           <div>
             <b-form-checkbox
               id="checkbox-1"
-              v-model="status"
               name="checkbox-1"
-              value="accepted"
-              unchecked-value="not_accepted"
               @change="updateSchedule"
             >
               The appointment time above is correct
@@ -118,6 +115,17 @@ export default {
         sat: "",
         sun: "",
       },
+      appointment: {
+      id: 0,
+      patientId: 0,
+      doctorId: 0,
+      agendaId: 0,
+      startTime: '',
+      endTime: '',
+      date: '',
+      status: '',
+      reason: '',
+    }
     };
   },
   methods: {
@@ -189,35 +197,38 @@ export default {
         startTime: this.$store.state.activeStringTimeStart,
         endTime: this.$store.state.activeStringTimeEnd,
         date: this.$store.state.activeStringDate,
-        status: "Pending",
+        status: "Confirmed",
         reason: this.reason,
       };
+
       const pendingApptMessage = {
         userId: this.doctorID,
+        appointmentId: 0,
         message:
-          "Patient" +
+          "Patient " +
           this.$store.state.user.fullName +
-          " your appointment is awaiting approval.",
+          " has scheduled an appointment.",
         read: false,
       };
-
 
       AppointmentService.createAppointment(newAppt).then((response) => {
         if (response.status === 201) {
           //todo: chk msg response
           //sending msg to doctor
-          MessageService.sendMessage(pendingApptMessage);
-          //sending msg to patient
-          pendingApptMessage.userId = this.$store.state.user.id;
+          this.$store.commit('SET_ACTIVE_APPT', response.data);
+      pendingApptMessage.appointmentId = this.$store.state.appointment.id;
+      MessageService.sendMessage(pendingApptMessage);
+      AgendaService.updateAgenda(this.newAgenda);
 
-          MessageService.sendMessage(pendingApptMessage);
-
-          alert("Appointment is Pending. Waiting for Doctor Approval.");
+          alert(
+            "Thank you for scheduling an appointment with Dr. " +
+              this.$store.state.doctor.fullName +
+              "!"
+          );
         }
       });
-                AgendaService.updateAgenda(this.newAgenda);
 
-      MessageService.sendMessage(pendingApptMessage);
+
       this.$router.push(`/user/${this.$store.state.user.id}/appointments/`);
     },
     updateSchedule() {
@@ -313,13 +324,7 @@ export default {
         this.selectedDaySchedule.hours.forEach((hour) => {
           firstArray.push(hour);
         });
-        // for (
-        //   var i = parseInt(this.selectedDaySchedule.dayStart);
-        //   i < parseInt(this.selectedDaySchedule.lunchStart);
-        //   i++
-        // ) {
-        //   firstArray.push(i);
-        // }
+
         this.$store.commit("SET_ACTIVE_DAY_SCHED", firstArray);
 
         this.stringDate = this.date;
