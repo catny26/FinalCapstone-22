@@ -231,6 +231,10 @@ export default {
           newApptMessageToPatient.appointmentId =
             this.$store.state.appointment.id;
           MessageService.sendMessage(pendingApptMessage);
+
+          pendingApptMessage.userId = this.$store.state.user.id
+          MessageService.sendMessage(pendingApptMessage)
+          
           MessageService.sendMessage(newApptMessageToPatient);
           AgendaService.updateAgenda(this.newAgenda);
           alert(
