@@ -1,7 +1,7 @@
 <template>
   <div class="offices">
-    <h1>These are our offices</h1>
-
+    <!-- <h1>These are our offices</h1> -->
+    <br>
     <offices-list />
   </div>
 </template>
