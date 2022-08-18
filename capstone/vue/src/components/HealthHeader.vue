@@ -110,6 +110,7 @@ order: 1;
 .links-container a {
   color: white;
   text-decoration: none;
+  font-size: 25px;
 }
 
 
