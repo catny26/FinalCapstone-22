@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap');
 
 .header {
   height: 120px;
@@ -120,7 +120,7 @@ order: 1;
 }
 
 #head h1 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Archivo Narrow', sans-serif;
   font-weight: 600 !important;
   font-size: 30px;
   margin-right: 60px;
