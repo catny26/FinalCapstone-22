@@ -6,7 +6,9 @@
     </header>
 
     <div class="links-container">
+
       <b-nav fill class="links"
+      
         ><b-nav-item class="tab home" style="color:white" active v-bind:to="{ name: 'home' }"
           >Home</b-nav-item
         >
@@ -119,6 +121,10 @@ order: 1;
   color: white;
 }
 
+.links-container a:hover {
+    color: #2873bf !important;
+}
+
 #head h1 {
   font-family: 'Archivo Narrow', sans-serif;
   font-weight: 600 !important;
@@ -146,7 +152,7 @@ order: 1;
 .tab:hover {
   background-color: #fff;
   transition: 0.7s;
-  color: #2873bf !important;
+
   text-decoration: none;
 }
 
@@ -155,7 +161,6 @@ order: 1;
   vertical-align: top;
   color: white !important;
   font-weight: bold;
-  padding-bottom: 10px;
 }
 
 </style>
