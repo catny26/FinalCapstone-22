@@ -183,6 +183,8 @@ export default {
 .office-card img{
   grid-area: "office-image";
   display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 50%;
   height: 75%;
 }
