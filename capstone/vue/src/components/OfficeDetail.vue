@@ -1,23 +1,22 @@
 <template>
-  <div id="office-detail">
-      <h2 class="title">{{office.officeName}}</h2>
-      <input type="button" :value="office.delay? 'opperating on a delay' : 'no Delay'" @click="toggleDelay" :class="{delay: office.delay}" :disabled="!worksHere">
-      <img id="office-image-detail" v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
+  <div class="office-detail">
+      <h4 class="title">{{office.officeName}}</h4>
+      <img class="office-image-detail" v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
       <img v-else src="#" alt="A generic image of a doctors office">
-
+      <br>
       <p class="address">{{office.address}}</p>
       <p class="hours">Open Hours: {{formattedOfficeHours}}</p>
       <p class="phone-number">{{formattedPhoneNumber}}</p>
       <p class="cost-per-hour">${{office.costPerHour}} per hour</p>
 
-      <div>
+      <!-- <div>
         <h3>Our Doctors</h3>
         <doctor-card v-for="doctor in doctors" :key="doctor.id" :doctor="doctor" />
-      </div>
+      </div> -->
 
-      <router-link :to="{name: 'offices'}"><input type="button" value="Back"></router-link>
-      <input type="button" value="Edit Office Info" @click="editOfficeInfo = !editOfficeInfo" v-if="worksHere" >
-      
+      <router-link :to="{name: 'offices'}"><input type="button" value="Back"></router-link>&nbsp;
+      <input type="button" value="Edit Office Info" @click="editOfficeInfo = !editOfficeInfo" v-if="worksHere" >&nbsp;
+      <input type="button" :value="office.delay? 'operating on a delay' : 'No Delay'" @click="toggleDelay" :class="{delay: office.delay}" :disabled="!worksHere">
 
       <form v-if="editOfficeInfo" action="#" @submit.prevent="updateOfficeInfo">
         <div class="form-field">
@@ -56,7 +55,7 @@
 </template>
 
 <script>
-import DoctorCard from '@/components/DoctorCard'
+// import DoctorCard from '@/components/DoctorCard'
 import OfficeService from '@/services/OfficeService'
 import DoctorService from '@/services/DoctorService'
 
@@ -76,7 +75,7 @@ export default {
         this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
       })
   },
-  components:{DoctorCard},
+  // components:{DoctorCard},
     data(){
         return {
             offices: [],
@@ -165,23 +164,17 @@ export default {
 </script>
 
 <style>
-.office-card {
-  display: grid;
-  /* grid-template-areas:
-    "office-image office-image . . phone-number",
-    "name name . . address",
-    "hours hours . . details-button"; */
-
-  border: 2px solid black;
-  border-radius: 10px;
-  width: 500px;
-
+.office-detail {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  width: 700px;
   margin: 10px;
   padding: 15px;
+  align-items: center;
 }
 
-.office-card img{
-  grid-area: "office-image";
+.office-detail img{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -189,40 +182,27 @@ export default {
   height: auto;
 }
 
-#office-image-detail {
+.office-image-detail {
   width: 80%;
   height: auto;
 }
 
-.office-card h4 {
-  grid-area: "name";
+.office-detail h4 {
   font-size: 2vw;
   margin: 5px;
   padding: 5px;
-  text-align: left;
+  text-align: center;
 }
 
-.office-card p {
-  font-size: 1vw;
+.office-detail p {
+  font-size: 1.2vw;
   margin: 5px;
   padding: 5px;
-  text-align: left;
+  text-align: center;
 }
 
-.office-card input {
-  grid-area: "details-button";
-}
-
-.hours{
-  grid-area:"hours";
-}
-
-.address{
-  grid-area: "address";
-}
-
-.delay{
+/* .delay{
   background-color: red;
-}
+} */
 
 </style>

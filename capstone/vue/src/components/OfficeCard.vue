@@ -1,12 +1,4 @@
 <template>
-  <!-- <div class="office-card">
-    <h4>{{ office.officeName }}</h4>
-    <p>Address: {{ office.address }}</p>
-    <p>Phone Number: {{ office.phoneNumber }}</p>
-      <p>Hours: {{ office.officeHoursOpen }} - {{ office.officeHoursClose }}</p>
-
-  </div> -->
-
   <div class="office-card">
     <img v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
     <img v-else src="#" alt="A generic image of a doctors office">
@@ -95,7 +87,6 @@ export default {
   display: flex;
   flex-direction: column;
   border: 1px solid lightgrey;
-  /* border-radius: 10px; */
   width: 700px;
   background-color: whitesmoke;
   margin: 10px;
@@ -103,14 +94,12 @@ export default {
 }
 
 .office-card img{
-  /* grid-area: "office-image"; */
   display: block;
   width: 50%;
   height: 75%;
 }
 
 .office-card h4 {
-  /* grid-area: "name"; */
   font-size: 2vw;
   margin: 5px;
   padding: 5px;
@@ -123,16 +112,4 @@ export default {
   padding: 5px;
   text-align: left;
 }
-
-/* .office-card input {
-  grid-area: "details-button";
-}
-
-.hours{
-  grid-area:"hours";
-}
-
-.address{
-  grid-area: "address";
-} */
 </style>
