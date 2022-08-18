@@ -92,29 +92,25 @@ export default {
 
 <style>
 .office-card {
-  display: grid;
-  /* grid-template-areas:
-    "office-image office-image . . phone-number",
-    "name name . . address",
-    "hours hours . . details-button"; */
-
-  border: 2px solid black;
-  border-radius: 10px;
-  width: 500px;
-
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  /* border-radius: 10px; */
+  width: 700px;
+  background-color: whitesmoke;
   margin: 10px;
   padding: 15px;
 }
 
 .office-card img{
-  grid-area: "office-image";
+  /* grid-area: "office-image"; */
   display: block;
   width: 50%;
   height: 75%;
 }
 
 .office-card h4 {
-  grid-area: "name";
+  /* grid-area: "name"; */
   font-size: 2vw;
   margin: 5px;
   padding: 5px;
@@ -122,13 +118,13 @@ export default {
 }
 
 .office-card p {
-  font-size: 1vw;
+  font-size: 1.2vw;
   margin: 5px;
   padding: 5px;
   text-align: left;
 }
 
-.office-card input {
+/* .office-card input {
   grid-area: "details-button";
 }
 
@@ -138,5 +134,5 @@ export default {
 
 .address{
   grid-area: "address";
-}
+} */
 </style>
