@@ -161,4 +161,16 @@ ul{
   color: darkblue;
   margin: 5px;
 }
+
+h2{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  border: 1px solid lightgrey;
+  width: 700px;
+  background-color: whitesmoke;
+  /* margin: 10px; */
+  padding: 15px;
+}
+
 </style>
