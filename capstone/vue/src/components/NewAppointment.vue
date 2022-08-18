@@ -250,8 +250,7 @@ export default {
     },
     updateSchedule() {
       const day = this.date.getDay() + 1;
-      console.log(day);
-      console.log(typeof day);
+
       this.newAgenda.agendaId = this.agenda.agendaId;
       this.newAgenda.doctorId = this.doctorID;
 
