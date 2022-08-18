@@ -7,6 +7,10 @@
 
     <div class="links-container">
 
+    <!-- <div class="loading" v-if="isLoading">
+        <img src="../assets/duke.gif" />
+    </div> -->
+
       <b-nav fill class="links"
       
         ><b-nav-item class="tab home" style="color:white" active v-bind:to="{ name: 'home' }"
