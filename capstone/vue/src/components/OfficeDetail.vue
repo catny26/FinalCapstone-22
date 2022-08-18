@@ -9,10 +9,10 @@
       <p class="phone-number">{{formattedPhoneNumber}}</p>
       <p class="cost-per-hour">${{office.costPerHour}} per hour</p>
 
-      <!-- <div>
+      <div>
         <h3>Our Doctors</h3>
-        <doctor-card v-for="doctor in doctors" :key="doctor.id" :doctor="doctor" />
-      </div> -->
+        <doctor-card v-for="doctor in this.$store.state.doctors" :key="doctor.id" :doctor="doctor" />
+      </div>
 
       <router-link :to="{name: 'offices'}"><input type="button" value="Back"></router-link>&nbsp;
       <input type="button" value="Edit Office Info" @click="editOfficeInfo = !editOfficeInfo" v-if="worksHere" >&nbsp;
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-// import DoctorCard from '@/components/DoctorCard'
+import DoctorCard from '@/components/DoctorCard'
 import OfficeService from '@/services/OfficeService'
 import DoctorService from '@/services/DoctorService'
 
@@ -75,7 +75,7 @@ export default {
         this.$store.commit('SET_DOCTORS_IN_OFFICE', response.data)
       })
   },
-  // components:{DoctorCard},
+  components:{DoctorCard},
     data(){
         return {
             offices: [],
@@ -169,12 +169,14 @@ export default {
   flex-direction: column;
   border: 1px solid lightgrey;
   width: 700px;
+  background-color: whitesmoke;
   margin: 10px;
   padding: 15px;
   align-items: center;
 }
 
 .office-detail img{
+  /* grid-area: "office-image"; */
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -188,6 +190,7 @@ export default {
 }
 
 .office-detail h4 {
+  /* grid-area: "name"; */
   font-size: 2vw;
   margin: 5px;
   padding: 5px;
@@ -199,6 +202,12 @@ export default {
   margin: 5px;
   padding: 5px;
   text-align: center;
+}
+
+.office-detail input {
+  width: 120px;
+  text-align: center;
+  align-items: center;
 }
 
 /* .delay{
