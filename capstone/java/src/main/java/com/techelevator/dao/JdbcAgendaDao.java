@@ -118,25 +118,25 @@ public class JdbcAgendaDao implements AgendaDao {
         List<Integer> output = new ArrayList<>();
 
         if (agenda.getMon() == null) {
-            output.add(1);
-        }
-        if (agenda.getTue() == null) {
             output.add(2);
         }
-        if (agenda.getWen() == null) {
+        if (agenda.getTue() == null) {
             output.add(3);
         }
-        if (agenda.getThur() == null) {
+        if (agenda.getWen() == null) {
             output.add(4);
         }
-        if (agenda.getFri() == null) {
+        if (agenda.getThur() == null) {
             output.add(5);
         }
-        if (agenda.getSat() == null) {
+        if (agenda.getFri() == null) {
             output.add(6);
         }
-        if (agenda.getSun() == null) {
+        if (agenda.getSat() == null) {
             output.add(7);
+        }
+        if (agenda.getSun() == null) {
+            output.add(1);
         }
 
         return output;
