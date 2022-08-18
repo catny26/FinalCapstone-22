@@ -15,7 +15,7 @@
         <b-nav-item class="tab offices" active v-bind:to="{ name: 'offices' }"
           >Offices</b-nav-item
         >
-        <b-nav-item class="tab providers" active v-bind:to="{ name: 'providers' }"
+        <b-nav-item class="tab providers-tab" active v-bind:to="{ name: 'providers' }"
           >Providers</b-nav-item
         >
         <b-nav-item class="tab resources" v-if="isAuthorized" active v-bind:to="{ name: 'patient-resources' }"
@@ -148,6 +148,7 @@ order: 1;
 .links > * {
   margin: 0px;
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .tab:hover {
