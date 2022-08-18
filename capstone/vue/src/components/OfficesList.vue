@@ -3,8 +3,9 @@
       <office-card v-for="office in this.$store.state.offices" v-bind:key="office.id" 
     v-bind:office="office" :leaveOfficeBtn="false"/>
 
-
   </div>
+
+
 </template>
 
 <script>
@@ -25,7 +26,7 @@ export default {
           this.$store.commit("SET_OFFICES", response.data)
         })
       }
-    }
+    },
 }
 </script>
 
