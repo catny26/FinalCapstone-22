@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header class="header" id="head">
-      <img id="header-image" src="../assets/teHealthLogo.png" alt="TE Health Logo">
+      <img id="header-image" src="../assets/logote.png" alt="TE Health Logo">
       <h1 id="header-h1">{{this.welcomeText}}</h1>
     </header>
 
