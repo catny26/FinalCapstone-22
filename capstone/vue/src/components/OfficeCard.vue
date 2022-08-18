@@ -9,7 +9,7 @@
 
   <div class="office-card">
     <img v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
-    <img v-else src="../assets/generic_office_image.jpg" alt="A generic image of a doctors office">
+    <img v-else src="#" alt="A generic image of a doctors office">
     <h4>{{office.officeName}}</h4>
     <p class="address">{{office.address}}</p>
     <p class="hours">Open Hours: {{formattedOfficeHours}}</p>
