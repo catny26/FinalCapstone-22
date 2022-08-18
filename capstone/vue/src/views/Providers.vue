@@ -21,6 +21,6 @@ export default {
   padding: 15px;
 }
 .providers h2 {
-  color: grey;
+  color: black;
 }
 </style>

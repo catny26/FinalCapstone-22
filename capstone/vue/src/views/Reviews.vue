@@ -22,6 +22,6 @@ export default {
   padding: 15px;
 }
 .reviews h2 {
-  color: grey;
+  color: black;
 }
 </style>
