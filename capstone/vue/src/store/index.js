@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     filter: 0,
+    patients: [],
     patient: {
       id: 0,
       username: '',
@@ -102,6 +103,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    SET_PATIENTS(state, data){
+      state.patients = data;
+    },
     SET_DOCTORS(state, data) {
       state.doctors = data;
     },

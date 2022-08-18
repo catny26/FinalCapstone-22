@@ -4,8 +4,7 @@
     <div>
         <h4> Here are the offices you belong to</h4>
         <div v-for="office in this.$store.state.officesUserBelongsTo" v-bind:key="office.id">
-        <office-card v-bind:office="office"/>
-    <input type="button" value="Leave Office" @click="leaveOffice(office.officeId)">
+        <office-card v-bind:office="office" :leaveOfficeBtn="true"/>
         </div>
     </div>
 
@@ -16,8 +15,8 @@
         </div>
         <input type="button" value="Join Offices" @click="joinOffices">
 
-        <p>Add a new office!</p>
-        <form action="#" @submit.prevent="addOffice">
+        <input type="button" value="Add a new Office!" @click="hideForm = !hideForm"/>
+        <form action="#" @submit.prevent="addOffice" v-if="!hideForm">
         <div class="form-field">
           <label for="office-name">Office Name: </label>
           <input type="text" name="office-name" id="office-name" v-model="newOffice.officeName">
@@ -47,24 +46,21 @@
           <input type="text" name="office-image" id="office-image" v-model="newOffice.officeImageUrl">
         </div>
         <input type="submit" value="Add New Office">
-        <input type="button" value="check thingy" @click="formatCost(newOffice.costPerHour)">
       </form>
-      <availability />
   </div>
 </template>
 
 <script>
 import OfficeService from '@/services/OfficeService'
 import OfficeCard from '@/components/OfficeCard'
-import Availability from '@/components/Availability'
 
 export default {
     components:{
         OfficeCard,
-        Availability
     },
     data(){
         return {
+            hideForm: true,
             user: {},
             officesUserBelongsTo: [],
             selectedOffices: [],

@@ -1,18 +1,11 @@
 <template>
   <div class = "resources-card">
-    <h3>User Resources</h3>
-<div class="container">
+    <!-- <h3>User Resources</h3> -->
+<div class="holder">
     <div class="patient-messages-card">
-      <patient-messages-card
-        :v-show="showMessages"
-        v-for="message in this.$store.state.messages"
-        v-bind:key="message.id"
-        v-bind:message="message">
-      </patient-messages-card>
       <div>
         <img src="../assets/message.png" alt="Messages Image" class="messages-image">
       </div>
-      <!-- <button class="messages" @click="showMessages = !showMessages;">See My Messages</button> -->
       <router-link v-bind:to="{ name: 'messages' }">
         <button class="messages">See My Messages</button>
       </router-link>
@@ -20,24 +13,7 @@
 
     <div class="patient-appointment-card">
       <patient-appointment-card></patient-appointment-card>
-      <!-- <div>
-        <img src="../assets/appointment.png" alt="Appointments Image" class="appointments-image">
-      </div>
-
-      <router-link v-bind:to="{ path: '/portal/appointments' }">
-        <button class="appointments">See My Appointments</button>
-      </router-link> -->
     </div>
-
-    <!-- <div class="patient-prescription-card">
-      <patient-prescription-card></patient-prescription-card> -->
-      <!-- <div>
-        <img src="../assets/prescription.png" alt="Prescriptions Image" class="prescriptions-image">
-      </div>
-      <router-link v-bind:to="{ path: '/portal/prescriptions' }">
-        <button class="prescriptions">See My Prescriptions</button>
-      </router-link> -->
-    <!-- </div> -->
 </div>
     <div class="portal-card">
       <doctor-portal v-if="isDoctor" />
@@ -49,12 +25,11 @@
 
 <script>
 import PatientAppointmentCard from './PatientAppointmentCard.vue'
-import PatientMessagesCard from './PatientMessagesCard.vue'
 import DoctorPortal from './DoctorPortal.vue'
 import PatientPortal from './PatientPortal.vue';
 
 export default {
-  components: { DoctorPortal, PatientPortal, PatientAppointmentCard, PatientMessagesCard },
+  components: { DoctorPortal, PatientPortal, PatientAppointmentCard},
   computed:{
     isDoctor(){
         if(!this.isEmpty(this.$store.state.user)){
@@ -82,21 +57,35 @@ export default {
 </script>
 
 <style>
+h3{
+  grid-area: "header";
+}
 .resources-card {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
   
+  display: grid;
+  grid-template-areas: 
+  "cards"
+  "."
+  "."
+  "portal";
+  justify-content: center;
 }
 .portal-card{
-  width: 500px;
+  grid-area: "portal";
+  display:flex;
+  justify-content:center;
+  /* width: 500px;
 
   margin: 10px;
-  padding: 15px;
+  padding: 15px; */
 }
 
-.container {
+.holder {
+  grid-area: "cards";
   display: flex;
   flex-direction: row;
   /* display: grid;
@@ -130,20 +119,6 @@ export default {
 
 .patient-appointment-card img {
   width: auto;
-  height: 100%;
-  padding: 15px;
-}
-
-.patient-prescription-card {
-  grid-area: "card3";
-  border-radius: 10px;
-  width: 500px;
-  margin: 10px;
-  padding: 15px;
-}
-
-.patient-prescription-card img {
-   width: auto;
   height: 100%;
   padding: 15px;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="offices-list">
       <office-card v-for="office in this.$store.state.offices" v-bind:key="office.id" 
-    v-bind:office="office"/>
+    v-bind:office="office" :leaveOfficeBtn="false"/>
 
 
   </div>

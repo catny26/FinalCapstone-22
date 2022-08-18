@@ -14,7 +14,8 @@
       <div v-if="selectedDate != undefined && selectedDate != ''">
           <h2 >Appointments on {{formatDate(this.selectedDate)}}</h2>
           <div class="appointment-cad" v-for="appointment in selectedAppointments" :key="appointment.id">
-              <p>An appointment with Doctor {{findDoctorById(appointment.doctorId).fullName}}, at {{formatTime(appointment.startTime.substr(0,2))}} - {{formatTime(appointment.endTime.substr(0,2))}}, for {{appointment.reason}} is {{appointment.status}}</p> 
+              <p v-if="!isDoctor">An appointment with Doctor {{findDoctorById(appointment.doctorId).fullName}}, at {{formatTime(appointment.startTime.substr(0,2))}} - {{formatTime(appointment.endTime.substr(0,2))}}, for {{appointment.reason}} is {{appointment.status}}</p>
+              <p v-else>An appointment with Patient {{findPatientById(appointment.patientId).fullName}}, at {{formatTime(appointment.startTime.substr(0,2))}} - {{formatTime(appointment.endTime.substr(0,2))}}, for {{appointment.reason}} is {{appointment.status}}</p> 
           </div>
       </div>
     </div>
@@ -67,10 +68,12 @@
 <script>
 import AppointmentService from '@/services/AppointmentService'
 import DoctorService from '@/services/DoctorService'
+import PatientService from '@/services/PatientService'
 
 export default {
     created(){
         this.getAppointments();
+
         if(this.isEmpty(this.$store.state.doctors)){
             DoctorService.getDoctors().then(response=>{
                 this.$store.commit('SET_DOCTORS', response.data)
@@ -79,6 +82,15 @@ export default {
         }
         else{
             this.doctors = this.$store.state.doctors
+        }
+
+        if(this.isEmpty(this.$store.state.patients)){
+            PatientService.getPatients().then(response=>{
+                this.$store.commit('SET_PATIENTS', response.data)
+                this.patients = response.data
+            })
+        } else{
+            this.patients = this.$store.state.patients
         }
     },
     data(){
@@ -89,13 +101,19 @@ export default {
             },
             appointments:[],
             selectedDate: undefined,
-            doctors: []
+            doctors: [],
+            patients: []
         }
     },
     methods:{
         findDoctorById(id){
             return this.doctors.find((doctor)=>{
                 return doctor.id == id
+            })
+        },
+        findPatientById(id){
+            return this.patients.find((patient)=>{
+                return patient.id == id
             })
         },
         timeComparison(time1, time2){
