@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header class="header" id="head">
-      <img id="header-image" src="../assets/teHealthLogo.png" alt="TE Health Logo">
+      <img id="header-image" src="../assets/teHealthLogo-large.png" alt="TE Health Logo">
       <h1 id="header-h1">{{this.welcomeText}}</h1>
     </header>
 
@@ -86,7 +86,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap');
 
 .header {
-  height: 120px;
+  height: 150px;
   display: flex;
   flex-direction: row;
   align-items: center;
