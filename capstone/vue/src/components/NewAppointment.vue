@@ -2,7 +2,6 @@
   <div class="container">
     <div class="main">
       <h1 class="appointment-header">
-        <br /><br />
         {{ this.$store.state.doctor.fullName }}'s Availability:
       </h1>
 
@@ -57,16 +56,19 @@
           </p>
           <div>
             <b-form-checkbox
-              id="checkbox-1"
-              name="checkbox-1"
+              v-model="value"
+      :options="options"
+      :state="state"
+      name="checkbox-validation"
               @change="updateSchedule"
-            >
-              The appointment time above is correct
-            </b-form-checkbox>
-
+            >The appointment time above is correct
+        </b-form-checkbox>
+<br>
             <b-button v-on:click="submitNewAppt" variant="outline-primary"
               >Request appointment</b-button
             >
+                
+
           </div>
           <br /><br />
         </div>
@@ -92,6 +94,7 @@ export default {
   components: {},
   data() {
     return {
+       value: [],
       drID: parseInt(this.doctorID),
       storedAgenda: this.agenda,
       date: null,
@@ -385,6 +388,11 @@ export default {
       });
     },
   },
+  computed: {
+    state() {
+        return this.value.length === 2
+      }
+  }
 };
 </script>
 

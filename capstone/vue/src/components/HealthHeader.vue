@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header class="header" id="head">
-      <img id="header-image" src="../assets/teHealthLogo-large.png" alt="TE Health Logo">
+      <img id="header-image" src="../assets/teHealthLogo-large.png" alt="TE Health Logo" active v-bind:to="{ name: 'home' }">
       <h1 id="header-h1">{{this.welcomeText}}</h1>
     </header>
 
@@ -21,7 +21,7 @@
         <b-nav-item class="tab resources" v-if="isAuthorized" active v-bind:to="{ name: 'patient-resources' }"
           >{{this.isDoctor?"Doctor Resources":"Patient Resources"}}</b-nav-item
         >
-        <b-nav-item class="tab appointments" v-if="isAuthorized" active v-bind:to="{ name: 'appointments' }"
+        <b-nav-item class="tab appointments" v-if="isAuthorized" active v-bind:to="{ name: 'make-an-appointment' }"
           >Make An Appointment</b-nav-item
         >
 

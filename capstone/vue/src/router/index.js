@@ -18,7 +18,7 @@ import ReviewResponse from '@/views/ReviewResponse.vue'
 import Schedule from '@/views/Schedule.vue'
 import UpdateSchedule from "../views/UpdateScheduleView.vue"
 import AppointmentListView from "@/views/AppointmentListView.vue"
-
+import MakeAnAppointmentPage from "@/views/MakeAnAppointmentPage.vue"
 
 Vue.use(Router)
 
@@ -117,15 +117,15 @@ const router = new Router({
       }
     },
 
-    // {
-    //   path: '/portal',
-    //   name: 'portal',
-    //   component: Portal,
-    //   meta: {
-    //     requiresAuth: true
-    //   }
+    {
+      path: '/makeanappointment',
+      name: 'make-an-appointment',
+      component: MakeAnAppointmentPage,
+      meta: {
+        requiresAuth: true
+      }
 
-    // },
+    },
     
     {
       path: '/reviews/doctor/:id',
