@@ -2,7 +2,6 @@
   <div class="container">
     <div class="main">
       <h1 class="appointment-header">
-        {{ newAgenda }}
         <br /><br />
         {{ this.$store.state.doctor.fullName }}'s Availability:
       </h1>

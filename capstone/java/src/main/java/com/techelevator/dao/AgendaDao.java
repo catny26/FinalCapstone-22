@@ -18,7 +18,7 @@ public interface AgendaDao {
 //
 //    Agenda createAgenda(Agenda agenda);
 //
-//    boolean updateAgenda(Agenda agenda);
+    boolean updateAgenda(Agenda agenda);
 //
 //    boolean deleteAgenda(long agendaId);
 

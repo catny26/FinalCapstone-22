@@ -19,15 +19,26 @@ public class AgendaController {
     }
 
     @GetMapping("doctors/agenda/")
+    @CrossOrigin
     public List<Agenda> getAgendas() {
         return agendaDao.findAll();
     }
 
     @GetMapping("doctors/{id}/agenda")
+    @CrossOrigin
     public Agenda getAgendaByDoctor(@PathVariable long id) {
         return agendaDao.getAgendaByDoctorId(id);
     }
 
+    @PutMapping("updateagenda")
+    public Agenda putAgenda(@RequestBody Agenda updatedAgenda) {
+        updatedAgenda.setAgendaId(updatedAgenda.getAgendaId());
+        if (agendaDao.updateAgenda(updatedAgenda)) {
+            return updatedAgenda;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Something went wrong! Please try again.");
+        }
+    }
 //
 //    @GetMapping("/agenda/{day}")
 //    public List<Agenda> getAgendasByAvailability(@PathVariable String day) {

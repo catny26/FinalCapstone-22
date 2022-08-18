@@ -3,11 +3,14 @@ package com.techelevator.dao;
 import com.techelevator.model.Agenda;
 import com.techelevator.model.Appointment;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -138,6 +141,56 @@ public class JdbcAgendaDao implements AgendaDao {
 
         return output;
     }
+
+
+    @Override
+    public boolean updateAgenda(Agenda agenda) {
+        String sql = "UPDATE agenda"+
+                " SET doctor_id = ?, mon = ?, tue = ?, wen = ?, thur = ?, fri = ?, sat = ?, sun = ?"+
+                " WHERE agenda_id =?;";
+        Agenda output = new Agenda();
+
+        if (agenda.getMon() != null) {
+            output.setMonArray(agenda.getMon().toArray(new Integer[agenda.getMon().size()])) ;
+        }
+        if (agenda.getTue() != null) {
+            output.setTueArray(agenda.getTue().toArray(new Integer[agenda.getTue().size()]));
+        }
+        if (agenda.getWen() != null) {
+            output.setWenArray(agenda.getWen().toArray(new Integer[agenda.getWen().size()]));
+        }
+        if (agenda.getThur() != null) {
+            output.setThurArray(agenda.getThur().toArray(new Integer[agenda.getThur().size()]));
+        }
+        if (agenda.getFri() != null) {
+            output.setFriArray(agenda.getFri().toArray(new Integer[agenda.getFri().size()]));
+        }
+        if (agenda.getSat() != null) {
+            output.setSatArray(agenda.getSat().toArray(new Integer[agenda.getSat().size()]));
+        }
+        if (agenda.getSun() != null) {
+            output.setSunArray(agenda.getSun().toArray(new Integer[agenda.getSun().size()]));
+        }
+//        return jdbcTemplate.update(sql, agenda.getDoctorId(), output.getMonArray(), output.getTueArray(), output.getWenArray(), output.getThurArray(), output.getFriArray(), output.getSatArray(), output.getSunArray(), agenda.getAgendaId()) == 1;
+        return jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                final PreparedStatement ret = connection.prepareStatement(sql);
+                ret.setLong(1, agenda.getDoctorId());
+                ret.setArray(2, connection.createArrayOf("int4", output.getMonArray()));
+                ret.setArray(3, connection.createArrayOf("int4", output.getTueArray()));
+                ret.setArray(4, connection.createArrayOf("int4", output.getWenArray()));
+                ret.setArray(5, connection.createArrayOf("int4", output.getThurArray()));
+                ret.setArray(6, connection.createArrayOf("int4", output.getFriArray()));
+                ret.setArray(7, connection.createArrayOf("int4", output.getSatArray()));
+                ret.setArray(8, connection.createArrayOf("int4", output.getSunArray()));
+                ret.setLong(9, agenda.getAgendaId());
+
+                return ret;
+            }
+        }) == 1;
+    }
+
 }
 //
 //    @Override

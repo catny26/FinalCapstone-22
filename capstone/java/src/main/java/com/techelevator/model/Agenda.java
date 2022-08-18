@@ -20,17 +20,31 @@ public class Agenda {
     @Nullable
     private List<Integer> mon;
     @Nullable
+    private Integer[] monArray;
+    @Nullable
     private List<Integer> tue;
+    @Nullable
+    private Integer[] tueArray;
     @Nullable
     private List<Integer> wen;
     @Nullable
+    private Integer[] wenArray;
+    @Nullable
     private List<Integer> thur;
+    @Nullable
+    private Integer[] thurArray;
     @Nullable
     private List<Integer> fri;
     @Nullable
+    private Integer[] friArray;
+    @Nullable
     private List<Integer> sat;
     @Nullable
+    private Integer[] satArray;
+    @Nullable
     private List<Integer> sun;
+    @Nullable
+    private Integer[] sunArray;
 
     public Agenda(){}
 
@@ -46,6 +60,80 @@ public class Agenda {
         this.sun = sun;
     }
 
+    @Nullable
+    public Integer[] getMonArray() {
+        return monArray;
+    }
+
+    public void setMonArray(@Nullable Integer[] monArray) {
+        this.monArray = monArray;
+    }
+
+    @Nullable
+    public Integer[] getTueArray() {
+        return tueArray;
+    }
+
+    public void setTueArray(@Nullable Integer[] tueArray) {
+        this.tueArray = tueArray;
+    }
+
+    @Nullable
+    public Integer[] getWenArray() {
+        return wenArray;
+    }
+
+    public void setWenArray(@Nullable Integer[] wenArray) {
+        this.wenArray = wenArray;
+    }
+
+    @Nullable
+    public Integer[] getThurArray() {
+        return thurArray;
+    }
+
+    public void setThurArray(@Nullable Integer[] thurArray) {
+        this.thurArray = thurArray;
+    }
+
+    @Nullable
+    public Integer[] getFriArray() {
+        return friArray;
+    }
+
+    public void setFriArray(@Nullable Integer[] friArray) {
+        this.friArray = friArray;
+    }
+
+    @Nullable
+    public Integer[] getSatArray() {
+        return satArray;
+    }
+
+    public void setSatArray(@Nullable Integer[] satArray) {
+        this.satArray = satArray;
+    }
+
+    @Nullable
+    public Integer[] getSunArray() {
+        return sunArray;
+    }
+
+    public void setSunArray(@Nullable Integer[] sunArray) {
+        this.sunArray = sunArray;
+    }
+
+    public Agenda(long agendaId, long doctorId, @Nullable Integer[] monArray, @Nullable Integer[] tueArray, @Nullable Integer[] wenArray, @Nullable Integer[] thurArray, @Nullable Integer[] friArray, @Nullable Integer[] satArray, @Nullable Integer[] sunArray) {
+        this.agendaId = agendaId;
+        this.doctorId = doctorId;
+        this.monArray = monArray;
+        this.tueArray = tueArray;
+        this.wenArray = wenArray;
+        this.thurArray = thurArray;
+        this.friArray = friArray;
+        this.satArray = satArray;
+        this.sunArray = sunArray;
+    }
 
     public long getAgendaId() {
         return agendaId;
@@ -62,6 +150,7 @@ public class Agenda {
     public void setDoctorId(long doctorId) {
         this.doctorId = doctorId;
     }
+
     public List<Integer> getMon() {
         return mon;
     }
