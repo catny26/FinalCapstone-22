@@ -13,7 +13,7 @@
             <label :for="office.officeId">{{office.officeName}}</label>
             <input type="checkbox" :name="office.officeId" :id="office.officeId" :value="office.officeId"  v-model="selectedOffices">
         </div>
-        <input type="button" value="Join Offices" @click="joinOffices">
+        <input type="button" value="Join Offices" @click="joinOffices">&nbsp;
 
         <input type="button" value="Add a new Office!" @click="hideForm = !hideForm"/>
         <form action="#" @submit.prevent="addOffice" v-if="!hideForm">
