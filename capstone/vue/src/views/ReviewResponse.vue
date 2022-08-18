@@ -8,6 +8,7 @@
             <div class="actions">
                 <input type = "submit" value="Submit" @click="getReview()">
                 <input type="button" value="Cancel" v-on:click.prevent="resetForm">
+                <router-link v-bind:to="{name: 'reviews', params: {id: this.doctorId}}"><input type="button" value = "Return to Reviews"></router-link>
                 <router-link v-bind:to="{name: 'providers'}"><input type="button" value = "Return to Providers"></router-link>
             </div>
         </form>
@@ -15,7 +16,6 @@
 </template>
 
 <script>
-
 export default {
     name: 'review-response',
     props: ["doctor"],
@@ -45,6 +45,7 @@ data() {
         })
       }
       this.updatedReview = output;
+      this.updatedReview = {};
     },
     updateCurrentReview() {
       console.log('updated')

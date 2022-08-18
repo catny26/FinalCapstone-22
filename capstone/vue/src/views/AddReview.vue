@@ -24,7 +24,7 @@
           <option value="8">Amber Brantley</option>
           <option value="9">Joelle Clayton</option>
           <option value="10">Tara Cherwony</option>
-          <option value="11">Shawn Badley</option>
+          <option value="11">Shawn Bradley</option>
           <option value="12">Jenn Lee</option>
         </select>
       </div>

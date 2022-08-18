@@ -11,7 +11,6 @@
     </div>
     <h4>{{ review.reviewMessage }}</h4>
     <p v-if="this.review.reviewResponse != ''">Response: {{review.reviewResponse}}</p>
-
     <router-link v-bind:to="{name: 'review-response', params: {id: this.review.reviewId}}"><input type="button" value="Respond to Review" @click="setActiveReview"></router-link>&nbsp;
   </div>
 </template>
@@ -62,7 +61,7 @@ export default {
   text-align: center;
 }
 .review-card p {
-  font-size: 1vw;
+  font-size: 1.2vw;
   margin: 5px;
   padding: 5px;
   text-align: center;
