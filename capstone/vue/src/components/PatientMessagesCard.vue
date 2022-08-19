@@ -34,6 +34,7 @@
         :key="appointment.appointmentId"
         v-on:click.prevent="confirmApptmt()" 
         id="doctorrole" value="doctor">Confirm Appointment</button> -->
+<!-- <<<<<<< HEAD -->
             <!-- v-if="user.isDoctor" -->
           </div>
 
@@ -54,6 +55,7 @@
     <!-- <div>
         <img src="../assets/message.png" alt="Messages Image" class="messages-image">
       </div> -->
+<!-- <<<<<<< HEAD -->
     <!-- {{ this.$store.state.notification }} -->
     <!-- <router-link v-bind:to="{ name: 'messages' }">
         <button class="messages">See All Messages</button>
@@ -143,12 +145,6 @@ export default {
 </script>
 
 <style>
-/* .container {
-
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
-} */
 
 .page-container {
   display: flex;
@@ -164,18 +160,15 @@ export default {
   justify-content: center;
 }
 
-.message-list-container {
-}
-
 .messages-container {
   border: 1px solid lightgrey;
   width: 700px;
   background-color: whitesmoke;
-  /* margin: 10px; */
   padding: 15px;
 }
 
-.messages-container h2 {
+.message-list-container {
+  display: flex;
 }
 
 .minite {
