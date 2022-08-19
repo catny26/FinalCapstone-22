@@ -169,6 +169,7 @@ export default {
 
 .message-list-container {
   display: flex;
+  font-size: 2vw;
 }
 
 .minite {
