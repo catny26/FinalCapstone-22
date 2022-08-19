@@ -178,7 +178,9 @@ export default {
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 20px;
+
 }
+
 ul {
   color: darkblue;
 }
