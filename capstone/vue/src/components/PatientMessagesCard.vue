@@ -5,6 +5,11 @@
       <!-- {{ this.$store.state.user }} -->
 
       <h2>Here are all your messages:</h2>
+
+      <div class="loading" v-if="isLoading">
+          <img src="../assets/duke.gif" />
+      </div>
+
       <!-- {{this.isDoctor?"Doctor Resources":"Patient Resources"}} -->
     </div>
     <div class="message-list-container">
@@ -66,6 +71,8 @@
         <li>"Your appointment was cancelled successfully"</li> -->
     </ul>
   </div>
+  
+
   </div>
 </template>
 
@@ -89,6 +96,7 @@ export default {
         message: "",
         isRead: false,
       },
+      isLoading: true,
     };
   },
   created() {
@@ -182,6 +190,10 @@ export default {
   background-size: 20px;
 
 }
+
+/* .loading-container{
+  background-color: whitesmoke;
+} */
 
 ul {
   color: darkblue;

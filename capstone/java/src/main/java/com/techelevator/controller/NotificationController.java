@@ -1,14 +1,10 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.JdbcNotificationDao;
 import com.techelevator.dao.NotificationDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Notification;
-import org.springframework.data.util.AnnotationDetectionFieldCallback;
 import org.springframework.http.HttpStatus;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -46,7 +42,8 @@ public class NotificationController {
     }
 
     @RequestMapping(value = "/notification/{id}", method = RequestMethod.GET)
-    public Notification getNotification(@PathVariable long id) {
+    public Notification getNotification(@PathVariable long id) throws InterruptedException{
+        Thread.sleep(2000);
         return notificationDao.getNotification(id);
     }
 
