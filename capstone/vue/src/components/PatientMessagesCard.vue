@@ -15,7 +15,7 @@
           :key="notification.notificationId"
         >
           {{ notification.message }}
-          {{ notification.notificationId }}
+          <!-- {{ notification.notificationId }} -->
           <!-- <img src="../assets/te-button-mini.png" alt="mini-te"> -->
           <!-- {{ this.$store.state.notification }} -->
 
@@ -169,6 +169,7 @@ export default {
 
 .message-list-container {
   display: flex;
+  font-size: 2vw;
 }
 
 .minite {
