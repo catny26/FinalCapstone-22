@@ -11,7 +11,7 @@
         :model-config="modelConfig"
         :attributes="formattedAppointments"
       ></v-date-picker>
-      <div v-if="selectedDate != undefined && selectedDate != ''">
+      <div  class="appt-list-container" v-if="selectedDate != undefined && selectedDate != ''">
           <h2 >Appointments on {{formatDate(this.selectedDate)}}</h2>
           <div class="appointment-cad" v-for="appointment in selectedAppointments" :key="appointment.id">
               <p v-if="!isDoctor">An appointment with Doctor {{findDoctorById(appointment.doctorId).fullName}}, at {{formatTime(appointment.startTime.substr(0,2))}} - {{formatTime(appointment.endTime.substr(0,2))}}, for {{appointment.reason}} is {{appointment.status}}</p>
@@ -216,5 +216,13 @@ export default {
 </script>
 
 <style>
+.appt-list-container {
+    margin-right: auto;
+    margin-left: auto;
+}
 
+.appt-list-container h2 {
+    margin-right: auto;
+    margin-left: auto;
+}
 </style>

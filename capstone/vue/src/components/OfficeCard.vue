@@ -1,6 +1,6 @@
 <template>
   <div class="office-card">
-    <img v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
+    <img id="office-image-list" v-if="hasImage" :src="office.officeImageUrl" alt="An image of the current office">
     <img v-else src="#" alt="A generic image of a doctors office">
     <h4>{{office.officeName}}</h4>
     <p class="address">{{office.address}}</p>
@@ -95,8 +95,8 @@ export default {
 
 .office-card img{
   display: block;
-  width: 50%;
-  height: 75%;
+  width: 100%;
+  height: auto;
 }
 
 .office-card h4 {
