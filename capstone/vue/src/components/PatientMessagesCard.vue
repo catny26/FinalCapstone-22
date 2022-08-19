@@ -143,12 +143,16 @@ export default {
 </script>
 
 <style>
-/* .container {
-
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
-} */
+.container {
+  display: flex;
+  border: 1px solid lightgrey;
+  background-color: whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 15px;
+ justify-content: center;
+}
 .minite{
   list-style: none;
   padding: 10px 30px;
@@ -163,13 +167,14 @@ ul{
 }
 
 h2{
-  display: flex;
+  display: block;
   flex-direction: column;
   align-content: center;
-  border: 1px solid lightgrey;
-  width: 700px;
+  /* border: 1px solid lightgrey;
+  width: 700px; */
   background-color: whitesmoke;
-  /* margin: 10px; */
+  margin-right: auto;
+  margin-left: auto;
   padding: 15px;
 }
 
