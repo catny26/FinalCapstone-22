@@ -15,7 +15,7 @@
           :key="notification.notificationId"
         >
           {{ notification.message }}
-          {{ notification.notificationId }}
+          <!-- {{ notification.notificationId }} -->
           <!-- <img src="../assets/te-button-mini.png" alt="mini-te"> -->
           <!-- {{ this.$store.state.notification }} -->
 
